@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice Room — Current Layout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4ead5;
+    --paper-warm: #ede0c2;
+    --ink: #1a1814;
+    --ink-soft: #4a4438;
+    --ink-faint: #8a8170;
+    --grid: #c9b994;
+    --grid-soft: #d8caa3;
+    --accent-red: #b8412e;
+    --accent-blue: #2c5f7c;
+    --accent-purple: #6b4a7a;
+    --accent-green: #4a6b3a;
+    --accent-amber: #b8862e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #2a2620;
+    min-height: 100vh;
+    font-family: 'Fraunces', Georgia, serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 40px 56px;
+    background: var(--paper);
+    background-image:
+      radial-gradient(ellipse at top left, rgba(255,240,200,0.45) 0%, transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(180,150,100,0.18) 0%, transparent 55%);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.08'/></svg>");
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 14px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -5px;
+    height: 1px;
+    background: var(--ink);
+  }
+
+  .title-block h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 44px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variation-settings: 'opsz' 144;
+  }
+  .title-block .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 8px;
+  }
+
+  .meta {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.85;
+  }
+  .meta .label { color: var(--ink-faint); }
+  .meta .value { color: var(--ink); font-weight: 500; }
+
+  .stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .room-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.08));
+  }
+
+  /* Sidebar */
+  .legend {
+    background: rgba(255,250,235,0.55);
+    border: 2px solid var(--ink);
+    padding: 20px;
+    box-shadow: 4px 4px 0 var(--ink);
+    position: relative;
+  }
+  .legend h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .legend .legend-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .legend-section { margin-bottom: 18px; }
+  .legend-section:last-child { margin-bottom: 0; }
+  .legend-section h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    margin-bottom: 7px;
+  }
+  .legend-item:last-child { margin-bottom: 0; }
+  .legend-item .swatch {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--ink);
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .legend-item .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-left: auto;
+  }
+  .legend-item .label-text { font-size: 13px; }
+  .legend-item .label-text strong { font-weight: 600; }
+
+  .sound-key {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  .sound-key:last-child { margin-bottom: 0; }
+  .sound-key .cone-sample { width: 38px; height: 20px; flex-shrink: 0; }
+
+  .footer {
+    margin-top: 32px;
+    padding-top: 14px;
+    border-top: 1px solid var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .stamp {
+    position: absolute;
+    top: 84px;
+    right: 56px;
+    transform: rotate(8deg);
+    border: 2.5px solid var(--accent-red);
+    color: var(--accent-red);
+    padding: 6px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  @media (max-width: 820px) {
+    .stage { grid-template-columns: 1fr; }
+    .title-block h1 { font-size: 32px; }
+    .stamp { top: 60px; right: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="stamp" id="scenarioStamp">CURRENT&nbsp;STATE</div>
+
+  <header class="header">
+    <div class="title-block">
+      <h1>The Practice Room</h1>
+      <div class="subtitle">Layout · Sound Direction · Top View</div>
+    </div>
+    <div class="meta">
+      <div><span class="label">Room</span> &nbsp; <span class="value">~12 × 15 ft</span></div>
+      <div><span class="label">Ensemble</span> &nbsp; <span class="value">5 pc</span></div>
+      <div><span class="label">Revision</span> &nbsp; <span class="value" id="revisionLabel">03 / current</span></div>
+      <div style="margin-top:6px"><a id="scenarioToggle" href="#" style="color:var(--ink-soft);text-decoration:underline;font-size:9px;">switch layout →</a></div>
+    </div>
+  </header>
+
+  <div class="stage">
+    <div class="room-wrap">
+      <svg id="diagram" class="room-svg" viewBox="-90 -30 1320 1770" xmlns="http://www.w3.org/2000/svg" aria-label="Practice room top-down diagram"></svg>
+    </div>
+
+    <aside class="legend">
+      <h2>Legend</h2>
+      <div class="legend-sub">Players · Gear · Sound Direction</div>
+
+      <div class="legend-section">
+        <h3>Axes &amp; Angles</h3>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--ink-soft)">
+          <div>viewBox <span style="color:var(--ink)">1200 &times; 1700</span></div>
+          <div>~<span style="color:var(--ink)">100 u = 1 ft</span></div>
+          <div style="margin-top:6px">+X &rarr; east &nbsp;&nbsp; +Y &darr; south</div>
+          <div style="margin-top:6px"><span style="color:var(--ink)">fire</span> in degrees:</div>
+          <div>&nbsp;&nbsp;0 = E &nbsp; 90 = S</div>
+          <div>&nbsp;&nbsp;180 = W &nbsp; 270 = N</div>
+          <div>&nbsp;&nbsp;-30 &asymp; ENE</div>
+        </div>
+      </div>
+
+      <div class="legend-section">
+        <h3>Sound Cones</h3>
+        <div class="sound-key">
+          <svg class="cone-sample" viewBox="0 0 40 20">
+            <defs>
+              <radialGradient id="ampKey" cx="0%" cy="50%" r="100%">
+                <stop offset="0%" stop-color="#b8412e" stop-opacity="0.75"/>
+                <stop offset="100%" stop-color="#b8412e" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <path d="M 0 10 L 40 0 Q 42 10 40 20 Z" fill="url(#ampKey)"/>
+          </svg>
+          <span>Amp output</span>
+        </div>
+        <div class="sound-key">
+          <svg class="cone-sample" viewBox="0 0 40 20">
+            <defs>
+              <radialGradient id="monKey" cx="0%" cy="50%" r="100%">
+                <stop offset="0%" stop-color="#2c5f7c" stop-opacity="0.75"/>
+                <stop offset="100%" stop-color="#2c5f7c" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <path d="M 0 10 L 40 0 Q 42 10 40 20 Z" fill="url(#monKey)"/>
+          </svg>
+          <span>Monitor output</span>
+        </div>
+      </div>
+
+      <div class="legend-section">
+        <h3>Vocal Mics</h3>
+        <div class="legend-item">
+          <span class="label-text"><strong>MIC 1</strong> &middot; Lead vocal</span>
+        </div>
+        <div class="legend-item">
+          <span class="label-text"><strong>MIC 2</strong> &middot; Backup vocal (bass)</span>
+        </div>
+        <div class="legend-item" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--ink-faint);margin-top:6px">
+          <span>Dashed arrow = singer's facing direction</span>
+        </div>
+      </div>
+
+      <div class="legend-section">
+        <h3>PA Speakers</h3>
+        <div class="legend-item">
+          <span class="label-text"><strong>MAIN&nbsp;L / R</strong> &middot; passive Harbinger pair on stands</span>
+        </div>
+        <div class="legend-item">
+          <span class="label-text"><strong>WEDGE</strong> &middot; <em style="font-style:normal;color:var(--ink-faint)">(optional)</em> active near-field for singers</span>
+        </div>
+        <div class="legend-item" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--ink-faint);margin-top:6px;line-height:1.5">
+          <span>Mains share the master mix (Stereo Mode).<br>Wedge fed by M200 Stereo Out, line level.<br>Dashed cone = optional element.</span>
+        </div>
+      </div>
+
+      <div class="legend-section">
+        <h3>Amp Tilt</h3>
+        <div style="display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.6;color:var(--ink-soft)">
+          <svg width="28" height="22" viewBox="0 0 28 22">
+            <rect x="3" y="2" width="22" height="14" rx="1" fill="#1a1814" stroke="#1a1814"/>
+            <polygon points="9,21 19,21 14,17" fill="#b8862e" stroke="#1a1814" stroke-width="0.8"/>
+          </svg>
+          <span>Amber wedge under an amp = propped up on a case or stand. Cone fires at ear height, less floor bleed.</span>
+        </div>
+      </div>
+
+      <div class="legend-section">
+        <h3>Signal Chain</h3>
+        <svg viewBox="0 0 260 150" style="width:100%;height:auto;display:block;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1814"/>
+            </marker>
+          </defs>
+
+          <rect x="6"   y="22" width="46" height="22" rx="2" fill="#f4ead5" stroke="#b8412e" stroke-width="1.4"/>
+          <text x="29"  y="37" text-anchor="middle" fill="#b8412e">MIC&nbsp;1</text>
+          <rect x="6"   y="78" width="46" height="22" rx="2" fill="#f4ead5" stroke="#b8412e" stroke-width="1.4"/>
+          <text x="29"  y="93" text-anchor="middle" fill="#b8412e">MIC&nbsp;2</text>
+
+          <rect x="98"  y="32" width="62" height="58" rx="3" fill="#1a1814" stroke="#1a1814"/>
+          <text x="129" y="56" text-anchor="middle" fill="#f4ead5" font-size="10">M200</text>
+          <text x="129" y="74" text-anchor="middle" fill="#b8862e" font-size="8">‑BT</text>
+
+          <rect x="200" y="6"   width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.4"/>
+          <text x="227" y="21"  text-anchor="middle" fill="#2c5f7c">MAIN&nbsp;L</text>
+          <rect x="200" y="50"  width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.4"/>
+          <text x="227" y="65"  text-anchor="middle" fill="#2c5f7c">MAIN&nbsp;R</text>
+          <rect x="200" y="94"  width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.4" stroke-dasharray="3 2"/>
+          <text x="227" y="109" text-anchor="middle" fill="#2c5f7c">WEDGE</text>
+          <text x="227" y="128" text-anchor="middle" fill="#8a8170" font-size="7" letter-spacing="0.4">option B only</text>
+
+          <line x1="52" y1="33" x2="98"  y2="50" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arr)"/>
+          <line x1="52" y1="89" x2="98"  y2="72" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arr)"/>
+
+          <line x1="160" y1="46" x2="200" y2="17" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arr)"/>
+          <text x="180" y="40" text-anchor="middle" fill="#8a8170" font-size="7">SPK&nbsp;1</text>
+          <line x1="160" y1="61" x2="200" y2="61" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arr)"/>
+          <text x="180" y="58" text-anchor="middle" fill="#8a8170" font-size="7">SPK&nbsp;2</text>
+          <line x1="160" y1="76" x2="200" y2="105" stroke="#1a1814" stroke-width="1.1" stroke-dasharray="3 2" marker-end="url(#arr)"/>
+          <text x="180" y="98" text-anchor="middle" fill="#8a8170" font-size="7">ST&nbsp;OUT</text>
+        </svg>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <div>Drawn from field sketch &middot; graph paper, pen</div>
+    <div>Sheet 01 of 01</div>
+  </footer>
+</div>
+
+<script>
+/* =========================================================================
+   LAYOUT CONFIG  —  edit positions / angles here, everything re-renders.
+
+   Coordinate system: SVG units, viewBox 0 0 1200 1700.
+   Roughly 100 units = 1 ft.  Origin top-left, +x east, +y south.
+   `fire` is in degrees:  0 = east, 90 = south, 180 = west, 270 = north.
+   ========================================================================= */
+const C = {
+  red:    '#b8412e',
+  blue:   '#2c5f7c',
+  purple: '#6b4a7a',
+  green:  '#4a6b3a',
+  amber:  '#b8862e',
+  ink:    '#1a1814',
+  inkSoft:'#4a4438',
+  inkFaint:'#8a8170',
+  paper:  '#f4ead5',
+  grid:   '#c9b994',
+};
+
+/* Geometry shared across scenarios. If a future-state proposal changes
+   the room shape (it shouldn't), override these inside the scenario. */
+const ROOM_GEOMETRY = {
+  // L-shaped room outline (clockwise). Stairs alcove bumps north at top-center;
+  // bed alcove cuts in at bottom-right (drawn separately as adjacent zone).
+  ROOM_PATH: [
+    [60, 260], [430, 260], [430, 80], [720, 80], [720, 260], [1140, 260],
+    [1140, 1400], [400, 1400], [400, 1640], [60, 1640], [60, 260],
+  ],
+  BED_ALCOVE:    { x: 400, y: 1400, w: 740, h: 240 },
+  STAIRS_ALCOVE: { x: 430, y: 80,   w: 290, h: 180 },
+};
+
+/* =========================================================================
+   SCENARIOS — add as many as you want. Switch via ?layout=proposed in URL,
+   or change ACTIVE below. The 'proposed' scenario starts as a clone of
+   'current'; edit it freely to sketch out future-state ideas.
+   ========================================================================= */
+const SCENARIOS = {
+  current: {
+    label: 'Current State',
+    stamp: 'CURRENT STATE',
+    revision: '03 / current',
+    MICS: [
+      // Lead vocal mic — singer stands behind it, faces the drummer
+      { id: 'MIC1', x: 600, y: 600,  face: 55, label: 'MIC 1 · LEAD',   tagAt: 'south' },
+      // Backup vocal mic — bass player sings into it; faces the drummer
+      { id: 'MIC2', x: 460, y: 1010, face: 17, label: 'MIC 2 · BACKUP', tagAt: 'south' },
+    ],
+    AMPS: [
+      // G1 amp on top wall — angled ~25% toward room center (south + a bit east)
+      { id: 'G1 AMP',   x: 220, y: 290,  fire: 71,  length: 380, spread: 38, tagAt: 'south' },
+      { id: 'G2 AMP',   x: 1110,y: 760,  fire: 180, length: 520, spread: 36, tagAt: 'west'  },
+      { id: 'BASS AMP', x: 115, y: 1200, fire: -28, length: 560, spread: 32, tagAt: 'east'  },
+    ],
+    MONITORS: [
+      // M1 re-aimed at drummer's new position (1000, 1180)
+      { id: 'M1', x: 500, y: 1300, fire: -14, length: 480, spread: 20, tag: 'M1', tagAt: 'south' },
+      { id: 'M2', x: 90,  y: 700,  fire: 0,   length: 460, spread: 32, tag: 'M2', tagAt: 'north' },
+      { id: 'M3', x: 770, y: 1000, fire: 270, length: 320, spread: 26, tag: 'M3', tagAt: 'east'  },
+    ],
+    DRUM_KIT: { x: 1000,y: 1180, size: 240 },
+  },
+
+  /* PROPOSED — Two passive mains run off the M200-BT in stereo mode (Speaker 1 → MAIN-L,
+     Speaker 2 → MAIN-R), aimed at opposite singers so cones cross at the band line.
+     Drummer monitors via proximity to the mains. Singers monitor via the mains firing into
+     the rear-null of the mic capsules. Optional active near-field WEDGE for the singers,
+     fed by the M200's Stereo Out — useful if the singers want a closer reference.
+     All amps assumed tilted up onto cases (off-axis ear-height projection, less floor bleed). */
+  proposed: {
+    label: 'Proposed Layout',
+    stamp: 'PROPOSED',
+    revision: '06 / proposed',
+    MICS: [
+      { id: 'MIC1', x: 680, y: 600, face: 90, label: 'MIC 1 · LEAD',   tagAt: 'north' },
+      { id: 'MIC2', x: 520, y: 600, face: 90, label: 'MIC 2 · BACKUP', tagAt: 'north' },
+    ],
+    AMPS: [
+      { id: 'G1 AMP',   x: 110, y: 310,  fire: 32,  length: 320, spread: 26, tagAt: 'north', tilted: true },
+      { id: 'G2 AMP',   x: 900, y: 1010, fire: -90,  length: 380, spread: 20, tagAt: 'west',  tilted: true },
+      { id: 'BASS AMP', x: 115, y: 1200, fire: -56, length: 760, spread: 24, tagAt: 'east',  tilted: true },
+    ],
+    MONITORS: [
+      // MAIN-L aims at MIC 1 (opposite singer); cones cross at the band line.
+      { id: 'MAIN-L', x: 280, y: 1370, fire: -62,  length: 1000, spread: 30, tag: 'MAIN L', tagAt: 'south' },
+      // MAIN-R aims at MIC 2 (opposite singer).
+      { id: 'MAIN-R', x: 920, y: 1370, fire: -118, length: 1000, spread: 30, tag: 'MAIN R', tagAt: 'south' },
+      // WEDGE — optional near-field for the singers, fed by Stereo Out at line level.
+      { id: 'WEDGE',  x: 600, y: 820,  fire: 270,  length: 380,  spread: 22, tag: 'WEDGE',  tagAt: 'east', optional: true },
+    ],
+    DRUM_KIT: { x: 800, y: 1158, size: 240 },
+    MIXER: { x: 800, y: 1370, label: 'M200-BT' },
+  },
+};
+
+const ACTIVE_KEY = (new URLSearchParams(location.search).get('layout')) || 'current';
+const SCENARIO  = SCENARIOS[ACTIVE_KEY] || SCENARIOS.current;
+const { ROOM_PATH, BED_ALCOVE, STAIRS_ALCOVE } = ROOM_GEOMETRY;
+const { MICS, AMPS, MONITORS, DRUM_KIT, MIXER } = SCENARIO;
+
+/* =========================================================================
+   SVG helpers
+   ========================================================================= */
+const SVG_NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs = {}, parent) {
+  const n = document.createElementNS(SVG_NS, tag);
+  for (const k in attrs) n.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(n);
+  return n;
+}
+function text(parent, x, y, str, opts = {}) {
+  const t = el('text', {
+    x, y,
+    'font-family': opts.font || 'JetBrains Mono, monospace',
+    'font-size': opts.size || 18,
+    'font-weight': opts.weight || 700,
+    'letter-spacing': opts.tracking || 1.6,
+    'text-anchor': opts.anchor || 'middle',
+    'dominant-baseline': opts.baseline || 'middle',
+    fill: opts.color || C.ink,
+    ...(opts.transform ? { transform: opts.transform } : {}),
+  }, parent);
+  t.textContent = str;
+  return t;
+}
+function pointsToPath(pts) {
+  return pts.map((p, i) => (i ? 'L' : 'M') + p[0] + ' ' + p[1]).join(' ') + ' Z';
+}
+
+/* =========================================================================
+   Render
+   ========================================================================= */
+const svg = document.getElementById('diagram');
+
+// Wire scenario-driven UI bits
+{
+  const stamp = document.getElementById('scenarioStamp');
+  const rev = document.getElementById('revisionLabel');
+  const toggle = document.getElementById('scenarioToggle');
+  if (stamp) stamp.innerHTML = SCENARIO.stamp.replace(/ /g, '&nbsp;');
+  if (rev) rev.textContent = SCENARIO.revision;
+  if (toggle) {
+    const next = ACTIVE_KEY === 'current' ? 'proposed' : 'current';
+    toggle.href = `?layout=${next}`;
+    toggle.textContent = `view ${next} →`;
+  }
+}
+
+// --- defs: gradients, clip path for room interior ---
+const defs = el('defs', {}, svg);
+
+const ampGrad = el('radialGradient', { id: 'ampCone', cx: '0%', cy: '50%', r: '100%' }, defs);
+el('stop', { offset: '0%',   'stop-color': C.red,  'stop-opacity': 0.58 }, ampGrad);
+el('stop', { offset: '55%',  'stop-color': C.red,  'stop-opacity': 0.22 }, ampGrad);
+el('stop', { offset: '100%', 'stop-color': C.red,  'stop-opacity': 0    }, ampGrad);
+
+const monGrad = el('radialGradient', { id: 'monCone', cx: '0%', cy: '50%', r: '100%' }, defs);
+el('stop', { offset: '0%',   'stop-color': C.blue, 'stop-opacity': 0.62 }, monGrad);
+el('stop', { offset: '55%',  'stop-color': C.blue, 'stop-opacity': 0.24 }, monGrad);
+el('stop', { offset: '100%', 'stop-color': C.blue, 'stop-opacity': 0    }, monGrad);
+
+const cymbalGrad = el('radialGradient', { id: 'cymbalGrad' }, defs);
+el('stop', { offset: '20%', 'stop-color': 'rgba(184,134,46,0)' }, cymbalGrad);
+el('stop', { offset: '60%', 'stop-color': 'rgba(184,134,46,0.45)' }, cymbalGrad);
+el('stop', { offset: '85%', 'stop-color': 'rgba(184,134,46,0)' }, cymbalGrad);
+
+// Clip path so cones never spill outside room walls
+const clip = el('clipPath', { id: 'roomClip' }, defs);
+el('path', { d: pointsToPath(ROOM_PATH) }, clip);
+
+/* ---- Axis rulers (SVG units, ~100u = 1 ft) ---- */
+{
+  const axisColor = C.inkFaint;
+  const axisG = el('g', {}, svg);
+  // top X axis (positioned in the negative-Y padding above the room)
+  const axY = -10;
+  el('line', { x1: 60, y1: axY, x2: 1140, y2: axY, stroke: axisColor, 'stroke-width': 1 }, axisG);
+  for (let x = 100; x <= 1100; x += 100) {
+    const major = x % 200 === 0;
+    el('line', { x1: x, y1: axY, x2: x, y2: axY + (major ? 12 : 6), stroke: axisColor, 'stroke-width': 1 }, axisG);
+    if (major) text(axisG, x, axY - 12, String(x), { size: 14, color: axisColor, weight: 500, tracking: 0.5 });
+  }
+  text(axisG, 1170, axY - 12, 'X →', { size: 13, color: C.inkSoft, anchor: 'end', tracking: 1 });
+
+  // left Y axis (positioned in the negative-X padding to the left of the room)
+  const axX = -10;
+  el('line', { x1: axX, y1: 260, x2: axX, y2: 1640, stroke: axisColor, 'stroke-width': 1 }, axisG);
+  for (let y = 300; y <= 1600; y += 100) {
+    const major = y % 200 === 0;
+    el('line', { x1: axX, y1: y, x2: axX - (major ? 12 : 6), y2: y, stroke: axisColor, 'stroke-width': 1 }, axisG);
+    if (major) text(axisG, axX - 16, y, String(y), { size: 14, color: axisColor, weight: 500, tracking: 0.5, anchor: 'end' });
+  }
+  text(axisG, axX - 8, 240, 'Y ↓', { size: 13, color: C.inkSoft, anchor: 'end', tracking: 1 });
+}
+
+// --- bed alcove (faint adjacent zone) ---
+const bedG = el('g', { opacity: 0.55 }, svg);
+el('rect', {
+  x: BED_ALCOVE.x, y: BED_ALCOVE.y,
+  width: BED_ALCOVE.w, height: BED_ALCOVE.h,
+  fill: 'rgba(180,150,100,0.10)',
+  stroke: C.inkFaint,
+  'stroke-width': 1.5,
+  'stroke-dasharray': '6 5',
+}, bedG);
+text(bedG, BED_ALCOVE.x + BED_ALCOVE.w / 2, BED_ALCOVE.y + BED_ALCOVE.h / 2, 'BED', {
+  size: 22, color: C.inkFaint, tracking: 6,
+});
+
+// --- room: paper fill, then grid (clipped), then walls on top ---
+el('path', {
+  d: pointsToPath(ROOM_PATH),
+  fill: 'rgba(255,250,235,0.65)',
+}, svg);
+
+// Subtle graph-paper grid clipped to room interior — 50 unit spacing (~6")
+const gridG = el('g', { 'clip-path': 'url(#roomClip)', opacity: 0.55 }, svg);
+for (let x = 0; x <= 1200; x += 50) {
+  el('line', { x1: x, y1: 0, x2: x, y2: 1700, stroke: C.grid, 'stroke-width': x % 200 === 0 ? 1 : 0.5 }, gridG);
+}
+for (let y = 0; y <= 1700; y += 50) {
+  el('line', { x1: 0, y1: y, x2: 1200, y2: y, stroke: C.grid, 'stroke-width': y % 200 === 0 ? 1 : 0.5 }, gridG);
+}
+
+// Walls
+el('path', {
+  d: pointsToPath(ROOM_PATH),
+  fill: 'none',
+  stroke: C.ink,
+  'stroke-width': 4,
+  'stroke-linejoin': 'miter',
+}, svg);
+
+// Stairs label + arrow (inside the alcove)
+{
+  const cx = STAIRS_ALCOVE.x + STAIRS_ALCOVE.w / 2;
+  const cy = STAIRS_ALCOVE.y + STAIRS_ALCOVE.h / 2;
+  text(svg, cx, cy - 18, 'STAIRS', { size: 16, color: C.inkSoft, tracking: 3 });
+  // up-arrow
+  const ax1 = cx, ay1 = cy + 30, ay2 = cy + 2;
+  el('line', { x1: ax1, y1: ay1, x2: ax1, y2: ay2, stroke: C.inkSoft, 'stroke-width': 2 }, svg);
+  el('polyline', {
+    points: `${ax1 - 8},${ay2 + 8} ${ax1},${ay2} ${ax1 + 8},${ay2 + 8}`,
+    fill: 'none', stroke: C.inkSoft, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round',
+  }, svg);
+}
+
+/* ---- Sound cones (clipped to room) ---- */
+const conesG = el('g', { 'clip-path': 'url(#roomClip)' }, svg);
+function drawCone(parent, x, y, fireDeg, length, spread, gradId, opts = {}) {
+  const g = el('g', { transform: `translate(${x} ${y}) rotate(${fireDeg})` }, parent);
+  const halfW = length * Math.tan((spread * Math.PI) / 180);
+  const d = `M 0 0 L ${length} ${-halfW} Q ${length + 10} 0 ${length} ${halfW} Z`;
+  const attrs = { d, fill: `url(#${gradId})` };
+  if (opts.optional) {
+    attrs.opacity = 0.5;
+    attrs.stroke = C.blue;
+    attrs['stroke-width'] = 1.2;
+    attrs['stroke-dasharray'] = '6 4';
+    attrs['stroke-opacity'] = 0.55;
+  }
+  el('path', attrs, g);
+}
+AMPS.forEach(a => drawCone(conesG, a.x, a.y, a.fire, a.length, a.spread, 'ampCone'));
+MONITORS.forEach(m => drawCone(conesG, m.x, m.y, m.fire, m.length, m.spread, 'monCone', { optional: m.optional }));
+
+/* ---- Drum kit ---- */
+function drawDrumKit(parent, cx, cy, size) {
+  const g = el('g', { transform: `translate(${cx} ${cy})` }, parent);
+  const s = size / 2; // half-size
+
+  // cymbals (drawn under drums)
+  const cymbal = (x, y, r) => {
+    el('circle', { cx: x, cy: y, r, fill: 'url(#cymbalGrad)', stroke: C.amber, 'stroke-width': 2, opacity: 0.85 }, g);
+  };
+  cymbal(-s * 0.85, -s * 0.45, 38); // hi-hat (player's left)
+  cymbal(-s * 0.65, -s * 0.95, 44); // crash
+  cymbal( s * 0.85, -s * 0.65, 50); // ride
+
+  // toms
+  const tom = (x, y, r) => {
+    el('circle', {
+      cx: x, cy: y, r,
+      fill: '#e8dcb8',
+      stroke: C.ink, 'stroke-width': 2.5,
+    }, g);
+  };
+  tom(-s * 0.30, -s * 0.55, 28); // tom 1
+  tom( s * 0.18, -s * 0.55, 30); // tom 2
+  tom( s * 0.75,  s * 0.05, 38); // floor tom
+
+  // snare (player's near-left)
+  el('circle', {
+    cx: -s * 0.45, cy: s * 0.05, r: 32,
+    fill: '#fdf6dd', stroke: C.ink, 'stroke-width': 2.5,
+  }, g);
+
+  // kick (center)
+  el('circle', {
+    cx: 0, cy: s * 0.35, r: 60,
+    fill: '#e8dcb8', stroke: C.ink, 'stroke-width': 3,
+  }, g);
+  el('circle', {
+    cx: 0, cy: s * 0.35, r: 50,
+    fill: 'none', stroke: 'rgba(255,255,255,0.5)', 'stroke-width': 2,
+  }, g);
+
+  // label
+  text(g, 0, s + 38, 'DRUMS', { size: 14, color: C.ink, tracking: 4 });
+}
+drawDrumKit(svg, DRUM_KIT.x, DRUM_KIT.y, DRUM_KIT.size);
+
+/* ---- Mixer head (Harbinger M200-BT) ---- */
+function drawMixer(parent, m) {
+  const w = 110, h = 38;
+  const g = el('g', { transform: `translate(${m.x} ${m.y})` }, parent);
+  // body
+  el('rect', {
+    x: -w / 2, y: -h / 2, width: w, height: h, rx: 3,
+    fill: '#1a1814', stroke: C.ink, 'stroke-width': 2,
+  }, g);
+  // faux knobs / channel strip
+  for (let i = 0; i < 6; i++) {
+    el('circle', { cx: -w / 2 + 12 + i * 14, cy: 4, r: 2.6, fill: C.amber, opacity: 0.85 }, g);
+  }
+  // tag pill below
+  const tagW = m.label.length * 7 + 12;
+  el('rect', {
+    x: -tagW / 2, y: h / 2 + 4,
+    width: tagW, height: 18, rx: 2,
+    fill: C.paper, stroke: C.ink, 'stroke-width': 1.2,
+  }, g);
+  text(g, 0, h / 2 + 13, m.label, { size: 10, color: C.ink, tracking: 1.4 });
+}
+if (MIXER) drawMixer(svg, MIXER);
+
+/* ---- Amps ---- */
+function drawAmp(parent, a) {
+  const w = 90, h = 60;
+  const g = el('g', { transform: `translate(${a.x} ${a.y})` }, parent);
+  // body
+  el('rect', {
+    x: -w / 2, y: -h / 2, width: w, height: h, rx: 3,
+    fill: '#1a1814', stroke: C.ink, 'stroke-width': 2.5,
+  }, g);
+  // shadow drop
+  el('rect', {
+    x: -w / 2 + 4, y: -h / 2 + 4, width: w, height: h, rx: 3,
+    fill: C.ink, opacity: 0.0,
+  }, g);
+  // grille
+  el('circle', { cx: 0, cy: 0, r: 18, fill: '#0a0805', stroke: '#000', 'stroke-width': 1.5 }, g);
+  el('circle', { cx: -5, cy: -5, r: 8, fill: '#3a3530', opacity: 0.5 }, g);
+
+  // tilt indicator: a small wedge-stand silhouette tucked under the amp body, suggesting it's propped up
+  if (a.tilted) {
+    el('polygon', {
+      points: `${-w/3},${h/2 + 9} ${w/3},${h/2 + 9} 0,${h/2 + 1}`,
+      fill: C.amber, opacity: 0.95, stroke: C.ink, 'stroke-width': 1,
+    }, g);
+  }
+
+  // tag positioned outside body opposite firing direction
+  const tagOffsets = { south: [0, -h / 2 - 18], north: [0, h / 2 + 22], east: [-w / 2 - 8, 0], west: [w / 2 + 8, 0] };
+  const tagAnchor  = { south: 'middle', north: 'middle', east: 'end', west: 'start' };
+  const where = a.tagAt || 'south';
+  const [tx, ty] = tagOffsets[where];
+  const tagText = a.tilted ? `${a.id} ↑` : a.id;
+  const tagW = tagText.length * 9 + 10;
+  el('rect', {
+    x: tx - (where === 'east' ? tagW : where === 'west' ? 0 : tagW / 2),
+    y: ty - 9,
+    width: tagW, height: 18, rx: 2,
+    fill: C.paper, stroke: C.ink, 'stroke-width': 1.2,
+  }, g);
+  text(g, tx, ty, tagText, { size: 11, color: C.ink, tracking: 1.5, anchor: tagAnchor[where] });
+}
+AMPS.forEach(a => drawAmp(svg, a));
+
+/* ---- Monitors (wedges, rotated to firing direction) ---- */
+function drawMonitor(parent, m) {
+  const g = el('g', { transform: `translate(${m.x} ${m.y}) rotate(${m.fire})` }, parent);
+  const len = 70, backW = 38, frontW = 56;
+  const d = `M ${-len / 2} ${-backW / 2} L ${-len / 2} ${backW / 2} L ${len / 2} ${frontW / 2} L ${len / 2} ${-frontW / 2} Z`;
+  const bodyAttrs = { d, fill: m.optional ? '#3a3530' : '#1a1814', stroke: C.ink, 'stroke-width': 2.5 };
+  if (m.optional) bodyAttrs['stroke-dasharray'] = '5 3';
+  el('path', bodyAttrs, g);
+  el('ellipse', { cx: 8, cy: 0, rx: 16, ry: 14, fill: '#0a0805', stroke: '#000', 'stroke-width': 1.2 }, g);
+  el('ellipse', { cx: 4, cy: -3, rx: 6, ry: 5, fill: '#3a3530', opacity: 0.55 }, g);
+
+  const tagOffsets = { south: [0, 56], north: [0, -56], east: [56, 0], west: [-56, 0] };
+  const tagAnchor  = { south: 'middle', north: 'middle', east: 'start', west: 'end' };
+  const where = m.tagAt || 'south';
+  const [tx, ty] = tagOffsets[where];
+  const tagText = m.optional ? `${m.tag} (opt)` : m.tag;
+  const tagW = tagText.length * 7.2 + 10;
+  el('rect', {
+    x: m.x + tx - (where === 'east' ? 0 : where === 'west' ? tagW : tagW / 2),
+    y: m.y + ty - 9,
+    width: tagW, height: 18, rx: 2,
+    fill: C.paper, stroke: C.ink, 'stroke-width': 1.2,
+    ...(m.optional ? { 'stroke-dasharray': '4 2' } : {}),
+  }, parent);
+  text(parent, m.x + tx, m.y + ty, tagText, { size: 10, color: C.ink, tracking: 1.2, anchor: tagAnchor[where] });
+}
+MONITORS.forEach(m => drawMonitor(svg, m));
+
+/* ---- Vocal mics (top-down view) ---- */
+function drawMic(parent, m) {
+  const g = el('g', { transform: `translate(${m.x} ${m.y})` }, parent);
+
+  // facing arrow — direction the singer is looking (away from the back of the mic capsule)
+  if (m.face !== undefined) {
+    const arrowLen = 70;
+    const ax = Math.cos(m.face * Math.PI / 180) * arrowLen;
+    const ay = Math.sin(m.face * Math.PI / 180) * arrowLen;
+    const arrowG = el('g', {}, g);
+    el('line', {
+      x1: 0, y1: 0, x2: ax, y2: ay,
+      stroke: C.red, 'stroke-width': 2, 'stroke-dasharray': '5 4', opacity: 0.7,
+    }, arrowG);
+    // arrowhead
+    const head = 8;
+    const ang = m.face * Math.PI / 180;
+    const hx1 = ax - Math.cos(ang - 0.4) * head;
+    const hy1 = ay - Math.sin(ang - 0.4) * head;
+    const hx2 = ax - Math.cos(ang + 0.4) * head;
+    const hy2 = ay - Math.sin(ang + 0.4) * head;
+    el('polyline', {
+      points: `${hx1},${hy1} ${ax},${ay} ${hx2},${hy2}`,
+      fill: 'none', stroke: C.red, 'stroke-width': 2, opacity: 0.7,
+      'stroke-linejoin': 'round', 'stroke-linecap': 'round',
+    }, arrowG);
+  }
+
+  // mic stand base (faint outer ring)
+  el('circle', { cx: 0, cy: 0, r: 22, fill: 'none', stroke: C.inkFaint, 'stroke-width': 1, 'stroke-dasharray': '3 3', opacity: 0.65 }, g);
+  // shadow
+  el('circle', { cx: 2, cy: 2, r: 11, fill: C.ink, opacity: 0.35 }, g);
+  // mic capsule (top-down: dark body)
+  el('circle', { cx: 0, cy: 0, r: 11, fill: '#1a1814', stroke: C.ink, 'stroke-width': 2 }, g);
+  // grille pattern
+  el('circle', { cx: 0, cy: 0, r: 7, fill: 'none', stroke: C.red, 'stroke-width': 1.4, opacity: 0.85 }, g);
+  el('circle', { cx: 0, cy: 0, r: 3.5, fill: C.red, opacity: 0.85 }, g);
+
+  // label tag
+  const tagOffsets = { south: [0, 38], north: [0, -38], east: [38, 0], west: [-38, 0] };
+  const tagAnchor  = { south: 'middle', north: 'middle', east: 'start', west: 'end' };
+  const where = m.tagAt || 'south';
+  const [tx, ty] = tagOffsets[where];
+  const tagW = m.label.length * 6.5 + 12;
+  el('rect', {
+    x: tx - (where === 'east' ? 0 : where === 'west' ? tagW : tagW / 2),
+    y: ty - 9,
+    width: tagW, height: 18, rx: 2,
+    fill: C.paper, stroke: C.red, 'stroke-width': 1.2,
+  }, g);
+  text(g, tx, ty, m.label, { size: 10, color: C.red, tracking: 1.2, anchor: tagAnchor[where] });
+}
+MICS.forEach(m => drawMic(svg, m));
+
+/* ---- Compass rose (bottom-left of paper, outside the room) ---- */
+{
+  const cx = 110, cy = 1530;
+  const g = el('g', {}, svg);
+  el('circle', { cx, cy, r: 34, fill: 'none', stroke: C.inkFaint, 'stroke-width': 1 }, g);
+  el('line', { x1: cx, y1: cy - 28, x2: cx, y2: cy + 28, stroke: C.inkFaint, 'stroke-width': 1 }, g);
+  el('line', { x1: cx - 28, y1: cy, x2: cx + 28, y2: cy, stroke: C.inkFaint, 'stroke-width': 1 }, g);
+  text(g, cx, cy - 38, 'N', { size: 11, color: C.inkSoft, tracking: 1 });
+  text(g, cx, cy + 38, 'S', { size: 11, color: C.inkSoft, tracking: 1 });
+  text(g, cx - 38, cy, 'W', { size: 11, color: C.inkSoft, tracking: 1, anchor: 'end' });
+  text(g, cx + 38, cy, 'E', { size: 11, color: C.inkSoft, tracking: 1, anchor: 'start' });
+}
+</script>
+
+</body>
+</html>
