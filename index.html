@@ -278,7 +278,7 @@
 
   <div class="stage">
     <div class="room-wrap">
-      <svg id="diagram" class="room-svg" viewBox="-60 60 1320 1600" xmlns="http://www.w3.org/2000/svg" aria-label="Practice room top-down diagram"></svg>
+      <svg id="diagram" class="room-svg" viewBox="-90 30 1350 1640" xmlns="http://www.w3.org/2000/svg" aria-label="Practice room top-down diagram"></svg>
     </div>
 
     <aside class="legend">
@@ -652,6 +652,31 @@ el('stop', { offset: '85%', 'stop-color': 'rgba(184,134,46,0)' }, cymbalGrad);
 // Clip path so cones never spill outside room walls
 const clip = el('clipPath', { id: 'roomClip' }, defs);
 el('path', { d: pointsToPath(ROOM_PATH) }, clip);
+
+/* ---- Axis rulers (coordinate reference, no real-world scale) ---- */
+{
+  const axisColor = C.inkFaint;
+  const axisG = el('g', {}, svg);
+  // top X axis (positioned in the padding above the room)
+  const axY = 65;
+  el('line', { x1: 60, y1: axY, x2: 1140, y2: axY, stroke: axisColor, 'stroke-width': 1 }, axisG);
+  for (let x = 100; x <= 1100; x += 100) {
+    const major = x % 200 === 0;
+    el('line', { x1: x, y1: axY, x2: x, y2: axY + (major ? 12 : 6), stroke: axisColor, 'stroke-width': 1 }, axisG);
+    if (major) text(axisG, x, axY - 12, String(x), { size: 14, color: axisColor, weight: 500, tracking: 0.5 });
+  }
+  text(axisG, 1170, axY - 12, 'X →', { size: 13, color: C.inkSoft, anchor: 'end', tracking: 1 });
+
+  // left Y axis (positioned in the padding left of the room)
+  const axX = -10;
+  el('line', { x1: axX, y1: 260, x2: axX, y2: 1640, stroke: axisColor, 'stroke-width': 1 }, axisG);
+  for (let y = 300; y <= 1600; y += 100) {
+    const major = y % 200 === 0;
+    el('line', { x1: axX, y1: y, x2: axX - (major ? 12 : 6), y2: y, stroke: axisColor, 'stroke-width': 1 }, axisG);
+    if (major) text(axisG, axX - 16, y, String(y), { size: 14, color: axisColor, weight: 500, tracking: 0.5, anchor: 'end' });
+  }
+  text(axisG, axX - 8, 240, 'Y ↓', { size: 13, color: C.inkSoft, anchor: 'end', tracking: 1 });
+}
 
 // --- bed alcove (faint adjacent zone) ---
 const bedG = el('g', { opacity: 0.55 }, svg);
