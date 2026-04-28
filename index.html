@@ -391,7 +391,7 @@
         </div>
       </div>
 
-      <div class="legend-section" data-scenario="proposed">
+      <div class="legend-section" data-scenario="proposed,ideal">
         <h3>PA Speakers</h3>
         <div class="legend-item">
           <span class="label-text"><strong>MAIN&nbsp;L / R</strong> &middot; passive pair, on stands</span>
@@ -421,7 +421,7 @@
         </div>
       </div>
 
-      <div class="legend-section" data-scenario="proposed">
+      <div class="legend-section" data-scenario="proposed,ideal">
         <h3>Amp Tilt</h3>
         <div style="display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.6;color:var(--ink-soft)">
           <svg width="28" height="22" viewBox="0 0 28 22">
@@ -438,7 +438,7 @@
         </div>
       </div>
 
-      <div class="legend-section" data-scenario="proposed">
+      <div class="legend-section" data-scenario="proposed,ideal">
         <h3>Signal Chain</h3>
         <svg viewBox="0 0 260 150" style="width:100%;height:auto;display:block;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600">
           <defs>
@@ -637,6 +637,48 @@ const SCENARIOS = {
       { x: 800, y: 1370, label: 'M200-BT' },
     ],
   },
+
+  /* IDEAL — Clean-slate redesign within the actual room constraints. Hidden from nav,
+     reachable only via ?layout=ideal. Design principles documented in references.html.
+
+     Key moves vs. proposed:
+     • Mics moved to the north end (just south of stairs alcove). Maximizes distance from drums
+       and exploits the partially-absorbent stairs opening behind singers' rear-null.
+     • All amps now SOUTH of mic line — direct path arrives at mics from south = cardioid null.
+       (Proposed had G1 north of the mic line, the one violation of this principle.)
+     • Amps aimed into absorbent surfaces: G1 fires E-SE toward east-wall panels; G2 fires W-SW
+       toward west-wall panels; BASS fires east into the bed alcove (broadband absorber).
+     • Bass amp tucked into L-extension SW corner, far from mics. Bass omnidirectionality
+       below ~500 Hz means player monitoring is unaffected by distance.
+     • Mains keep the X-pattern from proposed but adjusted angles for the new mic positions. */
+  ideal: {
+    label: 'Ideal Layout',
+    stamp: 'IDEAL',
+    revision: '08 / ideal',
+    MICS: [
+      { id: 'MIC1', x: 700, y: 350, face: 90, label: 'MIC 1 · LEAD',   tagAt: 'north' },
+      { id: 'MIC2', x: 500, y: 350, face: 90, label: 'MIC 2 · BACKUP', tagAt: 'north' },
+    ],
+    AMPS: [
+      // G1: west wall, fires E-SE (30°) into open room + east-wall panels. All mic line outside cone, off-axis from amp.
+      { id: 'G1 AMP',   x: 110,  y: 800,  fire: 30,  length: 320, spread: 26, tagAt: 'south', tilted: true },
+      // G2: east wall, fires W-SW (150°) into open room + west-wall panels.
+      { id: 'G2 AMP',   x: 1130, y: 800,  fire: 150, length: 320, spread: 26, tagAt: 'south', tilted: true },
+      // Bass amp: L-extension SW corner. Fires east into bed alcove (absorber).
+      { id: 'BASS AMP', x: 115,  y: 1500, fire: 0,   length: 700, spread: 24, tagAt: 'east',  tilted: true },
+    ],
+    MONITORS: [
+      // X-pattern: each main aims at the opposite singer. Same logic as proposed.
+      { id: 'MAIN-L', x: 280, y: 1370, fire: -68,  length: 1100, spread: 30, tag: 'MAIN L', tagAt: 'south' },
+      { id: 'MAIN-R', x: 920, y: 1370, fire: -112, length: 1100, spread: 30, tag: 'MAIN R', tagAt: 'south' },
+      // WEDGE — optional near-field, south of mics, fires north into cardioid null.
+      { id: 'WEDGE',  x: 600, y: 600,  fire: 270,  length: 380,  spread: 22, tag: 'WEDGE',  tagAt: 'east', optional: true },
+    ],
+    DRUM_KIT: { x: 800, y: 1158, size: 240 },
+    MIXERS: [
+      { x: 800, y: 1370, label: 'M200-BT' },
+    ],
+  },
 };
 
 const ACTIVE_KEY = (new URLSearchParams(location.search).get('layout')) || 'current';
@@ -688,9 +730,11 @@ const svg = document.getElementById('diagram');
   document.querySelectorAll('.layout-nav a').forEach(a => {
     if (a.dataset.key === ACTIVE_KEY) a.classList.add('active');
   });
-  // Show legend sections matching active scenario, hide others
+  // Show legend sections matching active scenario, hide others.
+  // data-scenario can be comma-separated (e.g., "proposed,ideal") to match multiple scenarios.
   document.querySelectorAll('[data-scenario]').forEach(el => {
-    el.style.display = el.dataset.scenario === ACTIVE_KEY ? '' : 'none';
+    const scenarios = el.dataset.scenario.split(',').map(s => s.trim());
+    el.style.display = scenarios.includes(ACTIVE_KEY) ? '' : 'none';
   });
 }
 
