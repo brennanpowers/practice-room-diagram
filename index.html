@@ -648,8 +648,9 @@ const SCENARIOS = {
        (Proposed had G1 north of the mic line, the one violation of this principle.)
      • Amps aimed into absorbent surfaces: G1 fires E-SE toward east-wall panels; G2 fires W-SW
        toward west-wall panels; BASS fires east into the bed alcove (broadband absorber).
-     • Bass amp tucked into L-extension SW corner, far from mics. Bass omnidirectionality
-       below ~500 Hz means player monitoring is unaffected by distance.
+     • Bass amp on west wall mid-room (closer to player than proposed). Fires ESE so the
+       hi-hat position is on-axis (HF detail needed when not singing), MIC 2 is in
+       omni-coverage when singing, and the mic line stays 75°+ off the cone axis.
      • Mains keep the X-pattern from proposed but adjusted angles for the new mic positions. */
   ideal: {
     label: 'Ideal Layout',
@@ -664,8 +665,10 @@ const SCENARIOS = {
       { id: 'G1 AMP',   x: 110,  y: 800,  fire: 30,  length: 320, spread: 26, tagAt: 'south', tilted: true },
       // G2: east wall, fires W-SW (150°) into open room + west-wall panels.
       { id: 'G2 AMP',   x: 1130, y: 800,  fire: 150, length: 320, spread: 26, tagAt: 'south', tilted: true },
-      // Bass amp: L-extension SW corner. Fires east into bed alcove (absorber).
-      { id: 'BASS AMP', x: 115,  y: 1500, fire: 0,   length: 700, spread: 24, tagAt: 'east',  tilted: true },
+      // Bass amp: west wall, near the kit. Fires ESE — places hi-hat position dead-on-axis (for
+       // playing parts where the bassist needs HF detail), keeps singing position at MIC 2 in
+       // omni-bass coverage, and angles cone away from the mic line (75°+ off-axis).
+      { id: 'BASS AMP', x: 115,  y: 1100, fire: 15,  length: 700, spread: 24, tagAt: 'east',  tilted: true },
     ],
     MONITORS: [
       // X-pattern: each main aims at the opposite singer. Same logic as proposed.
