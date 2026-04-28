@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Practice Room — Current Layout</title>
+<title>The Practice Room — Layout Diagram</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -87,6 +87,19 @@
     text-transform: uppercase;
     color: var(--ink-soft);
     margin-top: 8px;
+  }
+
+  .intro-pitch {
+    margin-top: 18px;
+    max-width: 640px;
+    font-family: 'Fraunces', serif;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .intro-pitch em {
+    font-style: italic;
+    color: var(--ink-faint);
   }
 
   .layout-nav {
@@ -264,6 +277,9 @@
     <div class="title-block">
       <h1>The Practice Room</h1>
       <div class="subtitle">Layout · Sound Direction · Top View</div>
+      <p class="intro-pitch">
+        The current PA splits a passive submixer between an active wedge and the Harbinger M200's mains, with limited per-mic control. The <strong>proposed layout</strong> drops the submixer in favor of the M200's Master + Monitor mode, repositions speakers and amps to reduce direct mic bleed, and orients the mains so they fire into the cardioid rear-null of the vocal mics for better feedback margin. <em>Owner-installed acoustic panels handle some of the room reflections.</em>
+      </p>
       <nav class="layout-nav">
         <a href="?layout=current"  data-key="current">Current</a>
         <span class="nav-sep">·</span>
@@ -345,7 +361,13 @@
           <span class="label-text"><strong>WEDGE</strong> &middot; <em style="font-style:normal;color:var(--ink-faint)">(optional)</em> active near-field for singers</span>
         </div>
         <div class="legend-item" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--ink-faint);margin-top:6px;line-height:1.5">
-          <span>Mains share the master mix (Stereo Mode).<br>Wedge fed by M200 Stereo Out, line level.<br>Dashed cone = optional element.</span>
+          <span>Mains run in M200 Master+Mon mode.<br>Wedge fed by M200 Stereo Out, line level.<br>Dashed cone = optional element.</span>
+        </div>
+        <div class="legend-item" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--ink-soft);margin-top:8px;line-height:1.55;padding-top:6px;border-top:1px dashed var(--ink-faint)">
+          <strong style="color:var(--ink)">Stand Height</strong><br>
+          Bottom of speaker: <span style="color:var(--ink)">~5&nbsp;ft</span><br>
+          Woofer center: <span style="color:var(--ink)">~6&nbsp;ft</span> (standing ear height)<br>
+          Slant ceiling caps useful height; don't go above 6&nbsp;ft.
         </div>
       </div>
 
@@ -372,7 +394,13 @@
             <rect x="3" y="2" width="22" height="14" rx="1" fill="#1a1814" stroke="#1a1814"/>
             <polygon points="9,21 19,21 14,17" fill="#b8862e" stroke="#1a1814" stroke-width="0.8"/>
           </svg>
-          <span>Amber wedge under an amp = propped up on a case or stand. Cone fires at ear height, less floor bleed.</span>
+          <span>Amber wedge under an amp = propped up on a case or stand.</span>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--ink-soft);margin-top:8px;line-height:1.55;padding-top:6px;border-top:1px dashed var(--ink-faint)">
+          <strong style="color:var(--ink)">Tilt-back angle</strong><br>
+          <span style="color:var(--ink)">~10–15°</span> back from vertical.<br>
+          Rear of amp lifted <span style="color:var(--ink)">~3–4&nbsp;in</span> on a case, wedge stand, or amp tilt-back.<br>
+          Aim cone at the player's ears, not their knees.
         </div>
       </div>
 
@@ -477,8 +505,9 @@
 /* =========================================================================
    LAYOUT CONFIG  —  edit positions / angles here, everything re-renders.
 
-   Coordinate system: SVG units, viewBox 0 0 1200 1700.
-   Roughly 100 units = 1 ft.  Origin top-left, +x east, +y south.
+   Coordinate system: SVG units, room polygon ~60–1140 (x) × 80–1640 (y).
+   Layout is RELATIVE — coordinates are not tied to real-world distances.
+   Origin top-left, +x east, +y south.
    `fire` is in degrees:  0 = east, 90 = south, 180 = west, 270 = north.
    ========================================================================= */
 const C = {
@@ -516,7 +545,7 @@ const SCENARIOS = {
   current: {
     label: 'Current State',
     stamp: 'CURRENT STATE',
-    revision: '03 / current',
+    revision: '07 / current',
     MICS: [
       // Lead vocal mic — singer stands behind it, faces the drummer
       { id: 'MIC1', x: 600, y: 600,  face: 90, label: 'MIC 1 · LEAD',   tagAt: 'south' },
@@ -530,8 +559,8 @@ const SCENARIOS = {
       { id: 'BASS AMP', x: 115, y: 1200, fire: -55, length: 560, spread: 32, tagAt: 'east'  },
     ],
     MONITORS: [
-      // M1 re-aimed at drummer's new position (1000, 1180)
-      { id: 'M1', x: 500, y: 1300, fire: -14, length: 480, spread: 20, tag: 'M1', tagAt: 'south' },
+      // M1 aimed at drum kit center (800, 1158)
+      { id: 'M1', x: 500, y: 1300, fire: -25, length: 360, spread: 20, tag: 'M1', tagAt: 'south' },
       { id: 'M2', x: 90,  y: 700,  fire: 0,   length: 460, spread: 32, tag: 'M2', tagAt: 'north' },
       { id: 'M3', x: 770, y: 1000, fire: 270, length: 320, spread: 26, tag: 'M3', tagAt: 'east'  },
     ],
@@ -551,7 +580,7 @@ const SCENARIOS = {
   proposed: {
     label: 'Proposed Layout',
     stamp: 'PROPOSED',
-    revision: '06 / proposed',
+    revision: '07 / proposed',
     MICS: [
       { id: 'MIC1', x: 680, y: 600, face: 90, label: 'MIC 1 · LEAD',   tagAt: 'north' },
       { id: 'MIC2', x: 520, y: 600, face: 90, label: 'MIC 2 · BACKUP', tagAt: 'north' },
