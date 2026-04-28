@@ -253,6 +253,61 @@
     .title-block h1 { font-size: 32px; }
     .stamp { top: 60px; right: 28px; }
   }
+
+  /* Phone-sized screens — stack header, shrink chrome, ensure tap targets */
+  @media (max-width: 540px) {
+    .page {
+      padding: 28px 18px 36px;
+    }
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .title-block h1 {
+      font-size: 28px;
+    }
+    .title-block .subtitle {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+    }
+    .meta {
+      text-align: left;
+      font-size: 9px;
+      line-height: 1.7;
+    }
+    .stamp {
+      top: 18px;
+      right: 18px;
+      padding: 4px 10px;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+    }
+    .layout-nav {
+      font-size: 13px;
+    }
+    .layout-nav a {
+      padding: 6px 0;
+    }
+    .layout-nav .nav-sep {
+      margin: 0 8px;
+    }
+    .legend {
+      padding: 16px;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+    .legend h2 {
+      font-size: 18px;
+    }
+    .footer {
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+    }
+    .stage {
+      gap: 24px;
+    }
+  }
 </style>
 </head>
 <body>
