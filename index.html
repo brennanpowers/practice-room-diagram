@@ -89,19 +89,6 @@
     margin-top: 8px;
   }
 
-  .intro-pitch {
-    margin-top: 18px;
-    max-width: 640px;
-    font-family: 'Fraunces', serif;
-    font-size: 14.5px;
-    line-height: 1.55;
-    color: var(--ink-soft);
-  }
-  .intro-pitch em {
-    font-style: italic;
-    color: var(--ink-faint);
-  }
-
   .layout-nav {
     margin-top: 14px;
     font-family: 'JetBrains Mono', monospace;
@@ -277,9 +264,6 @@
     <div class="title-block">
       <h1>The Practice Room</h1>
       <div class="subtitle">Layout · Sound Direction · Top View</div>
-      <p class="intro-pitch">
-        The current PA splits a passive submixer between an active wedge and the Harbinger M200's mains, with limited per-mic control. The <strong>proposed layout</strong> drops the submixer in favor of the M200's Master + Monitor mode, repositions speakers and amps to reduce direct mic bleed, and orients the mains so they fire into the cardioid rear-null of the vocal mics for better feedback margin. <em>Owner-installed acoustic panels handle some of the room reflections.</em>
-      </p>
       <nav class="layout-nav">
         <a href="?layout=current"  data-key="current">Current</a>
         <span class="nav-sep">·</span>
@@ -355,19 +339,14 @@
       <div class="legend-section" data-scenario="proposed">
         <h3>PA Speakers</h3>
         <div class="legend-item">
-          <span class="label-text"><strong>MAIN&nbsp;L / R</strong> &middot; passive Harbinger pair on stands</span>
+          <span class="label-text"><strong>MAIN&nbsp;L / R</strong> &middot; passive pair, on stands</span>
         </div>
         <div class="legend-item">
-          <span class="label-text"><strong>WEDGE</strong> &middot; <em style="font-style:normal;color:var(--ink-faint)">(optional)</em> active near-field for singers</span>
+          <span class="label-text"><strong>WEDGE</strong> &middot; <em style="font-style:normal;color:var(--ink-faint)">(opt.)</em> active singer wedge</span>
         </div>
-        <div class="legend-item" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--ink-faint);margin-top:6px;line-height:1.5">
-          <span>Mains run in M200 Master+Mon mode.<br>Wedge fed by M200 Stereo Out, line level.<br>Dashed cone = optional element.</span>
-        </div>
-        <div class="legend-item" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--ink-soft);margin-top:8px;line-height:1.55;padding-top:6px;border-top:1px dashed var(--ink-faint)">
-          <strong style="color:var(--ink)">Stand Height</strong><br>
-          Bottom of speaker: <span style="color:var(--ink)">~5&nbsp;ft</span><br>
-          Woofer center: <span style="color:var(--ink)">~6&nbsp;ft</span> (standing ear height)<br>
-          Slant ceiling caps useful height; don't go above 6&nbsp;ft.
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-soft);margin-top:8px;line-height:1.55">
+          Stand height: <span style="color:var(--ink)">~5&nbsp;ft</span> to bottom of speaker.<br>
+          Woofer at <span style="color:var(--ink)">~6&nbsp;ft</span> (standing ear height).
         </div>
       </div>
 
