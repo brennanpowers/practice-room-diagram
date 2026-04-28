@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Practice Room — Sources & References</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4ead5;
+    --paper-warm: #ede0c2;
+    --ink: #1a1814;
+    --ink-soft: #4a4438;
+    --ink-faint: #8a8170;
+    --grid: #c9b994;
+    --accent-red: #b8412e;
+    --accent-blue: #2c5f7c;
+    --accent-amber: #b8862e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #2a2620;
+    min-height: 100vh;
+    font-family: 'Fraunces', Georgia, serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 40px 56px;
+    background: var(--paper);
+    background-image:
+      radial-gradient(ellipse at top left, rgba(255,240,200,0.45) 0%, transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(180,150,100,0.18) 0%, transparent 55%);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.08'/></svg>");
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+
+  .header {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 14px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -5px;
+    height: 1px;
+    background: var(--ink);
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 40px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variation-settings: 'opsz' 144;
+  }
+  .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 8px;
+  }
+  .back-link {
+    margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .back-link a {
+    color: var(--ink-faint);
+    text-decoration: none;
+    border-bottom: 1.5px solid transparent;
+    padding: 2px 0;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .back-link a:hover {
+    color: var(--ink);
+    border-bottom-color: var(--accent-red);
+  }
+
+  .lede {
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+    max-width: 680px;
+  }
+
+  .principle {
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px dashed var(--ink-faint);
+  }
+  .principle:last-of-type {
+    border-bottom: none;
+  }
+  .principle-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+  }
+  .principle h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .principle .field {
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  .principle .field-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .principle .field-body {
+    font-size: 14.5px;
+    color: var(--ink);
+  }
+  .principle .field-body em {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+  .principle .field-body code,
+  .principle .citation {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+  }
+  .principle .citation {
+    color: var(--accent-blue);
+  }
+  .principle .quote {
+    font-style: italic;
+    color: var(--ink-soft);
+    border-left: 2.5px solid var(--accent-blue);
+    padding: 4px 0 4px 14px;
+    margin: 8px 0;
+  }
+  .confidence {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1.5px solid;
+    margin-top: 6px;
+  }
+  .confidence.solid { color: var(--accent-blue); border-color: var(--accent-blue); }
+  .confidence.partial { color: var(--accent-amber); border-color: var(--accent-amber); }
+  .confidence.confirmed { color: #4a6b3a; border-color: #4a6b3a; }
+  .confidence.heuristic { color: var(--ink-faint); border-color: var(--ink-faint); }
+
+  .gaps {
+    background: rgba(255, 250, 235, 0.5);
+    border: 2px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    padding: 22px 24px;
+    margin-top: 36px;
+  }
+  .gaps h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .gaps p, .gaps li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .gaps ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 8px;
+  }
+  .gaps li {
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .gaps li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent-red);
+  }
+  .gaps li strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .footer {
+    margin-top: 36px;
+    padding-top: 14px;
+    border-top: 1px solid var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 540px) {
+    .page { padding: 28px 18px 36px; }
+    h1 { font-size: 28px; }
+    .subtitle { font-size: 10px; letter-spacing: 0.14em; }
+    .lede { font-size: 14px; }
+    .principle h2 { font-size: 18px; }
+    .principle .field-body { font-size: 13.5px; }
+    .gaps { padding: 16px; box-shadow: 3px 3px 0 var(--ink); }
+    .footer { flex-direction: column; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="header">
+    <h1>Sources &amp; References</h1>
+    <div class="subtitle">Acoustic principles cited in the proposed layout</div>
+    <div class="back-link">
+      <a href="index.html?layout=proposed">← Layout diagram</a>
+    </div>
+  </header>
+
+  <p class="lede">
+    The proposed layout makes specific claims about why it should work better than the current setup —
+    feedback margin, mic isolation, signal-chain cleanliness. This page documents the research behind
+    those claims, the sources, and the honest caveats. Each principle is tagged with a confidence level
+    so you can tell rigorous physics from practitioner folk wisdom.
+  </p>
+
+  <article class="principle">
+    <div class="principle-num">Principle 01</div>
+    <h2>Cardioid mic null geometry — mains positioned south of singers improve feedback margin</h2>
+
+    <div class="field">
+      <span class="field-label">Used in proposed layout</span>
+      <div class="field-body">MAIN&nbsp;L and MAIN&nbsp;R sit south of the vocal mics, firing northward into the rear-null axis of the cardioid mic capsules. This is the standard live-sound floor wedge configuration applied to room mains.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Source</span>
+      <div class="citation">Davis, Gary &amp; Jones, Ralph. <em>Yamaha Sound Reinforcement Handbook</em> (2nd ed.). Hal Leonard, 1990. Ch. 16, "Monitor Systems and Feedback."</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">What it says</span>
+      <div class="field-body">A cardioid microphone has its null (15–25 dB rejection) at 180° behind the capsule. Floor wedges placed in front of the singer — which is acoustically <em>behind</em> the mic capsule — exploit this null and dramatically reduce feedback risk.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Caveat</span>
+      <div class="field-body">Cardioid pattern control degrades below ~200 Hz. Low-frequency feedback (kick bleed, rumble) gets less rejection than the headline number suggests. Supercardioid and hypercardioid mics have nulls at ~110–126° (with a small rear lobe), not 180° — placement should adjust accordingly.</div>
+    </div>
+
+    <span class="confidence solid">Solid · Well-established</span>
+  </article>
+
+  <article class="principle">
+    <div class="principle-num">Principle 02</div>
+    <h2>Tilting amps off the floor — better player monitoring, modest floor-bounce reduction</h2>
+
+    <div class="field">
+      <span class="field-label">Used in proposed layout</span>
+      <div class="field-body">All three amps (G1, G2, BASS) are marked tilted, indicated by the amber wedge under each amp icon. Recommended ~10–15° back from vertical, ~3–4&nbsp;in lift on a case or wedge stand.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Source</span>
+      <div class="citation">Everest, F. Alton &amp; Pohlmann, Ken C. <em>Master Handbook of Acoustics</em> (6th ed.). McGraw-Hill, 2014. Chapters on boundary interference and comb filtering.<br>Gervais, Rod. <em>Home Recording Studio: Build It Like the Pros</em> (2nd ed.). Cengage Learning, 2011.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">What it says</span>
+      <div class="field-body">Sources near reflecting boundaries produce comb filtering — peaks and nulls from path-length differences between direct and reflected sound. The "floor-bounce notch" typically falls between 100–300 Hz for amps at floor level. Tilting raises high-frequency directivity to ear height for the player.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Caveat</span>
+      <div class="field-body">Tilt primarily helps the <em>player</em> hear their amp's actual tone (vs. beaming over their head). Floor-bounce cleanup at typical 6-inch tilt-back is modest; getting the cab fully off the floor (chair, riser) does more for the floor notch. The principle is supported, but specific magnitude is judgment-call territory.</div>
+    </div>
+
+    <span class="confidence partial">Solid in principle · Modest effect size</span>
+  </article>
+
+  <article class="principle">
+    <div class="principle-num">Principle 03</div>
+    <h2>Direct-path mic isolation — re-aiming amp cones away from vocal mics reduces inter-channel bleed</h2>
+
+    <div class="field">
+      <span class="field-label">Used in proposed layout</span>
+      <div class="field-body">G1 amp re-aimed from <code>32°</code> → <code>75°</code>, G2 amp from <code>180°</code> → <code>-90°</code> (due north). The vocal mic line now sits outside each amp's angular cone.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Source</span>
+      <div class="citation">McCarthy, Bob. <em>Sound Systems: Design and Optimization</em> (3rd ed.). Focal Press, 2016. On coverage geometry.<br>Bartlett, Bruce. <em>Practical Recording Techniques</em> (7th ed.). Routledge, 2016. <strong>3:1 rule</strong> for inter-mic isolation.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">What it says</span>
+      <div class="field-body">Sources have defined coverage angles (typically the −6 dB beamwidth). Optimal stage layout overlaps coverage at intended targets while keeping non-target microphones outside the on-axis lobe. The 3:1 rule says a mic should be at least three times as far from neighboring sources as from its intended source.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Caveat</span>
+      <div class="field-body"><strong>In small reverberant rooms, the reverberant field dominates beyond the critical distance</strong> (typically 3–6&nbsp;ft in untreated spaces). Past critical distance, direct-path geometry barely matters — bleed is room-driven. The practice space is small but partially treated by ~8 owner-installed acoustic panels, so direct-path improvements help locally but reverb-driven bleed is largely unchanged. Treat the geometry win as bounded.</div>
+    </div>
+
+    <span class="confidence partial">Solid for direct sound · Bounded benefit in small rooms</span>
+  </article>
+
+  <article class="principle">
+    <div class="principle-num">Principle 04</div>
+    <h2>Oblique amp aim — non-perpendicular firing reduces parallel-wall flutter</h2>
+
+    <div class="field">
+      <span class="field-label">Used in proposed layout</span>
+      <div class="field-body">G2 amp moved off the east wall (was firing due west into the parallel west wall). G1 amp aimed mostly south rather than diagonally across the room. Reflections now diffuse rather than ping-pong between hard parallel surfaces.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Source</span>
+      <div class="citation">Everest &amp; Pohlmann. <em>Master Handbook of Acoustics</em> (6th ed.). Chapters on room modes and flutter echo.<br>Toole, Floyd. <em>Sound Reproduction: The Acoustics and Psychoacoustics of Loudspeakers and Rooms</em> (3rd ed.). Routledge, 2017.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">What it says</span>
+      <div class="field-body">Flutter echo arises between parallel hard surfaces from transient reflections, audible as a metallic "ringing" decay. Standard remedies: absorption on one surface, diffusion, or splaying one wall by even a few degrees so reflections diverge rather than reinforce.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Caveat</span>
+      <div class="field-body">Toole notes that small angular deviations break the flutter path, but the underlying reverberant energy is unchanged — splaying redistributes rather than absorbs. Other sources (drums, the other amps) still excite the parallel-wall mode. The owner-installed acoustic panels do real absorption work alongside this geometric improvement.</div>
+    </div>
+
+    <span class="confidence partial">Solid · Partial solution by itself</span>
+  </article>
+
+  <article class="principle">
+    <div class="principle-num">Principle 05</div>
+    <h2>Single-mixer signal chain — M200 Master+Monitor mode replaces the passive submixer</h2>
+
+    <div class="field">
+      <span class="field-label">Used in proposed layout</span>
+      <div class="field-body">Drops the passive submixer. Mics → M200 CH1 / CH2 directly. Speaker 1 = master out (drives MAIN&nbsp;L), Speaker 2 = monitor out (drives MAIN&nbsp;R, independent volume), Stereo Out (line level, 1/8") feeds the optional WEDGE.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Source</span>
+      <div class="citation">Harbinger M100-BT/M200-BT Owner's Manual, p. 11, item 12 (SPEAKER MODE).</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">What it says</span>
+      <div class="quote">"When this button is up, speakers operate in stereo, with Master Level knob (16) setting the level. When this button is down, Speaker 1 operates as your Master speaker, while Speaker 2 operates as your monitor speaker, with level controlled by Monitor Level (15) knob."</div>
+      <div class="field-body" style="margin-top:8px">Master+Monitor mode also tunes Speaker 2 for reduced low frequencies — a built-in HPF to minimize rumble and microphone feedback on the monitor side.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Caveat</span>
+      <div class="field-body">The "monitor" output carries the master-bus content with independent level + HPF — <strong>not</strong> a true per-channel monitor mix with separate channel sends. Independence is in level, not in content.</div>
+    </div>
+
+    <span class="confidence confirmed">Confirmed by manufacturer documentation</span>
+  </article>
+
+  <article class="principle">
+    <div class="principle-num">Principle 06</div>
+    <h2>Unbalanced cabling for short runs — drum SPL masks cable noise</h2>
+
+    <div class="field">
+      <span class="field-label">Used in proposed layout</span>
+      <div class="field-body">Optional WEDGE fed by M200 Stereo Out via a short (~20&nbsp;ft) unbalanced 1/8" TRS → RCA or 1/4" TS cable. No DI box needed if the run is short and away from power.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Source — drum SPL</span>
+      <div class="citation">Chasin, Marshall. <em>Hearing Loss in Musicians</em>. Plural Publishing, 2009.</div>
+    </div>
+    <div class="field">
+      <span class="field-label">Source — cable noise floor</span>
+      <div class="citation">Whitlock, Bill. "Audio Transformers" in Ballou, Glen (ed.). <em>Handbook for Sound Engineers</em> (5th ed.). Focal Press, 2015.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">What it says</span>
+      <div class="field-body">Chasin documents acoustic drum kits at 100–115 dB SPL at the drummer's position, with peaks above 120 dB. Whitlock documents unbalanced cables typically picking up 60 Hz hum and RFI at −60 to −80 dBu in typical environments. Program material at 90–110 dB SPL masks noise 60+ dB below program.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Caveat</span>
+      <div class="field-body">Masking applies <em>while playing</em>. Hum is audible between songs. Unbalanced runs near dimmers, fluorescent ballasts, or wall-warts can pick up far more than −80 dBu. The "&lt;20 ft is fine" threshold is practitioner folk wisdom, not a measured rule. If the room has those noise sources, balanced (passive DI → XLR) is the safer call.</div>
+    </div>
+
+    <span class="confidence heuristic">Reasonable rule of thumb · Environment-dependent</span>
+  </article>
+
+  <section class="gaps">
+    <h2>What this layout does not address</h2>
+    <p>A complete acoustic redesign would also tackle these, but they're outside the scope of repositioning gear:</p>
+    <ul>
+      <li><strong>Room treatment beyond existing panels.</strong> The dominant acoustic problem in any small untreated room is reverberant field buildup. The owner has installed ~8 panels; more treatment (corner traps, additional broadband absorption) would compound with the geometric improvements documented above.</li>
+      <li><strong>Vertical / 3D effects.</strong> The diagram is top-down only. Speaker stand height, amp tilt magnitude, and slanted ceiling reflections are decided in real life — the diagram gives recommendations but can't visualize them.</li>
+      <li><strong>Bass amp into vocal mics.</strong> The bass player monitors at MIC&nbsp;2; aiming the bass amp on-axis there is the right call for the player. The trade-off is unavoidable direct bleed into MIC&nbsp;1 — partially mitigated by cardioid side-rejection and distance, but not eliminated. Channel-level low-cut EQ on the M200 vocal channels is the practical fix.</li>
+    </ul>
+  </section>
+
+  <p class="lede" style="margin-top: 32px; margin-bottom: 0; font-size: 14px;">
+    <strong style="color:var(--ink)">How to read these claims:</strong>
+    The proposed layout is better in specific, measurable ways — feedback margin, signal-chain simplicity,
+    direct-path mic isolation. It is <em>not strictly dominant</em> over the current setup. In particular,
+    the bass amp aim still creates direct-path bleed, and reverb-field bleed in a small room is largely unchanged
+    by geometry alone. This layout fixes specific problems; it does not solve the whole room.
+  </p>
+
+  <footer class="footer">
+    <div>Sources &middot; Practice Room Layout</div>
+    <div>Sheet Refs of 01</div>
+  </footer>
+</div>
+
+</body>
+</html>
