@@ -590,7 +590,7 @@ const SCENARIOS = {
       // G1 amp on top wall — angled ~25% toward room center (south + a bit east)
       { id: 'G1 AMP',   x: 220, y: 290,  fire: 71,  length: 380, spread: 38, tagAt: 'south' },
       { id: 'G2 AMP',   x: 1110,y: 760,  fire: 180, length: 520, spread: 36, tagAt: 'west'  },
-      { id: 'BASS AMP', x: 115, y: 1200, fire: -55, length: 560, spread: 32, tagAt: 'east'  },
+      { id: 'B1', x: 115, y: 1200, fire: -55, length: 560, spread: 32, tagAt: 'east'  },
     ],
     MONITORS: [
       // M1 aimed at drum kit center (800, 1158)
@@ -622,7 +622,7 @@ const SCENARIOS = {
     AMPS: [
       { id: 'G1 AMP',   x: 110, y: 310,  fire: 75,  length: 320, spread: 26, tagAt: 'north', tilted: true },
       { id: 'G2 AMP',   x: 900, y: 1010, fire: -90,  length: 380, spread: 20, tagAt: 'west',  tilted: true },
-      { id: 'BASS AMP', x: 115, y: 1200, fire: -56, length: 760, spread: 24, tagAt: 'east',  tilted: true },
+      { id: 'B1', x: 115, y: 1200, fire: -56, length: 760, spread: 24, tagAt: 'east',  tilted: true },
     ],
     MONITORS: [
       // MAIN-L aims at MIC 1 (opposite singer); cones cross at the band line.
@@ -644,13 +644,13 @@ const SCENARIOS = {
      Key moves vs. proposed:
      • Mics moved to the north end (just south of stairs alcove). Maximizes distance from drums
        and exploits the partially-absorbent stairs opening behind singers' rear-null.
-     • All amps now SOUTH of mic line — direct path arrives at mics from south = cardioid null.
-       (Proposed had G1 north of the mic line, the one violation of this principle.)
-     • Amps aimed into absorbent surfaces: G1 fires E-SE toward east-wall panels; G2 fires W-SW
-       toward west-wall panels; BASS fires east into the bed alcove (broadband absorber).
-     • Bass amp on west wall mid-room (closer to player than proposed). Fires ESE so the
-       hi-hat position is on-axis (HF detail needed when not singing), MIC 2 is in
-       omni-coverage when singing, and the mic line stays 75°+ off the cone axis.
+     • G1 amp stays in NW corner — would be acoustically purer south of the mic line, but the
+       west-wall corridor only fits one amp + player pair, and that's reserved for B1 + bass.
+       G1's cone direction (75°) keeps the mic line outside the angular spread regardless.
+     • G2 amp pulled to the east wall, fires W-SW toward west-wall panels (absorbent).
+     • B1 (bass) amp on west wall mid-room. Fires ESE so the hi-hat position is on-axis
+       (HF detail needed when not singing), MIC 2 is in omni-coverage when singing, and the
+       mic line stays 75°+ off the cone axis.
      • Mains keep the X-pattern from proposed but adjusted angles for the new mic positions. */
   ideal: {
     label: 'Ideal Layout',
@@ -661,14 +661,15 @@ const SCENARIOS = {
       { id: 'MIC2', x: 500, y: 350, face: 90, label: 'MIC 2 · BACKUP', tagAt: 'north' },
     ],
     AMPS: [
-      // G1: west wall, fires E-SE (30°) into open room + east-wall panels. All mic line outside cone, off-axis from amp.
-      { id: 'G1 AMP',   x: 110,  y: 800,  fire: 30,  length: 320, spread: 26, tagAt: 'south', tilted: true },
+      // G1: NW corner. Cone direction (75°) keeps mics outside angular spread; the corner position
+      // also frees the west-wall mid-room for the B1 amp + bass player setup (otherwise too crowded).
+      { id: 'G1 AMP',   x: 110,  y: 310,  fire: 75,  length: 320, spread: 26, tagAt: 'north', tilted: true },
       // G2: east wall, fires W-SW (150°) into open room + west-wall panels.
       { id: 'G2 AMP',   x: 1130, y: 800,  fire: 150, length: 320, spread: 26, tagAt: 'south', tilted: true },
       // Bass amp: west wall, near the kit. Fires ESE — places hi-hat position dead-on-axis (for
        // playing parts where the bassist needs HF detail), keeps singing position at MIC 2 in
        // omni-bass coverage, and angles cone away from the mic line (75°+ off-axis).
-      { id: 'BASS AMP', x: 115,  y: 1100, fire: 15,  length: 700, spread: 24, tagAt: 'east',  tilted: true },
+      { id: 'B1', x: 115,  y: 1100, fire: 15,  length: 700, spread: 24, tagAt: 'east',  tilted: true },
     ],
     MONITORS: [
       // X-pattern: each main aims at the opposite singer. Same logic as proposed.
