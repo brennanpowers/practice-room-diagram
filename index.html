@@ -415,9 +415,12 @@
         <div class="legend-item">
           <span class="label-text"><strong>WEDGE</strong> &middot; active singer wedge</span>
         </div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-soft);margin-top:8px;line-height:1.55">
-          Stand height: <span style="color:var(--ink)">~5&nbsp;ft</span> to bottom of speaker.<br>
-          Woofer at <span style="color:var(--ink)">~6&nbsp;ft</span> (standing ear height).
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-soft);margin-top:8px;line-height:1.55;padding-top:6px;border-top:1px dashed var(--ink-faint)">
+          <strong style="color:var(--ink)">Mains</strong>: stand height ~5&nbsp;ft to bottom of speaker.<br>
+          Woofer at ~6&nbsp;ft (standing ear height).
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-soft);margin-top:8px;line-height:1.55;padding-top:6px;border-top:1px dashed var(--ink-faint)">
+          <strong style="color:var(--ink)">Wedge feed</strong>: M200 ST&nbsp;OUT (⅛"&nbsp;TRS) → passive DI → XLR (mic level) → SRD210 MIC&nbsp;IN. <strong style="color:var(--ink)">LINE/MIC switch on speaker: MIC.</strong>
         </div>
       </div>
 
@@ -456,7 +459,7 @@
 
       <div class="legend-section" data-scenario="proposed,ideal">
         <h3>Signal Chain</h3>
-        <svg viewBox="0 0 260 220" style="width:100%;height:auto;display:block;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600">
+        <svg viewBox="0 0 260 250" style="width:100%;height:auto;display:block;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600">
           <defs>
             <marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
               <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1814"/>
@@ -480,20 +483,41 @@
           <text x="227" y="61"  text-anchor="middle" fill="#2c5f7c">MAIN&nbsp;L</text>
           <rect x="200" y="88"  width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.4"/>
           <text x="227" y="103" text-anchor="middle" fill="#2c5f7c">MAIN&nbsp;R</text>
-          <rect x="200" y="130" width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.4"/>
-          <text x="227" y="145" text-anchor="middle" fill="#2c5f7c">WEDGE</text>
 
+          <!-- DI box: passive, converts unbalanced line to balanced mic-level XLR -->
+          <rect x="200" y="138" width="54" height="22" rx="2" fill="#f4ead5" stroke="#1a1814" stroke-width="1.4"/>
+          <text x="227" y="153" text-anchor="middle" fill="#1a1814">DI&nbsp;BOX</text>
+          <text x="227" y="172" text-anchor="middle" fill="#8a8170" font-size="7" letter-spacing="0.4">passive</text>
+
+          <!-- WEDGE -->
+          <rect x="200" y="200" width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.4"/>
+          <text x="227" y="215" text-anchor="middle" fill="#2c5f7c">WEDGE</text>
+          <text x="227" y="234" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.3">SRD210 · MIC input</text>
+
+          <!-- Mic to M200 lines -->
           <line x1="52" y1="19"  x2="98" y2="60"  stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <line x1="52" y1="69"  x2="98" y2="80"  stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <line x1="52" y1="119" x2="98" y2="120" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <line x1="52" y1="169" x2="98" y2="140" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
 
-          <line x1="160" y1="80"  x2="200" y2="57"  stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
+          <!-- M200 to MAIN L -->
+          <line x1="160" y1="80" x2="200" y2="57" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <text x="180" y="76" text-anchor="middle" fill="#8a8170" font-size="7">SPK&nbsp;1</text>
-          <line x1="160" y1="100" x2="200" y2="99"  stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
+
+          <!-- M200 to MAIN R -->
+          <line x1="160" y1="100" x2="200" y2="99" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <text x="180" y="96" text-anchor="middle" fill="#8a8170" font-size="7">SPK&nbsp;2</text>
-          <line x1="160" y1="120" x2="200" y2="141" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
-          <text x="180" y="135" text-anchor="middle" fill="#8a8170" font-size="7">ST&nbsp;OUT</text>
+
+          <!-- M200 to DI -->
+          <line x1="160" y1="125" x2="200" y2="149" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
+          <text x="180" y="130" text-anchor="middle" fill="#8a8170" font-size="7">ST&nbsp;OUT</text>
+          <text x="180" y="140" text-anchor="middle" fill="#8a8170" font-size="6" letter-spacing="0.2">⅛"&nbsp;TRS&nbsp;→&nbsp;¼"&nbsp;TS</text>
+
+          <!-- DI to WEDGE (vertical) -->
+          <line x1="227" y1="160" x2="227" y2="200" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
+          <text x="234" y="178" text-anchor="start" fill="#8a8170" font-size="7">XLR</text>
+          <text x="234" y="188" text-anchor="start" fill="#8a8170" font-size="6" letter-spacing="0.2">balanced</text>
+          <text x="234" y="196" text-anchor="start" fill="#8a8170" font-size="6" letter-spacing="0.2">mic&nbsp;level</text>
         </svg>
       </div>
 
