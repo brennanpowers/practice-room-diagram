@@ -400,7 +400,7 @@
           <span class="label-text"><strong>MAIN&nbsp;L / R</strong> &middot; passive pair, on stands</span>
         </div>
         <div class="legend-item">
-          <span class="label-text"><strong>WEDGE</strong> &middot; <em style="font-style:normal;color:var(--ink-faint)">(opt.)</em> active singer wedge</span>
+          <span class="label-text"><strong>WEDGE</strong> &middot; active singer wedge</span>
         </div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-soft);margin-top:8px;line-height:1.55">
           Stand height: <span style="color:var(--ink)">~5&nbsp;ft</span> to bottom of speaker.<br>
@@ -465,9 +465,8 @@
           <text x="227" y="35"  text-anchor="middle" fill="#2c5f7c">MAIN&nbsp;L</text>
           <rect x="200" y="64"  width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.4"/>
           <text x="227" y="79"  text-anchor="middle" fill="#2c5f7c">MAIN&nbsp;R</text>
-          <rect x="200" y="108" width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.4" stroke-dasharray="3 2"/>
+          <rect x="200" y="108" width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.4"/>
           <text x="227" y="123" text-anchor="middle" fill="#2c5f7c">WEDGE</text>
-          <text x="227" y="142" text-anchor="middle" fill="#8a8170" font-size="7" letter-spacing="0.4">optional</text>
 
           <line x1="52" y1="17"  x2="98" y2="50" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <line x1="52" y1="69"  x2="98" y2="70" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
@@ -477,7 +476,7 @@
           <text x="180" y="50" text-anchor="middle" fill="#8a8170" font-size="7">SPK&nbsp;1</text>
           <line x1="160" y1="70" x2="200" y2="75" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <text x="180" y="68" text-anchor="middle" fill="#8a8170" font-size="7">SPK&nbsp;2</text>
-          <line x1="160" y1="84" x2="200" y2="119" stroke="#1a1814" stroke-width="1.1" stroke-dasharray="3 2" marker-end="url(#arrP)"/>
+          <line x1="160" y1="84" x2="200" y2="119" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <text x="180" y="105" text-anchor="middle" fill="#8a8170" font-size="7">ST&nbsp;OUT</text>
         </svg>
       </div>
@@ -636,8 +635,8 @@ const SCENARIOS = {
       { id: 'MAIN-L', x: 280, y: 1370, fire: -62,  length: 1000, spread: 30, tag: 'MAIN L', tagAt: 'south' },
       // MAIN-R aims at MIC 2 (opposite singer).
       { id: 'MAIN-R', x: 920, y: 1370, fire: -118, length: 1000, spread: 30, tag: 'MAIN R', tagAt: 'south' },
-      // WEDGE — optional near-field for the singers, fed by Stereo Out at line level.
-      { id: 'WEDGE',  x: 600, y: 820,  fire: 270,  length: 380,  spread: 22, tag: 'WEDGE',  tagAt: 'east', optional: true },
+      // WEDGE — singer near-field, fed by M200 Stereo Out at line level.
+      { id: 'WEDGE',  x: 600, y: 820,  fire: 270,  length: 380,  spread: 22, tag: 'WEDGE',  tagAt: 'east' },
     ],
     DRUM_KIT: { x: 800, y: 1158, size: 240 },
     MIXERS: [
@@ -683,8 +682,8 @@ const SCENARIOS = {
       // X-pattern: each main aims at the opposite singer. Same logic as proposed.
       { id: 'MAIN-L', x: 280, y: 1370, fire: -68,  length: 1100, spread: 30, tag: 'MAIN L', tagAt: 'south' },
       { id: 'MAIN-R', x: 920, y: 1370, fire: -112, length: 1100, spread: 30, tag: 'MAIN R', tagAt: 'south' },
-      // WEDGE — optional near-field, south of mics, fires north into cardioid null.
-      { id: 'WEDGE',  x: 600, y: 600,  fire: 270,  length: 380,  spread: 22, tag: 'WEDGE',  tagAt: 'east', optional: true },
+      // WEDGE — singer near-field, south of mics, fires north into cardioid null.
+      { id: 'WEDGE',  x: 600, y: 600,  fire: 270,  length: 380,  spread: 22, tag: 'WEDGE',  tagAt: 'east' },
     ],
     DRUM_KIT: { x: 800, y: 1158, size: 240 },
     MIXERS: [
