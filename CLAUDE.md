@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static three-page site documenting a band practice room layout. Hosted on GitHub Pages at `brennanpowers.github.io/practice-room-diagram/`. The main page is an interactive top-down room diagram that compares "current" and "proposed" gear placements (with a hidden "ideal" scenario reachable only by URL).
+A static three-page site documenting a band jam room layout. Hosted on GitHub Pages at `brennanpowers.github.io/practice-room-diagram/`. The main page is an interactive top-down room diagram that compares "current" and "proposed" gear placements (with a hidden "ideal" scenario reachable only by URL).
 
 ## Build / dev / deploy
 
