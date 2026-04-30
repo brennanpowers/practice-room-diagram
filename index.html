@@ -440,15 +440,15 @@
           <span class="label-text"><strong>MAIN&nbsp;L / R</strong> &middot; passive pair, on stands</span>
         </div>
         <div class="legend-item">
-          <span class="label-text"><strong>PM-100</strong> &middot; Roland — singer wedge</span>
+          <span class="label-text"><strong>SRD210</strong> &middot; Monoprice — singer wedge (covers MIC 1, MIC 2; off-axis to MIC 5)</span>
         </div>
         <div class="legend-item">
-          <span class="label-text"><strong>SRD210</strong> &middot; Monoprice — keyboard player's wedge (carries keys + vocal mix)</span>
+          <span class="label-text"><strong>PM-100</strong> &middot; Roland — keys-only personal monitor for keyboardist</span>
         </div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-soft);margin-top:8px;line-height:1.55;padding-top:6px;border-top:1px dashed var(--ink-faint)">
-          <strong style="color:var(--ink)">Routing</strong>: M200 ST&nbsp;OUT → ⅛" Y-splitter → both wedges (independent feeds).<br>
-          <strong style="color:var(--ink)">Keys</strong> → SRD210 MIC/LINE combo (LINE), bypassing the M200.<br>
-          Band hears keys via SRD210's off-axis radiation + room reflections.
+          <strong style="color:var(--ink)">Routing</strong>: M200 ST&nbsp;OUT → SRD210 line in (single direct feed, no Y-split).<br>
+          <strong style="color:var(--ink)">Keys</strong> → PM-100 line in (¼"&nbsp;TS, direct from keyboard, never enters M200).<br>
+          Mains carry vocals only. Band hears keys via PM-100's off-axis radiation + reflections.
         </div>
       </div>
 
@@ -563,10 +563,6 @@
           <text x="109" y="86" text-anchor="middle" fill="#f4ead5" font-size="10">M200</text>
           <text x="109" y="104" text-anchor="middle" fill="#b8862e" font-size="8">‑BT</text>
 
-          <!-- Y-split node -->
-          <circle cx="155" cy="180" r="4" fill="#1a1814"/>
-          <text x="155" y="172" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">Y-split</text>
-
           <!-- Speakers -->
           <rect x="195" y="32" width="54" height="20" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.3"/>
           <text x="222" y="46" text-anchor="middle" fill="#2c5f7c">MAIN&nbsp;L</text>
@@ -574,12 +570,12 @@
           <text x="222" y="78" text-anchor="middle" fill="#2c5f7c">MAIN&nbsp;R</text>
 
           <rect x="195" y="148" width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.3"/>
-          <text x="222" y="162" text-anchor="middle" fill="#2c5f7c">PM-100</text>
+          <text x="222" y="162" text-anchor="middle" fill="#2c5f7c">SRD210</text>
           <text x="222" y="180" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">singer wedge</text>
 
           <rect x="195" y="200" width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.3"/>
-          <text x="222" y="214" text-anchor="middle" fill="#2c5f7c">SRD210</text>
-          <text x="222" y="232" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">keys wedge</text>
+          <text x="222" y="214" text-anchor="middle" fill="#2c5f7c">PM-100</text>
+          <text x="222" y="232" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">keys monitor</text>
 
           <!-- Mic lines to M200 -->
           <line x1="50" y1="16"  x2="80" y2="60" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
@@ -594,23 +590,18 @@
           <line x1="138" y1="100" x2="195" y2="74" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
           <text x="166" y="92" text-anchor="middle" fill="#8a8170" font-size="6.5">SPK 2</text>
 
-          <!-- M200 ST OUT to Y-split -->
-          <line x1="138" y1="125" x2="155" y2="176" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
-          <text x="148" y="155" text-anchor="middle" fill="#8a8170" font-size="6.5">ST OUT</text>
+          <!-- M200 ST OUT direct to SRD210 (singer wedge), no Y-split -->
+          <line x1="138" y1="125" x2="195" y2="159" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
+          <text x="166" y="138" text-anchor="middle" fill="#8a8170" font-size="6.5">ST OUT</text>
+          <text x="166" y="148" text-anchor="middle" fill="#8a8170" font-size="6" letter-spacing="0.2">3.5mm line</text>
 
-          <!-- Y-split to PM-100 -->
-          <line x1="158" y1="178" x2="195" y2="159" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
-
-          <!-- Y-split to SRD210 -->
-          <line x1="158" y1="184" x2="195" y2="208" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
-
-          <!-- KEYS direct to SRD210 -->
-          <line x1="50" y1="201" x2="195" y2="217" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
-          <text x="120" y="220" text-anchor="middle" fill="#8a8170" font-size="6.5">¼" TS · LINE</text>
+          <!-- KEYS direct to PM-100 (no M200 involvement) -->
+          <line x1="50" y1="201" x2="195" y2="214" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
+          <text x="120" y="208" text-anchor="middle" fill="#8a8170" font-size="6.5">¼" TS · LINE in</text>
 
           <!-- Notes at bottom -->
           <text x="130" y="252" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">MIC 5 (dashed) — share CH3 OR add a mic preamp on CH5-6</text>
-          <text x="130" y="262" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">Keys bypass the M200 — go direct to SRD210 LINE input</text>
+          <text x="130" y="262" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">Keys bypass the M200 entirely — direct to PM-100</text>
         </svg>
       </div>
 
@@ -779,21 +770,22 @@ const SCENARIOS = {
   },
 
   /* KEYBOARD — Variant of proposed for sessions with a keyboard player.
-     Adds keyboardist position in NE corner with their own vocal mic (MIC 5) and a personal
-     wedge (SRD210) carrying both keys + vocal mix. Singers' wedge becomes the Roland PM-100
-     in its place at (600, 820). All other elements (mics, amps, mains, drum kit) match proposed.
-     Routing: M200 Stereo Out Y-splits to feed both wedges' line inputs. Keyboard plugs directly
-     into SRD210's MIC/LINE combo (LINE), bypassing the M200. */
+     Keyboardist sits near the singer area at (820, 500). Roland PM-100 is their keys-only
+     personal monitor, south of player firing north (mic null geometry preserved). The Monoprice
+     SRD210 stays as the singer wedge at (600, 820), now serving all three vocal mics (MIC 1,
+     MIC 2, MIC 5) — MIC 5 gets off-axis coverage given its eastern offset.
+     Routing: keyboard ¼" direct → PM-100 line in; M200 Stereo Out → SRD210 line in (no Y-split).
+     Keys never enter the M200 mix. Mains carry vocals only. */
   keyboard: {
     label: 'Keyboard Layout',
     stamp: 'KEYBOARD',
-    revision: '08 / keyboard',
+    revision: '09 / keyboard',
     MICS: [
-      { id: 'MIC1', x: 680,  y: 600,  face: 90,  label: 'MIC 1 · LEAD',   tagAt: 'north' },
-      { id: 'MIC2', x: 520,  y: 600,  face: 90,  label: 'MIC 2 · BACKUP', tagAt: 'north' },
-      { id: 'MIC3', x: 900,  y: 870,  face: 90,  label: 'MIC 3 · G2',     tagAt: 'east'  },
-      { id: 'MIC4', x: 800,  y: 1290, face: 270, label: 'MIC 4 · DRUMS',  tagAt: 'east'  },
-      { id: 'MIC5', x: 1000, y: 380,  face: 90,  label: 'MIC 5 · KEYS',   tagAt: 'east'  },
+      { id: 'MIC1', x: 680, y: 600,  face: 90,  label: 'MIC 1 · LEAD',   tagAt: 'north' },
+      { id: 'MIC2', x: 520, y: 600,  face: 90,  label: 'MIC 2 · BACKUP', tagAt: 'north' },
+      { id: 'MIC3', x: 900, y: 870,  face: 90,  label: 'MIC 3 · G2',     tagAt: 'east'  },
+      { id: 'MIC4', x: 800, y: 1290, face: 270, label: 'MIC 4 · DRUMS',  tagAt: 'east'  },
+      { id: 'MIC5', x: 820, y: 480,  face: 90,  label: 'MIC 5 · KEYS',   tagAt: 'east'  },
     ],
     AMPS: [
       { id: 'G1 AMP',   x: 110, y: 310,  fire: 75,  length: 320, spread: 26, tagAt: 'north', tilted: true },
@@ -803,13 +795,14 @@ const SCENARIOS = {
     MONITORS: [
       { id: 'MAIN-L', x: 280, y: 1370, fire: -62,  length: 1000, spread: 30, tag: 'MAIN L', tagAt: 'south' },
       { id: 'MAIN-R', x: 920, y: 1370, fire: -118, length: 1000, spread: 30, tag: 'MAIN R', tagAt: 'south' },
-      // PM-100 = singer wedge in the same spot the generic WEDGE was in proposed.
-      { id: 'PM-100', x: 600,  y: 820, fire: 270, length: 380, spread: 22, tag: 'PM-100', tagAt: 'east' },
-      // SRD210 = keyboardist's personal wedge — south of player firing N back at them.
-      // Carries vocal mix (M200 Y-split) + keyboard signal (direct, via SRD210's MIC/LINE LINE input).
-      { id: 'SRD210', x: 1000, y: 600, fire: 270, length: 350, spread: 22, tag: 'SRD210', tagAt: 'east' },
+      // SRD210 = singer wedge, covers MIC 1 + MIC 2 on-axis, MIC 5 via off-axis spillover.
+      { id: 'SRD210', x: 600, y: 820, fire: 270, length: 380, spread: 22, tag: 'SRD210', tagAt: 'east' },
+      // PM-100 = keys-only personal monitor, south of keyboardist firing N back at them.
+      // Cardioid null geometry (mic null south, source from south) preserved.
+      { id: 'PM-100', x: 820, y: 700, fire: 270, length: 350, spread: 22, tag: 'PM-100', tagAt: 'east' },
     ],
     DRUM_KIT: { x: 800, y: 1158, size: 240 },
+    KEYBOARD: { x: 820, y: 500 },
     MIXERS: [
       { x: 800, y: 1370, label: 'M200-BT' },
     ],
@@ -867,7 +860,7 @@ const SCENARIOS = {
 const ACTIVE_KEY = (new URLSearchParams(location.search).get('layout')) || 'current';
 const SCENARIO  = SCENARIOS[ACTIVE_KEY] || SCENARIOS.current;
 const { ROOM_PATH, BED_ALCOVE, STAIRS_ALCOVE } = ROOM_GEOMETRY;
-const { MICS, AMPS, MONITORS, DRUM_KIT, MIXERS } = SCENARIO;
+const { MICS, AMPS, MONITORS, DRUM_KIT, MIXERS, KEYBOARD } = SCENARIO;
 
 /* =========================================================================
    SVG helpers
@@ -1084,6 +1077,46 @@ function drawDrumKit(parent, cx, cy, size) {
   text(g, 0, s + 38, 'DRUMS', { size: 14, color: C.ink, tracking: 4 });
 }
 drawDrumKit(svg, DRUM_KIT.x, DRUM_KIT.y, DRUM_KIT.size);
+
+/* ---- Keyboard (top-down view) — keys facing south toward player ---- */
+function drawKeyboard(parent, cx, cy) {
+  const w = 130, h = 30;
+  const g = el('g', { transform: `translate(${cx} ${cy})` }, parent);
+  // Body
+  el('rect', {
+    x: -w / 2, y: -h / 2, width: w, height: h, rx: 2,
+    fill: '#1a1814', stroke: C.ink, 'stroke-width': 2,
+  }, g);
+  // White keys background (lower half, facing the player south)
+  const keyY = 1, keyH = h / 2 - 2;
+  el('rect', {
+    x: -w / 2 + 3, y: keyY, width: w - 6, height: keyH,
+    fill: '#fdf6dd',
+  }, g);
+  // Faint vertical lines for white keys
+  const whiteCount = 14;
+  for (let i = 1; i < whiteCount; i++) {
+    const xx = -w / 2 + 3 + (w - 6) * i / whiteCount;
+    el('line', {
+      x1: xx, y1: keyY, x2: xx, y2: keyY + keyH,
+      stroke: '#3a3530', 'stroke-width': 0.4,
+    }, g);
+  }
+  // Black keys — 2-and-3 pattern over two octaves
+  const whiteW = (w - 6) / whiteCount;
+  const bkOffsets = [1, 2, 4, 5, 6, 8, 9, 11, 12, 13];
+  bkOffsets.forEach(p => {
+    el('rect', {
+      x: -w / 2 + 3 + whiteW * p - whiteW * 0.32,
+      y: keyY,
+      width: whiteW * 0.64, height: keyH * 0.6,
+      fill: '#1a1814',
+    }, g);
+  });
+  // Label
+  text(g, 0, h / 2 + 14, 'KEYS', { size: 12, color: C.inkSoft, tracking: 3.5 });
+}
+if (KEYBOARD) drawKeyboard(svg, KEYBOARD.x, KEYBOARD.y);
 
 /* ---- Mixer heads (active = M200-BT with knobs; passive = plain box) ---- */
 function drawMixer(parent, m) {
