@@ -323,6 +323,8 @@
         <a href="?layout=current"  data-key="current">Current</a>
         <span class="nav-sep">·</span>
         <a href="?layout=proposed" data-key="proposed">Proposed</a>
+        <span class="nav-sep">·</span>
+        <a href="?layout=keyboard" data-key="keyboard">Keyboard</a>
       </nav>
     </div>
     <div class="meta">
@@ -396,11 +398,17 @@
         <div class="legend-item">
           <span class="label-text"><strong>MIC 2</strong> &middot; Backup vocal (bass)</span>
         </div>
-        <div class="legend-item" data-scenario="proposed,ideal">
+        <div class="legend-item" data-scenario="proposed,ideal,keyboard">
           <span class="label-text"><strong>MIC 3</strong> &middot; G2 vocal</span>
         </div>
-        <div class="legend-item" data-scenario="proposed,ideal">
+        <div class="legend-item" data-scenario="proposed,ideal,keyboard">
           <span class="label-text"><strong>MIC 4</strong> &middot; Drummer vocal (boom)</span>
+        </div>
+        <div class="legend-item" data-scenario="keyboard">
+          <span class="label-text"><strong>MIC 5</strong> &middot; Keyboard vocal</span>
+        </div>
+        <div class="legend-item" data-scenario="keyboard" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-faint);margin-top:4px;line-height:1.5">
+          <span>MIC 5 channel: share G2's CH3, OR add a mic preamp to use M200's CH5-6.</span>
         </div>
         <div class="legend-item" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--ink-faint);margin-top:6px">
           <span>Dashed arrow = singer's facing direction</span>
@@ -413,14 +421,34 @@
           <span class="label-text"><strong>MAIN&nbsp;L / R</strong> &middot; passive pair, on stands</span>
         </div>
         <div class="legend-item">
-          <span class="label-text"><strong>WEDGE</strong> &middot; active singer wedge</span>
+          <span class="label-text"><strong>WEDGE</strong> &middot; active singer wedge (Monoprice SRD210 or Roland PM-100; the other is backup)</span>
         </div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-soft);margin-top:8px;line-height:1.55;padding-top:6px;border-top:1px dashed var(--ink-faint)">
           <strong style="color:var(--ink)">Mains</strong>: stand height ~5&nbsp;ft to bottom of speaker.<br>
           Woofer at ~6&nbsp;ft (standing ear height).
         </div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-soft);margin-top:8px;line-height:1.55;padding-top:6px;border-top:1px dashed var(--ink-faint)">
-          <strong style="color:var(--ink)">Wedge feed</strong>: M200 ST&nbsp;OUT (⅛"&nbsp;TRS) → passive DI → XLR (mic level) → SRD210 MIC&nbsp;IN. <strong style="color:var(--ink)">LINE/MIC switch on speaker: MIC.</strong>
+          <strong style="color:var(--ink)">Wedge feed</strong>: M200 ST&nbsp;OUT (3.5mm) → line in.<br>
+          SRD210: 3.5mm → dual RCA → AUX&nbsp;IN.<br>
+          PM-100: 3.5mm → ¼"&nbsp;TRS → line&nbsp;in.
+        </div>
+      </div>
+
+      <div class="legend-section" data-scenario="keyboard">
+        <h3>PA Speakers</h3>
+        <div class="legend-item">
+          <span class="label-text"><strong>MAIN&nbsp;L / R</strong> &middot; passive pair, on stands</span>
+        </div>
+        <div class="legend-item">
+          <span class="label-text"><strong>PM-100</strong> &middot; Roland — singer wedge</span>
+        </div>
+        <div class="legend-item">
+          <span class="label-text"><strong>SRD210</strong> &middot; Monoprice — keyboard player's wedge (carries keys + vocal mix)</span>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-soft);margin-top:8px;line-height:1.55;padding-top:6px;border-top:1px dashed var(--ink-faint)">
+          <strong style="color:var(--ink)">Routing</strong>: M200 ST&nbsp;OUT → ⅛" Y-splitter → both wedges (independent feeds).<br>
+          <strong style="color:var(--ink)">Keys</strong> → SRD210 MIC/LINE combo (LINE), bypassing the M200.<br>
+          Band hears keys via SRD210's off-axis radiation + room reflections.
         </div>
       </div>
 
@@ -440,7 +468,7 @@
         </div>
       </div>
 
-      <div class="legend-section" data-scenario="proposed,ideal">
+      <div class="legend-section" data-scenario="proposed,ideal,keyboard">
         <h3>Amp Tilt</h3>
         <div style="display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.6;color:var(--ink-soft)">
           <svg width="28" height="22" viewBox="0 0 28 22">
@@ -459,7 +487,7 @@
 
       <div class="legend-section" data-scenario="proposed,ideal">
         <h3>Signal Chain</h3>
-        <svg viewBox="0 0 260 250" style="width:100%;height:auto;display:block;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600">
+        <svg viewBox="0 0 260 220" style="width:100%;height:auto;display:block;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600">
           <defs>
             <marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
               <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1814"/>
@@ -484,40 +512,105 @@
           <rect x="200" y="88"  width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.4"/>
           <text x="227" y="103" text-anchor="middle" fill="#2c5f7c">MAIN&nbsp;R</text>
 
-          <!-- DI box: passive, converts unbalanced line to balanced mic-level XLR -->
-          <rect x="200" y="138" width="54" height="22" rx="2" fill="#f4ead5" stroke="#1a1814" stroke-width="1.4"/>
-          <text x="227" y="153" text-anchor="middle" fill="#1a1814">DI&nbsp;BOX</text>
-          <text x="227" y="172" text-anchor="middle" fill="#8a8170" font-size="7" letter-spacing="0.4">passive</text>
+          <rect x="200" y="160" width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.4"/>
+          <text x="227" y="175" text-anchor="middle" fill="#2c5f7c">WEDGE</text>
+          <text x="227" y="194" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.3">line in (RCA or ¼")</text>
 
-          <!-- WEDGE -->
-          <rect x="200" y="200" width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.4"/>
-          <text x="227" y="215" text-anchor="middle" fill="#2c5f7c">WEDGE</text>
-          <text x="227" y="234" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.3">SRD210 · MIC input</text>
-
-          <!-- Mic to M200 lines -->
           <line x1="52" y1="19"  x2="98" y2="60"  stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <line x1="52" y1="69"  x2="98" y2="80"  stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <line x1="52" y1="119" x2="98" y2="120" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <line x1="52" y1="169" x2="98" y2="140" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
 
-          <!-- M200 to MAIN L -->
           <line x1="160" y1="80" x2="200" y2="57" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <text x="180" y="76" text-anchor="middle" fill="#8a8170" font-size="7">SPK&nbsp;1</text>
 
-          <!-- M200 to MAIN R -->
           <line x1="160" y1="100" x2="200" y2="99" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <text x="180" y="96" text-anchor="middle" fill="#8a8170" font-size="7">SPK&nbsp;2</text>
 
-          <!-- M200 to DI -->
-          <line x1="160" y1="125" x2="200" y2="149" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
-          <text x="180" y="130" text-anchor="middle" fill="#8a8170" font-size="7">ST&nbsp;OUT</text>
-          <text x="180" y="140" text-anchor="middle" fill="#8a8170" font-size="6" letter-spacing="0.2">⅛"&nbsp;TRS&nbsp;→&nbsp;¼"&nbsp;TS</text>
+          <line x1="160" y1="130" x2="200" y2="171" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
+          <text x="180" y="148" text-anchor="middle" fill="#8a8170" font-size="7">ST&nbsp;OUT</text>
+          <text x="180" y="158" text-anchor="middle" fill="#8a8170" font-size="6" letter-spacing="0.2">3.5mm&nbsp;line</text>
+        </svg>
+      </div>
 
-          <!-- DI to WEDGE (vertical) -->
-          <line x1="227" y1="160" x2="227" y2="200" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
-          <text x="234" y="178" text-anchor="start" fill="#8a8170" font-size="7">XLR</text>
-          <text x="234" y="188" text-anchor="start" fill="#8a8170" font-size="6" letter-spacing="0.2">balanced</text>
-          <text x="234" y="196" text-anchor="start" fill="#8a8170" font-size="6" letter-spacing="0.2">mic&nbsp;level</text>
+      <div class="legend-section" data-scenario="keyboard">
+        <h3>Signal Chain</h3>
+        <svg viewBox="0 0 260 270" style="width:100%;height:auto;display:block;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600">
+          <defs>
+            <marker id="arrK" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1814"/>
+            </marker>
+          </defs>
+
+          <!-- Mics (vocals) on the left -->
+          <rect x="4" y="6"   width="46" height="20" rx="2" fill="#f4ead5" stroke="#b8412e" stroke-width="1.3"/>
+          <text x="27" y="20" text-anchor="middle" fill="#b8412e">MIC&nbsp;1</text>
+          <rect x="4" y="40"  width="46" height="20" rx="2" fill="#f4ead5" stroke="#b8412e" stroke-width="1.3"/>
+          <text x="27" y="54" text-anchor="middle" fill="#b8412e">MIC&nbsp;2</text>
+          <rect x="4" y="74"  width="46" height="20" rx="2" fill="#f4ead5" stroke="#b8412e" stroke-width="1.3"/>
+          <text x="27" y="88" text-anchor="middle" fill="#b8412e">MIC&nbsp;3</text>
+          <rect x="4" y="108" width="46" height="20" rx="2" fill="#f4ead5" stroke="#b8412e" stroke-width="1.3"/>
+          <text x="27" y="122" text-anchor="middle" fill="#b8412e">MIC&nbsp;4</text>
+          <rect x="4" y="142" width="46" height="20" rx="2" fill="#f4ead5" stroke="#b8412e" stroke-width="1.3" stroke-dasharray="3 2"/>
+          <text x="27" y="156" text-anchor="middle" fill="#b8412e">MIC&nbsp;5</text>
+
+          <!-- Keyboard source (separate) -->
+          <rect x="4" y="190" width="46" height="22" rx="2" fill="#f4ead5" stroke="#1a1814" stroke-width="1.3"/>
+          <text x="27" y="204" text-anchor="middle" fill="#1a1814">KEYS</text>
+
+          <!-- M200 mixer -->
+          <rect x="80" y="50" width="58" height="86" rx="3" fill="#1a1814"/>
+          <text x="109" y="86" text-anchor="middle" fill="#f4ead5" font-size="10">M200</text>
+          <text x="109" y="104" text-anchor="middle" fill="#b8862e" font-size="8">‑BT</text>
+
+          <!-- Y-split node -->
+          <circle cx="155" cy="180" r="4" fill="#1a1814"/>
+          <text x="155" y="172" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">Y-split</text>
+
+          <!-- Speakers -->
+          <rect x="195" y="32" width="54" height="20" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.3"/>
+          <text x="222" y="46" text-anchor="middle" fill="#2c5f7c">MAIN&nbsp;L</text>
+          <rect x="195" y="64" width="54" height="20" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.3"/>
+          <text x="222" y="78" text-anchor="middle" fill="#2c5f7c">MAIN&nbsp;R</text>
+
+          <rect x="195" y="148" width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.3"/>
+          <text x="222" y="162" text-anchor="middle" fill="#2c5f7c">PM-100</text>
+          <text x="222" y="180" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">singer wedge</text>
+
+          <rect x="195" y="200" width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.3"/>
+          <text x="222" y="214" text-anchor="middle" fill="#2c5f7c">SRD210</text>
+          <text x="222" y="232" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">keys wedge</text>
+
+          <!-- Mic lines to M200 -->
+          <line x1="50" y1="16"  x2="80" y2="60" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
+          <line x1="50" y1="50"  x2="80" y2="76" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
+          <line x1="50" y1="84"  x2="80" y2="92" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
+          <line x1="50" y1="118" x2="80" y2="108" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
+          <line x1="50" y1="152" x2="80" y2="124" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)" stroke-dasharray="3 2"/>
+
+          <!-- M200 to MAIN L / R -->
+          <line x1="138" y1="76" x2="195" y2="42" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
+          <text x="166" y="62" text-anchor="middle" fill="#8a8170" font-size="6.5">SPK 1</text>
+          <line x1="138" y1="100" x2="195" y2="74" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
+          <text x="166" y="92" text-anchor="middle" fill="#8a8170" font-size="6.5">SPK 2</text>
+
+          <!-- M200 ST OUT to Y-split -->
+          <line x1="138" y1="125" x2="155" y2="176" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
+          <text x="148" y="155" text-anchor="middle" fill="#8a8170" font-size="6.5">ST OUT</text>
+
+          <!-- Y-split to PM-100 -->
+          <line x1="158" y1="178" x2="195" y2="159" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
+
+          <!-- Y-split to SRD210 -->
+          <line x1="158" y1="184" x2="195" y2="208" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
+
+          <!-- KEYS direct to SRD210 -->
+          <line x1="50" y1="201" x2="195" y2="217" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
+          <text x="120" y="220" text-anchor="middle" fill="#8a8170" font-size="6.5">¼" TS · LINE</text>
+
+          <!-- Notes at bottom -->
+          <text x="130" y="252" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">MIC 5 (dashed) — share CH3 OR add a mic preamp on CH5-6</text>
+          <text x="130" y="262" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">Keys bypass the M200 — go direct to SRD210 LINE input</text>
         </svg>
       </div>
 
@@ -678,6 +771,43 @@ const SCENARIOS = {
       { id: 'MAIN-R', x: 920, y: 1370, fire: -118, length: 1000, spread: 30, tag: 'MAIN R', tagAt: 'south' },
       // WEDGE — singer near-field, fed by M200 Stereo Out at line level.
       { id: 'WEDGE',  x: 600, y: 820,  fire: 270,  length: 380,  spread: 22, tag: 'WEDGE',  tagAt: 'east' },
+    ],
+    DRUM_KIT: { x: 800, y: 1158, size: 240 },
+    MIXERS: [
+      { x: 800, y: 1370, label: 'M200-BT' },
+    ],
+  },
+
+  /* KEYBOARD — Variant of proposed for sessions with a keyboard player.
+     Adds keyboardist position in NE corner with their own vocal mic (MIC 5) and a personal
+     wedge (SRD210) carrying both keys + vocal mix. Singers' wedge becomes the Roland PM-100
+     in its place at (600, 820). All other elements (mics, amps, mains, drum kit) match proposed.
+     Routing: M200 Stereo Out Y-splits to feed both wedges' line inputs. Keyboard plugs directly
+     into SRD210's MIC/LINE combo (LINE), bypassing the M200. */
+  keyboard: {
+    label: 'Keyboard Layout',
+    stamp: 'KEYBOARD',
+    revision: '08 / keyboard',
+    MICS: [
+      { id: 'MIC1', x: 680,  y: 600,  face: 90,  label: 'MIC 1 · LEAD',   tagAt: 'north' },
+      { id: 'MIC2', x: 520,  y: 600,  face: 90,  label: 'MIC 2 · BACKUP', tagAt: 'north' },
+      { id: 'MIC3', x: 900,  y: 870,  face: 90,  label: 'MIC 3 · G2',     tagAt: 'east'  },
+      { id: 'MIC4', x: 800,  y: 1290, face: 270, label: 'MIC 4 · DRUMS',  tagAt: 'east'  },
+      { id: 'MIC5', x: 1000, y: 380,  face: 90,  label: 'MIC 5 · KEYS',   tagAt: 'east'  },
+    ],
+    AMPS: [
+      { id: 'G1 AMP',   x: 110, y: 310,  fire: 75,  length: 320, spread: 26, tagAt: 'north', tilted: true },
+      { id: 'G2 AMP',   x: 900, y: 1010, fire: -90,  length: 380, spread: 20, tagAt: 'west',  tilted: true },
+      { id: 'B1', x: 115, y: 1200, fire: -56, length: 760, spread: 24, tagAt: 'east',  tilted: true },
+    ],
+    MONITORS: [
+      { id: 'MAIN-L', x: 280, y: 1370, fire: -62,  length: 1000, spread: 30, tag: 'MAIN L', tagAt: 'south' },
+      { id: 'MAIN-R', x: 920, y: 1370, fire: -118, length: 1000, spread: 30, tag: 'MAIN R', tagAt: 'south' },
+      // PM-100 = singer wedge in the same spot the generic WEDGE was in proposed.
+      { id: 'PM-100', x: 600,  y: 820, fire: 270, length: 380, spread: 22, tag: 'PM-100', tagAt: 'east' },
+      // SRD210 = keyboardist's personal wedge — south of player firing N back at them.
+      // Carries vocal mix (M200 Y-split) + keyboard signal (direct, via SRD210's MIC/LINE LINE input).
+      { id: 'SRD210', x: 1000, y: 600, fire: 270, length: 350, spread: 22, tag: 'SRD210', tagAt: 'east' },
     ],
     DRUM_KIT: { x: 800, y: 1158, size: 240 },
     MIXERS: [
