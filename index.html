@@ -789,9 +789,10 @@ const SCENARIOS = {
       { id: 'MIC3', x: 900, y: 870,  face: 90,  label: 'MIC 3 · G2',     tagAt: 'east'  },
       { id: 'MIC4', x: 800, y: 1290, face: 270, label: 'MIC 4 · DRUMS',  tagAt: 'east'  },
       { id: 'MIC5', x: 820, y: 480,  face: 90,  label: 'MIC 5 · KEYS',   tagAt: 'east'  },
-      // Omnidirectional recording mic — north-central, "front-of-stage" perspective.
+      // Omnidirectional recording mic — north end, slightly west of center to better capture
+      // G1's NW-corner amp. Boom-stand mounting recommended for capsule height (~7–8 ft).
       // Captures band balance for practice recording (Focusrite → laptop → GarageBand).
-      { id: 'REC',  x: 600, y: 290,             label: 'REC · OMNI',    tagAt: 'south', omni: true },
+      { id: 'REC',  x: 500, y: 350,             label: 'REC · OMNI',    tagAt: 'south', omni: true },
     ],
     AMPS: [
       { id: 'G1 AMP',   x: 110, y: 310,  fire: 75,  length: 320, spread: 26, tagAt: 'north', tilted: true },
