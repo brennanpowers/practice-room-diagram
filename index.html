@@ -407,8 +407,11 @@
         <div class="legend-item" data-scenario="keyboard">
           <span class="label-text"><strong>MIC 5</strong> &middot; Keyboard vocal</span>
         </div>
+        <div class="legend-item" data-scenario="keyboard">
+          <span class="label-text" style="color:var(--accent-amber)"><strong>REC</strong> &middot; omni for practice recording (Focusrite → laptop)</span>
+        </div>
         <div class="legend-item" data-scenario="keyboard" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-faint);margin-top:4px;line-height:1.5">
-          <span>MIC 5 channel: share G2's CH3, OR add a mic preamp to use M200's CH5-6.</span>
+          <span>MIC 5 channel: share G2's CH3, OR add a mic preamp to use M200's CH5-6.<br>REC mic does not feed the M200 — straight to interface for recording.</span>
         </div>
         <div class="legend-item" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--ink-faint);margin-top:6px">
           <span>Dashed arrow = singer's facing direction</span>
@@ -786,6 +789,9 @@ const SCENARIOS = {
       { id: 'MIC3', x: 900, y: 870,  face: 90,  label: 'MIC 3 · G2',     tagAt: 'east'  },
       { id: 'MIC4', x: 800, y: 1290, face: 270, label: 'MIC 4 · DRUMS',  tagAt: 'east'  },
       { id: 'MIC5', x: 820, y: 480,  face: 90,  label: 'MIC 5 · KEYS',   tagAt: 'east'  },
+      // Omnidirectional recording mic — north-central, "front-of-stage" perspective.
+      // Captures band balance for practice recording (Focusrite → laptop → GarageBand).
+      { id: 'REC',  x: 600, y: 290,             label: 'REC · OMNI',    tagAt: 'south', omni: true },
     ],
     AMPS: [
       { id: 'G1 AMP',   x: 110, y: 310,  fire: 75,  length: 320, spread: 26, tagAt: 'north', tilted: true },
@@ -1220,9 +1226,10 @@ MONITORS.forEach(m => drawMonitor(svg, m));
 /* ---- Vocal mics (top-down view) ---- */
 function drawMic(parent, m) {
   const g = el('g', { transform: `translate(${m.x} ${m.y})` }, parent);
+  const accent = m.omni ? C.amber : C.red;
 
-  // facing arrow — direction the singer is looking (away from the back of the mic capsule)
-  if (m.face !== undefined) {
+  // facing arrow — directional mics only (omni mics have no facing direction)
+  if (m.face !== undefined && !m.omni) {
     const arrowLen = 70;
     const ax = Math.cos(m.face * Math.PI / 180) * arrowLen;
     const ay = Math.sin(m.face * Math.PI / 180) * arrowLen;
@@ -1245,15 +1252,27 @@ function drawMic(parent, m) {
     }, arrowG);
   }
 
-  // mic stand base (faint outer ring)
-  el('circle', { cx: 0, cy: 0, r: 22, fill: 'none', stroke: C.inkFaint, 'stroke-width': 1, 'stroke-dasharray': '3 3', opacity: 0.65 }, g);
+  if (m.omni) {
+    // Omnidirectional pattern — concentric rings indicate 360° pickup.
+    [13, 19, 26].forEach((r, i) => {
+      el('circle', {
+        cx: 0, cy: 0, r,
+        fill: 'none', stroke: C.amber, 'stroke-width': 0.9,
+        'stroke-dasharray': '2 3', opacity: 0.55 - i * 0.13,
+      }, g);
+    });
+  } else {
+    // mic stand base (faint outer ring) — directional mics
+    el('circle', { cx: 0, cy: 0, r: 22, fill: 'none', stroke: C.inkFaint, 'stroke-width': 1, 'stroke-dasharray': '3 3', opacity: 0.65 }, g);
+  }
+
   // shadow
   el('circle', { cx: 2, cy: 2, r: 11, fill: C.ink, opacity: 0.35 }, g);
   // mic capsule (top-down: dark body)
   el('circle', { cx: 0, cy: 0, r: 11, fill: '#1a1814', stroke: C.ink, 'stroke-width': 2 }, g);
-  // grille pattern
-  el('circle', { cx: 0, cy: 0, r: 7, fill: 'none', stroke: C.red, 'stroke-width': 1.4, opacity: 0.85 }, g);
-  el('circle', { cx: 0, cy: 0, r: 3.5, fill: C.red, opacity: 0.85 }, g);
+  // grille pattern (color follows mic type — red = cardioid vocal, amber = omni recording)
+  el('circle', { cx: 0, cy: 0, r: 7, fill: 'none', stroke: accent, 'stroke-width': 1.4, opacity: 0.85 }, g);
+  el('circle', { cx: 0, cy: 0, r: 3.5, fill: accent, opacity: 0.85 }, g);
 
   // label tag
   const tagOffsets = { south: [0, 38], north: [0, -38], east: [38, 0], west: [-38, 0] };
@@ -1265,9 +1284,9 @@ function drawMic(parent, m) {
     x: tx - (where === 'east' ? 0 : where === 'west' ? tagW : tagW / 2),
     y: ty - 9,
     width: tagW, height: 18, rx: 2,
-    fill: C.paper, stroke: C.red, 'stroke-width': 1.2,
+    fill: C.paper, stroke: accent, 'stroke-width': 1.2,
   }, g);
-  text(g, tx, ty, m.label, { size: 10, color: C.red, tracking: 1.2, anchor: tagAnchor[where] });
+  text(g, tx, ty, m.label, { size: 10, color: accent, tracking: 1.2, anchor: tagAnchor[where] });
 }
 MICS.forEach(m => drawMic(svg, m));
 
