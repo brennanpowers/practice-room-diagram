@@ -431,9 +431,9 @@
           Woofer at ~6&nbsp;ft (standing ear height).
         </div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-soft);margin-top:8px;line-height:1.55;padding-top:6px;border-top:1px dashed var(--ink-faint)">
-          <strong style="color:var(--ink)">Wedge feed</strong>: M200 ST&nbsp;OUT (3.5mm) → line in.<br>
-          SRD210: 3.5mm → dual RCA → AUX&nbsp;IN.<br>
-          Roland: 3.5mm → ¼"&nbsp;TRS → line&nbsp;in.
+          <strong style="color:var(--ink)">Wedge feed</strong>: MIC&nbsp;1 split at the mic — one cable → wedge, one → M200.<br>
+          Wedge and mixer share no connection; the wedge carries the lead vocal only.<br>
+          Replaces the M200 ST&nbsp;OUT feed (looped the full mix back into the mics → feedback).
         </div>
       </div>
 
@@ -443,13 +443,13 @@
           <span class="label-text"><strong>MAIN&nbsp;L / R</strong> &middot; passive pair, on stands</span>
         </div>
         <div class="legend-item">
-          <span class="label-text"><strong>SRD210</strong> &middot; Monoprice — singer wedge (covers MIC 1, MIC 2; off-axis to MIC 5)</span>
+          <span class="label-text"><strong>SRD210</strong> &middot; Monoprice — lead-vocal wedge (MIC 1 only, via mic split)</span>
         </div>
         <div class="legend-item">
           <span class="label-text"><strong>Roland</strong> &middot; keys-only personal monitor for keyboardist</span>
         </div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-soft);margin-top:8px;line-height:1.55;padding-top:6px;border-top:1px dashed var(--ink-faint)">
-          <strong style="color:var(--ink)">Routing</strong>: M200 ST&nbsp;OUT → SRD210 line in (single direct feed, no Y-split).<br>
+          <strong style="color:var(--ink)">Routing</strong>: MIC&nbsp;1 split at the mic — one cable → SRD210, one → M200 (no shared connection; replaces the feedback-prone ST&nbsp;OUT feed).<br>
           <strong style="color:var(--ink)">Keys</strong> → Roland line in (¼"&nbsp;TS, direct from keyboard, never enters M200).<br>
           Mains carry vocals only. Band hears keys via Roland's off-axis radiation + reflections.
         </div>
@@ -517,7 +517,7 @@
 
           <rect x="200" y="160" width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.4"/>
           <text x="227" y="175" text-anchor="middle" fill="#2c5f7c">WEDGE</text>
-          <text x="227" y="194" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.3">line in (RCA or ¼")</text>
+          <text x="227" y="194" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.3">lead vocal only</text>
 
           <line x1="52" y1="19"  x2="98" y2="60"  stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <line x1="52" y1="69"  x2="98" y2="80"  stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
@@ -530,9 +530,10 @@
           <line x1="160" y1="100" x2="200" y2="99" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <text x="180" y="96" text-anchor="middle" fill="#8a8170" font-size="7">SPK&nbsp;2</text>
 
-          <line x1="160" y1="130" x2="200" y2="171" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
-          <text x="180" y="148" text-anchor="middle" fill="#8a8170" font-size="7">ST&nbsp;OUT</text>
-          <text x="180" y="158" text-anchor="middle" fill="#8a8170" font-size="6" letter-spacing="0.2">3.5mm&nbsp;line</text>
+          <!-- MIC 1 split at the mic: one cable to M200 (above), one to the WEDGE — no shared connection -->
+          <circle cx="52" cy="19" r="2.6" fill="#1a1814"/>
+          <polyline points="52,19 75,19 75,171 200,171" fill="none" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
+          <text x="132" y="167" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">MIC 1 split → wedge</text>
         </svg>
       </div>
 
@@ -574,7 +575,7 @@
 
           <rect x="195" y="148" width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.3"/>
           <text x="222" y="162" text-anchor="middle" fill="#2c5f7c">SRD210</text>
-          <text x="222" y="180" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">singer wedge</text>
+          <text x="222" y="180" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">lead-vocal wedge</text>
 
           <rect x="195" y="200" width="54" height="22" rx="2" fill="#f4ead5" stroke="#2c5f7c" stroke-width="1.3"/>
           <text x="222" y="214" text-anchor="middle" fill="#2c5f7c">Roland</text>
@@ -593,10 +594,10 @@
           <line x1="138" y1="100" x2="195" y2="74" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
           <text x="166" y="92" text-anchor="middle" fill="#8a8170" font-size="6.5">SPK 2</text>
 
-          <!-- M200 ST OUT direct to SRD210 (singer wedge), no Y-split -->
-          <line x1="138" y1="125" x2="195" y2="159" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
-          <text x="166" y="138" text-anchor="middle" fill="#8a8170" font-size="6.5">ST OUT</text>
-          <text x="166" y="148" text-anchor="middle" fill="#8a8170" font-size="6" letter-spacing="0.2">3.5mm line</text>
+          <!-- MIC 1 split at the mic: one cable to M200 (above), one to SRD210 — no shared connection -->
+          <circle cx="50" cy="16" r="2.4" fill="#1a1814"/>
+          <polyline points="50,16 65,16 65,159 195,159" fill="none" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
+          <text x="120" y="154" text-anchor="middle" fill="#8a8170" font-size="6.5">MIC 1 split → SRD210</text>
 
           <!-- KEYS direct to Roland (no M200 involvement) -->
           <line x1="50" y1="201" x2="195" y2="214" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrK)"/>
@@ -716,7 +717,7 @@ const SCENARIOS = {
       // Lead vocal mic — singer stands behind it, faces the drummer
       { id: 'MIC1', x: 600, y: 600,  face: 90, label: 'MIC 1 · LEAD',   tagAt: 'south' },
       // Backup vocal mic — bass player sings into it; faces the drummer
-      { id: 'MIC2', x: 400, y: 800, face: 270, label: 'MIC 2 · BACKUP', tagAt: 'south' },
+      { id: 'MIC2', x: 400, y: 1000, face: 270, label: 'MIC 2 · BACKUP', tagAt: 'south' },
     ],
     AMPS: [
       // G1 amp on top wall — angled ~25% toward room center (south + a bit east)
@@ -740,8 +741,10 @@ const SCENARIOS = {
   /* PROPOSED — Two passive mains run off the M200-BT in stereo mode (Speaker 1 → MAIN-L,
      Speaker 2 → MAIN-R), aimed at opposite singers so cones cross at the band line.
      Drummer monitors via proximity to the mains. Singers monitor via the mains firing into
-     the rear-null of the mic capsules. Optional active near-field WEDGE for the singers,
-     fed by the M200's Stereo Out — useful if the singers want a closer reference.
+     the rear-null of the mic capsules. Optional active near-field WEDGE for the lead singer,
+     fed by a split of MIC 1 at the mic (one cable to the wedge, one to the M200 — no shared
+     connection). Replaces the M200 Stereo Out feed, which looped the full mix back into the
+     mics and caused feedback.
      All amps assumed tilted up onto cases (off-axis ear-height projection, less floor bleed). */
   proposed: {
     label: 'Proposed Layout',
@@ -749,7 +752,7 @@ const SCENARIOS = {
     revision: '07 / proposed',
     MICS: [
       { id: 'MIC1', x: 680, y: 600,  face: 90,  label: 'MIC 1 · LEAD',   tagAt: 'north' },
-      { id: 'MIC2', x: 520, y: 600,  face: 90,  label: 'MIC 2 · BACKUP', tagAt: 'north' },
+      { id: 'MIC2', x: 400, y: 1000, face: 90,  label: 'MIC 2 · BACKUP', tagAt: 'north' },
       { id: 'MIC3', x: 900, y: 870,  face: 90,  label: 'MIC 3 · G2',     tagAt: 'east'  },
       { id: 'MIC4', x: 800, y: 1290, face: 270, label: 'MIC 4 · DRUMS',  tagAt: 'east'  },
     ],
@@ -763,7 +766,7 @@ const SCENARIOS = {
       { id: 'MAIN-L', x: 280, y: 1370, fire: -62,  length: 1000, spread: 30, tag: 'MAIN L', tagAt: 'south' },
       // MAIN-R aims at MIC 2 (opposite singer).
       { id: 'MAIN-R', x: 920, y: 1370, fire: -118, length: 1000, spread: 30, tag: 'MAIN R', tagAt: 'south' },
-      // WEDGE — singer near-field, fed by M200 Stereo Out at line level.
+      // WEDGE — lead-singer near-field, fed by a mic-level split of MIC 1 (lead vocal only).
       { id: 'WEDGE',  x: 600, y: 820,  fire: 270,  length: 380,  spread: 22, tag: 'WEDGE',  tagAt: 'east' },
     ],
     DRUM_KIT: { x: 800, y: 1158, size: 240 },
@@ -775,9 +778,10 @@ const SCENARIOS = {
   /* KEYBOARD — Variant of proposed for sessions with a keyboard player.
      Keyboardist sits near the singer area at (820, 500). Roland is their keys-only
      personal monitor, south of player firing north (mic null geometry preserved). The Monoprice
-     SRD210 stays as the singer wedge at (600, 820), now serving all three vocal mics (MIC 1,
-     MIC 2, MIC 5) — MIC 5 gets off-axis coverage given its eastern offset.
-     Routing: keyboard ¼" direct → Roland line in; M200 Stereo Out → SRD210 line in (no Y-split).
+     SRD210 stays as the lead-vocal wedge at (600, 820), now fed by a split of MIC 1 at the mic
+     (carries the lead vocal only).
+     Routing: keyboard ¼" direct → Roland line in; MIC 1 split → one cable to SRD210, one to the
+     M200 (no shared connection — replaces the feedback-prone Stereo Out feed).
      Keys never enter the M200 mix. Mains carry vocals only. */
   keyboard: {
     label: 'Keyboard Layout',
@@ -785,7 +789,7 @@ const SCENARIOS = {
     revision: '09 / keyboard',
     MICS: [
       { id: 'MIC1', x: 680, y: 600,  face: 90,  label: 'MIC 1 · LEAD',   tagAt: 'north' },
-      { id: 'MIC2', x: 520, y: 600,  face: 90,  label: 'MIC 2 · BACKUP', tagAt: 'north' },
+      { id: 'MIC2', x: 400, y: 1000, face: 90,  label: 'MIC 2 · BACKUP', tagAt: 'north' },
       { id: 'MIC3', x: 900, y: 870,  face: 90,  label: 'MIC 3 · G2',     tagAt: 'east'  },
       { id: 'MIC4', x: 800, y: 1290, face: 270, label: 'MIC 4 · DRUMS',  tagAt: 'east'  },
       { id: 'MIC5', x: 820, y: 480,  face: 90,  label: 'MIC 5 · KEYS',   tagAt: 'east'  },
@@ -802,7 +806,7 @@ const SCENARIOS = {
     MONITORS: [
       { id: 'MAIN-L', x: 280, y: 1370, fire: -62,  length: 1000, spread: 30, tag: 'MAIN L', tagAt: 'south' },
       { id: 'MAIN-R', x: 920, y: 1370, fire: -118, length: 1000, spread: 30, tag: 'MAIN R', tagAt: 'south' },
-      // SRD210 = singer wedge, covers MIC 1 + MIC 2 on-axis, MIC 5 via off-axis spillover.
+      // SRD210 = lead-vocal wedge, fed by a mic-level split of MIC 1 (lead vocal only).
       { id: 'SRD210', x: 600, y: 820, fire: 270, length: 380, spread: 22, tag: 'SRD210', tagAt: 'east' },
       // Roland = keys-only personal monitor, south of keyboardist firing N back at them.
       // Cardioid null geometry (mic null south, source from south) preserved.
