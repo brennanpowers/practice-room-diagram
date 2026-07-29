@@ -1,8 +1,21 @@
 # Practice Recording Rig — Design
 
 **Date:** 2026-07-28
-**Status:** Approved, not yet implemented
+**Status:** Implemented in `e30c1eb`. Hardware not yet purchased; four items remain to verify
+in-room (see Open questions).
 **Scope:** Add a portable recording rig to the `proposed` layout in `index.html`, plus supporting documentation in `references.html`.
+
+### Implementation note not anticipated by this spec
+
+The signal-chain legend panel carries `data-scenario="proposed,ideal"` — it is **shared with the
+hidden `ideal` scenario**, which has no `REC` mic. Adding the recorder block to that SVG therefore
+made `ideal` claim a recorder it does not have. Fixed by wrapping the block in
+`<g data-scenario="proposed">`: the existing show/hide runs `querySelectorAll('[data-scenario]')`
+and sets `style.display`, which works on SVG groups as well as legend divs. Costs a little unused
+whitespace at the bottom of `ideal`'s panel, since the viewBox stays tall.
+
+If `ideal` should eventually gain a recorder, its aim needs re-deriving — that layout moves the
+mics to the north end, so the 125° figure derived for `proposed` does not carry over.
 
 ---
 

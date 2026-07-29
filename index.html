@@ -407,11 +407,17 @@
         <div class="legend-item" data-scenario="keyboard">
           <span class="label-text"><strong>MIC 5</strong> &middot; Keyboard vocal</span>
         </div>
-        <div class="legend-item" data-scenario="keyboard">
-          <span class="label-text" style="color:var(--accent-amber)"><strong>REC</strong> &middot; omni for practice recording (Focusrite → laptop)</span>
+        <div class="legend-item" data-scenario="proposed,keyboard">
+          <span class="label-text" style="color:var(--accent-amber)"><strong>REC</strong> &middot; Zoom H4essential on the desk &mdash; X/Y room pair + 2 vocal splits</span>
         </div>
         <div class="legend-item" data-scenario="keyboard" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-faint);margin-top:4px;line-height:1.5">
-          <span>MIC 5 channel: share G2's CH3, OR add a mic preamp to use M200's CH5-6.<br>REC mic does not feed the M200 — straight to interface for recording.</span>
+          <span>MIC 5 channel: share G2's CH3, OR add a mic preamp to use M200's CH5-6.</span>
+        </div>
+        <div class="legend-item" data-scenario="proposed,keyboard" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--ink-faint);margin-top:4px;line-height:1.5">
+          <span><strong style="color:var(--accent-amber)">Recording</strong> is a sidecar &mdash; it travels, and the room works without it.<br>
+          MIC 1 + MIC 2 split at the mic: one leg to the M200, one to the H4e.<br>
+          Built-in X/Y = stereo room track. 4 tracks, 32-bit float, SD + USB.<br>
+          Amber wedge = X/Y capture field. Aimed 125°, away from the WEDGE.</span>
         </div>
         <div class="legend-item" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--ink-faint);margin-top:6px">
           <span>Dashed arrow = singer's facing direction</span>
@@ -490,10 +496,13 @@
 
       <div class="legend-section" data-scenario="proposed,ideal">
         <h3>Signal Chain</h3>
-        <svg viewBox="0 0 260 220" style="width:100%;height:auto;display:block;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600">
+        <svg viewBox="0 0 260 272" style="width:100%;height:auto;display:block;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600">
           <defs>
             <marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
               <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1814"/>
+            </marker>
+            <marker id="arrRec" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#b8862e"/>
             </marker>
           </defs>
 
@@ -534,12 +543,30 @@
           <circle cx="52" cy="19" r="2.6" fill="#1a1814"/>
           <polyline points="52,19 75,19 75,171 200,171" fill="none" stroke="#1a1814" stroke-width="1.1" marker-end="url(#arrP)"/>
           <text x="132" y="167" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">MIC 1 split → wedge</text>
+
+          <!-- RECORDING SIDECAR (amber, dashed = travels with the kit; room works without it).
+               MIC 1 and MIC 2 split again at the mic, second leg to the recorder's XLR inputs.
+               Gated to `proposed` — this signal-chain panel is shared with `ideal`, which has no
+               REC mic in its layout. The scenario show/hide runs on any [data-scenario] element. -->
+          <g data-scenario="proposed">
+            <circle cx="52" cy="26" r="2.2" fill="#b8862e"/>
+            <polyline points="52,26 90,26 90,224" fill="none" stroke="#b8862e" stroke-width="1.1"
+                      stroke-dasharray="4 3" marker-end="url(#arrRec)"/>
+            <circle cx="52" cy="76" r="2.2" fill="#b8862e"/>
+            <polyline points="52,76 82,76 82,224" fill="none" stroke="#b8862e" stroke-width="1.1"
+                      stroke-dasharray="4 3" marker-end="url(#arrRec)"/>
+
+            <rect x="52" y="228" width="156" height="24" rx="2" fill="#f4ead5" stroke="#b8862e"
+                  stroke-width="1.4" stroke-dasharray="5 3"/>
+            <text x="130" y="244" text-anchor="middle" fill="#b8862e">H4e · REC</text>
+            <text x="130" y="264" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">X/Y room + MIC 1 / MIC 2 · 32-bit float · SD + USB</text>
+          </g>
         </svg>
       </div>
 
       <div class="legend-section" data-scenario="keyboard">
         <h3>Signal Chain</h3>
-        <svg viewBox="0 0 260 270" style="width:100%;height:auto;display:block;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600">
+        <svg viewBox="0 0 260 294" style="width:100%;height:auto;display:block;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600">
           <defs>
             <marker id="arrK" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
               <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1814"/>
@@ -606,6 +633,8 @@
           <!-- Notes at bottom -->
           <text x="130" y="252" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">MIC 5 (dashed) — share CH3 OR add a mic preamp on CH5-6</text>
           <text x="130" y="262" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">Keys bypass the M200 entirely — direct to Roland</text>
+          <text x="130" y="276" text-anchor="middle" fill="#b8862e" font-size="6.5" letter-spacing="0.2">REC sidecar: MIC 1 + MIC 2 split → H4essential (as Proposed)</text>
+          <text x="130" y="286" text-anchor="middle" fill="#8a8170" font-size="6.5" letter-spacing="0.2">Keys and MIC 5 are captured acoustically only, via the room track</text>
         </svg>
       </div>
 
@@ -745,7 +774,14 @@ const SCENARIOS = {
      fed by a split of MIC 1 at the mic (one cable to the wedge, one to the M200 — no shared
      connection). Replaces the M200 Stereo Out feed, which looped the full mix back into the
      mics and caused feedback.
-     All amps assumed tilted up onto cases (off-axis ear-height projection, less floor bleed). */
+     All amps assumed tilted up onto cases (off-axis ear-height projection, less floor bleed).
+
+     RECORDING (sidecar — travels, room works without it): Zoom H4essential on the standing
+     desk at (600, 900). Built-in X/Y = stereo room track; MIC 1 and MIC 2 passive splits on
+     its two XLR inputs = isolated lead and backup vocals. All 32-bit float, to microSD and
+     USB. Nothing in the room chain depends on it. Note the desk sits inside the band, so the
+     instruments span ~210° and G1 lands well down — an acoustic cost accepted in exchange for
+     the recorder being reachable. Design: docs/superpowers/specs/2026-07-28-practice-recording-rig-design.md */
   proposed: {
     label: 'Proposed Layout',
     stamp: 'PROPOSED',
@@ -755,6 +791,11 @@ const SCENARIOS = {
       { id: 'MIC2', x: 400, y: 1000, face: 90,  label: 'MIC 2 · BACKUP', tagAt: 'north' },
       { id: 'MIC3', x: 900, y: 870,  face: 90,  label: 'MIC 3 · G2',     tagAt: 'east'  },
       { id: 'MIC4', x: 800, y: 1290, face: 270, label: 'MIC 4 · DRUMS',  tagAt: 'east'  },
+      // Zoom H4essential on the standing desk, ~4 ft. Its X/Y pair is the stereo room track;
+      // MIC 1 and MIC 2 splits feed its two XLR inputs. Aim 125° is load-bearing: it is the
+      // bisector of the instrument spread AND puts the WEDGE (80 units north, carrying the
+      // lead vocal) 145° off-axis, keeping vocal bleed out of the room track. Do not aim north.
+      { id: 'REC',  x: 600, y: 900,  face: 125, label: 'REC · H4e',      tagAt: 'east', stereo: true },
     ],
     AMPS: [
       { id: 'G1 AMP',   x: 110, y: 310,  fire: 75,  length: 320, spread: 26, tagAt: 'north', tilted: true },
@@ -782,7 +823,10 @@ const SCENARIOS = {
      (carries the lead vocal only).
      Routing: keyboard ¼" direct → Roland line in; MIC 1 split → one cable to SRD210, one to the
      M200 (no shared connection — replaces the feedback-prone Stereo Out feed).
-     Keys never enter the M200 mix. Mains carry vocals only. */
+     Keys never enter the M200 mix. Mains carry vocals only.
+     Recording sidecar identical to `proposed` — H4essential on the desk at (600, 900). Note the
+     keys reach it only acoustically, via the Roland and the room; they never enter the M200 and
+     so never reach a vocal split. MIC 5 is likewise room-only. */
   keyboard: {
     label: 'Keyboard Layout',
     stamp: 'KEYBOARD',
@@ -793,10 +837,10 @@ const SCENARIOS = {
       { id: 'MIC3', x: 900, y: 870,  face: 90,  label: 'MIC 3 · G2',     tagAt: 'east'  },
       { id: 'MIC4', x: 800, y: 1290, face: 270, label: 'MIC 4 · DRUMS',  tagAt: 'east'  },
       { id: 'MIC5', x: 820, y: 480,  face: 90,  label: 'MIC 5 · KEYS',   tagAt: 'east'  },
-      // Omnidirectional recording mic — north end, slightly west of center to better capture
-      // G1's NW-corner amp. Boom-stand mounting recommended for capsule height (~7–8 ft).
-      // Captures band balance for practice recording (Focusrite → laptop → GarageBand).
-      { id: 'REC',  x: 500, y: 350,             label: 'REC · OMNI',    tagAt: 'south', omni: true },
+      // Zoom H4essential on the standing desk, ~4 ft — same position and aim as `proposed`.
+      // The SRD210 stays at (600, 820) in this layout too, so the same reasoning holds: aim
+      // 125° keeps the lead-vocal wedge 145° off-axis. MIC 1 / MIC 2 splits on its XLR inputs.
+      { id: 'REC',  x: 600, y: 900,  face: 125, label: 'REC · H4e',      tagAt: 'east', stereo: true },
     ],
     AMPS: [
       { id: 'G1 AMP',   x: 110, y: 310,  fire: 75,  length: 320, spread: 26, tagAt: 'north', tilted: true },
@@ -1231,10 +1275,11 @@ MONITORS.forEach(m => drawMonitor(svg, m));
 /* ---- Vocal mics (top-down view) ---- */
 function drawMic(parent, m) {
   const g = el('g', { transform: `translate(${m.x} ${m.y})` }, parent);
-  const accent = m.omni ? C.amber : C.red;
+  const accent = (m.omni || m.stereo) ? C.amber : C.red;
 
-  // facing arrow — directional mics only (omni mics have no facing direction)
-  if (m.face !== undefined && !m.omni) {
+  // facing arrow — vocal mics only. Omni has no direction; a stereo recorder shows a
+  // capture field instead, since `face` there means where the capsules point, not a singer.
+  if (m.face !== undefined && !m.omni && !m.stereo) {
     const arrowLen = 70;
     const ax = Math.cos(m.face * Math.PI / 180) * arrowLen;
     const ay = Math.sin(m.face * Math.PI / 180) * arrowLen;
@@ -1266,6 +1311,18 @@ function drawMic(parent, m) {
         'stroke-dasharray': '2 3', opacity: 0.55 - i * 0.13,
       }, g);
     });
+  } else if (m.stereo) {
+    // Stereo X/Y recorder — dashed amber wedge showing the capture field along `face`.
+    // Half-angle 60° (~120° total); dashed because the recorder is a travelling sidecar.
+    const HALF = 60, LEN = 165;
+    const rot = el('g', { transform: `rotate(${m.face || 0})` }, g);
+    const rad = HALF * Math.PI / 180;
+    const ex = Math.cos(rad) * LEN, ey = Math.sin(rad) * LEN;
+    el('path', {
+      d: `M 0 0 L ${ex} ${-ey} A ${LEN} ${LEN} 0 0 1 ${ex} ${ey} Z`,
+      fill: C.amber, 'fill-opacity': 0.07,
+      stroke: C.amber, 'stroke-width': 1.1, 'stroke-dasharray': '5 4', opacity: 0.75,
+    }, rot);
   } else {
     // mic stand base (faint outer ring) — directional mics
     el('circle', { cx: 0, cy: 0, r: 22, fill: 'none', stroke: C.inkFaint, 'stroke-width': 1, 'stroke-dasharray': '3 3', opacity: 0.65 }, g);

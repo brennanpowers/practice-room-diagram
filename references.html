@@ -447,6 +447,44 @@
     <span class="confidence heuristic">Reasonable rule of thumb · Environment-dependent</span>
   </article>
 
+  <article class="principle">
+    <div class="principle-num">Principle 07</div>
+    <h2>Recording the room can't fix quiet vocals — isolation can</h2>
+
+    <div class="field">
+      <span class="field-label">Used in proposed layout</span>
+      <div class="field-body">A Zoom H4essential sits on the standing desk at (600,&nbsp;900). Its built-in X/Y pair records the room; MIC&nbsp;1 and MIC&nbsp;2 are split at the mic so a second leg feeds its two XLR inputs. Four tracks, 32-bit float, to microSD and USB simultaneously. The rig is a <strong>sidecar</strong> — it travels, and the room chain works unchanged without it.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">The problem it solves</span>
+      <div class="field-body">Earlier single-room-mic recordings had vocals too quiet. This is <strong>not</strong> a placement problem. The mains sit at the south wall and the drum kit sits mid-room, so every position closer to the mains is also closer to the kit. Across four candidate positions the best mains-to-drums ratio was <strong>−1.7&nbsp;dB</strong> — the drums win everywhere in this room. Moving a mic buys a couple of dB; the deficit is far larger. The fix has to be structural: give the lead vocal its own track and set its level afterward.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Why not take a feed from the mixer</span>
+      <div class="field-body">The M200-BT exposes only <strong>STEREO OUT</strong> (the summed mix of everything) and <strong>MONITOR OUT</strong> (a mono mix of all inputs). There are no direct outs and no channel inserts, so nothing leaving that box contains an isolated vocal. Per-singer control requires splitting at the microphone.</div>
+      <div class="citation" style="margin-top:8px">Harbinger M100-BT/M200-BT Owner's Manual — output complement.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Why passive splitting is acceptable here</span>
+      <div class="field-body">Because <strong>no phantom power exists anywhere in this design</strong>. The vocal mics are dynamics and the recorder's X/Y pair is internal, so there is no DC near a split junction. This conclusion is conditional, not general: routing the splits through the LiveTrak L-8 instead would force 48&nbsp;V onto every junction, because the L-8's phantom is switched <em>globally</em> across all six mic inputs. The realistic consequences of that would be ground-loop hum and mild level/tone loss from impedance loading rather than damage — but it is avoided here entirely.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Why the aim matters more than the position</span>
+      <div class="field-body">The desk sits <em>inside</em> the band: the four instrument sources span roughly <strong>210°</strong> from that point, which no directional pair can cover, and G1 ends up well down. That cost is accepted in exchange for the recorder being reachable. The <strong>aim, however, is load-bearing</strong> — the lead-vocal wedge is only 80 units north, and aiming ~125° places it about 145° off-axis. Aimed north instead, wedge bleed would put the lead vocal back into the room track and erode the very independence this design exists to provide.</div>
+    </div>
+
+    <div class="field">
+      <span class="field-label">Caveat</span>
+      <div class="field-body">The off-axis and distance figures above are free-field direct-sound calculations. In a small untreated room the critical distance is only a few feet, so beyond that the reverberant field dominates and real balances come out considerably more even than the arithmetic implies — G1 will arrive via reflections. Treat the numbers as establishing the <em>direction</em> of each trade, and as justification for the aim, which is the one decision they genuinely determine. Two items remain unverified in practice: actual wedge bleed into the room track, and whether MIC&nbsp;1's now three-way split (wedge, M200, recorder) loses audible level or tone. A single transformer splitter on that channel is the remedy if it does.</div>
+    </div>
+
+    <span class="confidence partial">Geometry sound · Magnitudes unverified in-room</span>
+  </article>
+
   <section class="gaps">
     <h2>What this layout does not address</h2>
     <p>A complete acoustic redesign would also tackle these, but they're outside the scope of repositioning gear:</p>
