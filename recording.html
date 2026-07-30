@@ -566,6 +566,42 @@
     <p><strong>One gotcha.</strong> The H4essential's line out <em>is</em> its headphone jack, so its
     level follows the volume knob. Set it once, tape it, and don't let anyone nudge it between sessions
     or your room-track level moves.</p>
+
+    <p><strong>Both at once — B-5 through the handheld, into the L-8.</strong> These two upgrades
+    combine, and the combination is better than either alone:</p>
+
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.6;background:rgba(255,250,235,0.6);border-left:3px solid var(--accent-amber);padding:12px 16px;margin:14px 0;color:var(--ink-soft);overflow-x:auto">
+      B-5 omni, boom @ (500,350) ──► H4e INPUT 1 &nbsp;[48&nbsp;V on Input&nbsp;1 only]<br>
+      H4e built-in X/Y, on the desk ──► H4e MIC<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ line out (stereo mix) ──► L-8 ch&nbsp;7/8<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ microSD: TrMic + Tr1, raw 32-bit float<br>
+      MIC 1-4 ──► splitters ──┬──► M200 ──► MAIN L/R<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──► L-8 ch&nbsp;1-4
+    </div>
+
+    <p><strong>Yes, the B-5 is included in the line out.</strong> That jack carries the stereo mix of
+    every enabled input, and the manual confirms its level is affected by the Mixer Screen. So whatever
+    you set on the H4e's mixer is what the L-8 receives on 7/8 — one pre-blended room track.</p>
+
+    <p><strong>Set Rec Source to <em>Pre&nbsp;Mixer</em></strong> (Rec Settings menu) and the blend is
+    committed <em>only</em> for the L-8. The card still writes <span style="font-family:'JetBrains Mono',monospace">TrMic</span>
+    and <span style="font-family:'JetBrains Mono',monospace">Tr1</span> as raw, independent 32-bit float
+    files. Get the blend wrong and nothing is lost — remix from the card. On
+    <em>Post&nbsp;Mixer</em> the mixer settings bake into the individual files too, which is not what
+    you want here.</p>
+
+    <p><strong>Why route the B-5 through the handheld rather than straight into the L-8?</strong> This
+    is the structural reason, not just convenience. The B-5 needs 48&nbsp;V; the L-8's phantom is
+    <em>global</em>. Plug the B-5 into an L-8 mic input and you put DC on all four vocal split junctions.
+    Run it through the H4essential and the 48&nbsp;V stays inside the handheld, on Input&nbsp;1 only —
+    the L-8 never sees it. <strong>The handheld acts as a phantom-isolating preamp.</strong> It is the
+    correct way to use a condenser alongside split dynamics on that mixer, and it leaves L-8
+    channels&nbsp;5/6 free.</p>
+
+    <p><strong>Pan the B-5 centre.</strong> The desk X/Y produces the wide, hollow-centred image
+    described in §05 — sources bunched at the extremes. A mono omni panned up the middle fills exactly
+    that hole. The two capture methods are complementary rather than redundant, which is the real
+    argument for running both.</p>
   </article>
 
   <div class="callout">
