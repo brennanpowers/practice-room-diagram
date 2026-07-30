@@ -467,8 +467,39 @@
   </article>
 
   <article class="principle">
-    <div class="principle-num">07 · After practice</div>
-    <h2>Getting it into GarageBand</h2>
+    <div class="principle-num">07 · Getting it into GarageBand</div>
+    <h2>If the laptop is already on the table, record straight into it</h2>
+
+    <p><strong>This is the lowest-effort route, and it sidesteps the 32-bit float problem entirely</strong>
+    — because GarageBand is <em>recording</em>, not importing. There is no post-session file handling at
+    all: practice ends and the session is already in a project.</p>
+
+    <p>The H4essential is a <strong>4-in / 2-out USB-C interface</strong>, it streams 32-bit float, and
+    critically it <strong>keeps recording to the SD card at the same time</strong>. So a USB dropout,
+    a GarageBand crash or a mis-armed track costs you nothing — the card has an independent 32-bit float
+    master of the whole session regardless. USB-C also bus-powers the recorder, so no batteries.</p>
+
+    <ol style="margin-left: 22px; font-size: 14.5px; line-height: 1.75; color: var(--ink); margin-bottom: 12px;">
+      <li><strong>USB-C to the MacBook</strong>, and set the recorder to audio-interface mode.</li>
+      <li><strong>Build the project once and save it as a template.</strong> Three tracks — one stereo
+        for the X/Y pair, two mono for Inputs 1 and 2. Every later session is: open template, hit record.</li>
+      <li><strong>Turn on the Record Enable buttons.</strong> GarageBand hides these by default, which
+        is the single most common reason multitrack recording "doesn't work" — reveal them via
+        <em>Track → Configure Track Header → Record Enable</em>, then arm all three.</li>
+      <li><strong>Check the channel mapping once.</strong> Which USB channel carries the X/Y pair versus
+        Inputs 1 and 2 is worth confirming on the device rather than assuming; note it down and the
+        template is correct forever.</li>
+      <li><strong>Stop the laptop sleeping</strong> mid-session. Energy Saver, or run
+        <span style="font-family:'JetBrains Mono',monospace">caffeinate</span> in Terminal.</li>
+      <li><strong>Let the card record too.</strong> It costs nothing and it's your safety net.</li>
+    </ol>
+
+    <p>One thing you give up: GarageBand records at 24-bit, so the float headroom doesn't survive into
+    the project. It survives on the card, which is exactly where you'd want it if a session turns out to
+    be worth mixing properly. Set the gain sensibly per §03 and the GarageBand version will be fine on
+    its own.</p>
+
+    <h2 style="font-size:18px;margin-top:26px">Or work from the card</h2>
 
     <ol style="margin-left: 22px; font-size: 14.5px; line-height: 1.75; color: var(--ink); margin-bottom: 12px;">
       <li>Pull the microSD card, or connect USB-C. Files are named by timestamp —
@@ -507,9 +538,9 @@
           ships with macOS, nothing to install:<br>
           <span style="font-family:'JetBrains Mono',monospace;font-size:12px;display:inline-block;margin-top:4px">afconvert -f WAVE -d LEI24@48000 in.wav out.wav</span><br>
           Wrap it in a Finder Quick Action and it becomes right-click → convert.</li>
-        <li><strong>Record straight into GarageBand over USB.</strong> The H4essential is a 4-in/2-out
-          interface, so the Mac converts at the input and no files are imported at all. Costs bringing
-          the laptop to practice, which is more setup, not less.</li>
+        <li><strong>Record straight into GarageBand over USB.</strong> No files are imported at all, so
+          the format question never arises. If the laptop is already on the table this is the
+          <em>least</em>-effort route, not the most — see the top of this section.</li>
       </ul>
 
       <p style="font-size:14.5px;line-height:1.62;margin:0"><strong>One catch when converting.</strong>
@@ -517,6 +548,35 @@
       hot, conversion will clip exactly what float was protecting. Set the gain roughly right per §03
       and this never arises — which is the one reason not to be completely cavalier about levels.</p>
     </div>
+
+    <h2 style="font-size:18px;margin-top:26px">How much fits on a card</h2>
+
+    <p>32-bit float at 48&nbsp;kHz costs <strong>691&nbsp;MB per hour per channel</strong>. The
+    recommended setup writes six channels — the X/Y pair, both inputs, and the stereo mix — so about
+    <strong>4.2&nbsp;GB an hour</strong>.</p>
+
+    <table class="eq">
+      <thead>
+        <tr><th>Card</th><th>Recommended setup</th><th>Practices it holds</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="knob">256 GB</td><td class="setting">≈ 62 hours</td><td>About 21 three-hour sessions</td></tr>
+        <tr><td class="knob">128 GB</td><td class="setting">≈ 31 hours</td><td>About 10</td></tr>
+        <tr><td class="knob">64 GB</td><td class="setting">≈ 15 hours</td><td>About 5</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>256&nbsp;GB is comfortably more than you need</strong> — roughly five months of weekly
+    three-hour practices before it fills. The recorder supports up to <strong>1&nbsp;TB microSDXC</strong>,
+    so the card size is not a constraint; what matters more is speed. Use <strong>U3 / V30 or better</strong>;
+    slower cards risk dropouts and corrupted files on six simultaneous channels.</p>
+
+    <p>Two things to expect. At 96&nbsp;kHz everything doubles, to about 31 hours on a 256&nbsp;GB card
+    — another reason to stay at 48. And because WAV files are capped, the recorder <strong>auto-splits
+    long recordings</strong>: stereo files roughly every 1.4 hours, mono every 2.9. A three-hour practice
+    therefore yields numbered segments rather than one continuous file. That's normal, handled
+    automatically, and one more reason the USB route is pleasant — GarageBand just records a single
+    continuous take.</p>
   </article>
 
   <article class="principle">
