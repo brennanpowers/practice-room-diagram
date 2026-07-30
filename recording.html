@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Jam Room — Recording Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4ead5;
+    --paper-warm: #ede0c2;
+    --ink: #1a1814;
+    --ink-soft: #4a4438;
+    --ink-faint: #8a8170;
+    --grid: #c9b994;
+    --accent-red: #b8412e;
+    --accent-blue: #2c5f7c;
+    --accent-amber: #b8862e;
+    --accent-green: #4a6b3a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #2a2620;
+    min-height: 100vh;
+    font-family: 'Fraunces', Georgia, serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 40px 56px;
+    background: var(--paper);
+    background-image:
+      radial-gradient(ellipse at top left, rgba(255,240,200,0.45) 0%, transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(180,150,100,0.18) 0%, transparent 55%);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.08'/></svg>");
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+
+  .header {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 14px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -5px;
+    height: 1px;
+    background: var(--ink);
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 40px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variation-settings: 'opsz' 144;
+  }
+  .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 8px;
+  }
+  .back-link {
+    margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .back-link a {
+    color: var(--ink-faint);
+    text-decoration: none;
+    border-bottom: 1.5px solid transparent;
+    padding: 2px 0;
+    transition: color 0.15s, border-color 0.15s;
+    margin-right: 16px;
+  }
+  .back-link a:hover {
+    color: var(--ink);
+    border-bottom-color: var(--accent-red);
+  }
+
+  .lede {
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+    max-width: 680px;
+  }
+
+  .principle {
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px dashed var(--ink-faint);
+  }
+  .principle:last-of-type { border-bottom: none; }
+  .principle-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+  }
+  .principle h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .principle p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  .principle p em {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+  .principle p strong {
+    font-weight: 600;
+  }
+
+  table.eq {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 12px 0;
+    font-family: 'Fraunces', serif;
+  }
+  table.eq th, table.eq td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  table.eq th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 700;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  table.eq td {
+    vertical-align: top;
+  }
+  table.eq td.knob {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    white-space: nowrap;
+    width: 28%;
+  }
+  table.eq td.setting {
+    color: var(--accent-blue);
+    font-weight: 600;
+    width: 28%;
+  }
+
+  .callout {
+    background: rgba(255,250,235,0.55);
+    border: 2px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    padding: 18px 22px;
+    margin: 24px 0;
+  }
+  .callout-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-red);
+    margin-bottom: 6px;
+  }
+  .callout p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin: 0;
+  }
+  .callout strong { font-weight: 700; }
+
+  .footer {
+    margin-top: 36px;
+    padding-top: 14px;
+    border-top: 1px solid var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 540px) {
+    .page { padding: 28px 18px 36px; }
+    h1 { font-size: 28px; }
+    .subtitle { font-size: 10px; letter-spacing: 0.14em; }
+    .lede { font-size: 14px; }
+    .principle h2 { font-size: 18px; }
+    .principle p { font-size: 13.5px; }
+    table.eq { font-size: 12px; }
+    table.eq th, table.eq td { padding: 6px 6px; }
+    .callout { padding: 14px 16px; box-shadow: 3px 3px 0 var(--ink); }
+    .footer { flex-direction: column; gap: 6px; }
+  }
+
+  ol { margin-left: 0; }
+  table.eq td.knob { width: 26%; }
+  table.eq td.setting { width: 22%; }
+  .principle ol li { margin-bottom: 6px; }
+  .principle ul li { margin-bottom: 5px; }
+  @media (max-width: 540px) {
+    table.eq td.knob, table.eq td.setting { width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="header">
+    <h1>Recording Practice</h1>
+    <div class="subtitle">Zoom H4essential sidecar · 4 tracks · 32-bit float</div>
+    <div class="back-link">
+      <a href="index.html?layout=proposed">← Layout diagram</a>
+      <a href="references.html">Sources &amp; references</a>
+      <a href="eq.html">EQ guide</a>
+    </div>
+  </header>
+
+  <p class="lede">
+    The recording rig is a <strong>sidecar</strong>: it travels, and the practice room works
+    exactly as documented without it. Nothing is left behind, nothing in the room chain depends
+    on it. Setup is one recorder, two splitter cables, and about five minutes. This page is the
+    operating manual — what to do, what to expect, and what is honestly compromised.
+  </p>
+
+  <div class="callout">
+    <div class="callout-label">If you remember one thing</div>
+    <p>
+      <strong>Point the recorder at MAIN&nbsp;L.</strong> That single act sets the geometry. It puts the
+      lead-vocal wedge roughly 145° off-axis so it doesn't flood the room track, and it keeps
+      MIC&nbsp;1's singer almost directly behind the mic where the capsules reject them hardest.
+      Aimed the other way — north, toward the band — the lead vocal pours into the room track and
+      the isolation the whole rig exists for stops working.
+    </p>
+  </div>
+
+  <article class="principle">
+    <div class="principle-num">01 · What you get</div>
+    <h2>Four tracks, and one of them is a free mix</h2>
+
+    <p>The recorder writes discrete files per source plus an automatic stereo mix, all in 32-bit
+    float, to microSD and over USB simultaneously. The card copy means a USB dropout can't cost
+    you the take.</p>
+
+    <table class="eq">
+      <thead>
+        <tr><th>File</th><th>Source</th><th>What it carries</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="knob">TrMic</td><td class="setting">Built-in X/Y</td><td>The room — drums, amps, ambience, and a good deal of vocal bleed</td></tr>
+        <tr><td class="knob">Tr1</td><td class="setting">Input 1 ← MIC 1</td><td>Lead vocal, isolated</td></tr>
+        <tr><td class="knob">Tr2</td><td class="setting">Input 2 ← MIC 2</td><td>Backup vocal — isolated at the mic, but see §06</td></tr>
+        <tr><td class="knob">TrLR</td><td class="setting">Auto</td><td>Stereo mix of all three. Listen back without opening a DAW</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>MIC 3 (G2) and MIC 4 (drums) are not isolated.</strong> They exist only inside the room
+    track. That's the accepted trade for a four-track recorder — isolating them means bringing the
+    L-8 and four splitters, which is a bigger kit than the sidecar constraint allows.</p>
+  </article>
+
+  <article class="principle">
+    <div class="principle-num">02 · Setup, in order</div>
+    <h2>Five minutes, and the room is untouched when you leave</h2>
+
+    <ol style="margin-left: 22px; font-size: 14.5px; line-height: 1.75; color: var(--ink); margin-bottom: 12px;">
+      <li><strong>Recorder on the standing desk</strong> at roughly (600,&nbsp;900), about 4&nbsp;ft up.
+        Put it on a small stand or foam pad rather than flat on the desk — a hard surface directly
+        under the capsules causes comb filtering from the reflection arriving a fraction of a
+        millisecond behind the direct sound. Keep it off the back edge and away from the wall for
+        the same reason.</li>
+      <li><strong>Aim the capsules at MAIN&nbsp;L.</strong> Screen faces back toward you, roughly
+        northeast. Level, or tilted very slightly up.</li>
+      <li><strong>Insert the splitter on MIC&nbsp;1.</strong> One leg continues to the M200 exactly as
+        before, the other runs to Input&nbsp;1. MIC&nbsp;1 also still feeds the wedge — that's a
+        three-way split now, see §08.</li>
+      <li><strong>Insert the splitter on MIC&nbsp;2</strong>, second leg to Input&nbsp;2.</li>
+      <li><strong>Arm all three channels</strong> — the <span style="font-family:'JetBrains Mono',monospace">MIC</span>,
+        <span style="font-family:'JetBrains Mono',monospace">1</span> and
+        <span style="font-family:'JetBrains Mono',monospace">2</span> buttons. Red light on means armed.</li>
+      <li><strong>Check the settings below</strong>, hit record, and forget about it.</li>
+    </ol>
+
+    <p><strong>Teardown:</strong> pull the two splitters, plug the mics straight back into the M200.
+    The room is back to its documented state.</p>
+  </article>
+
+  <article class="principle">
+    <div class="principle-num">03 · Recorder settings</div>
+    <h2>Set once, then stop thinking about levels</h2>
+
+    <table class="eq">
+      <thead>
+        <tr><th>Setting</th><th>Value</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="knob">Phantom (In 1)</td><td class="setting">OFF</td><td>MIC 1 is a dynamic. Phantom is per-input on this model, so no compromise is forced</td></tr>
+        <tr><td class="knob">Phantom (In 2)</td><td class="setting">OFF</td><td>Same. No DC anywhere near a split junction — this is what makes cheap passive splitters safe here</td></tr>
+        <tr><td class="knob">Lo Cut (In 1, In 2)</td><td class="setting">ON</td><td>Recording-side version of the M200's low-cut. Tames bass-amp bleed into the vocal mics</td></tr>
+        <tr><td class="knob">Sample rate</td><td class="setting">48 kHz</td><td>Plenty. 96 kHz disables EQ and overdub on this model for no benefit here</td></tr>
+        <tr><td class="knob">Gain</td><td class="setting">roughly right</td><td>Set it once via the MIXER button and leave it</td></tr>
+      </tbody>
+    </table>
+
+    <p>32-bit float does <em>not</em> mean levels don't exist — there is a gain control. It means a
+    wrong setting is <strong>recoverable in post rather than a ruined take</strong>. You still set it
+    approximately once; you just can't destroy a recording by getting it wrong, and nobody has to
+    ride gain during practice.</p>
+
+    <p><strong>The one real limit:</strong> 32-bit float only removes <em>converter</em> clipping. If the
+    capsule itself overloads, that distortion is baked in and unrecoverable. The built-in X/Y
+    handles 130&nbsp;dB SPL, and you're a long way from the kit, so this is not a practical concern
+    at this position — but it's why capsule headroom still matters and why moving the recorder much
+    closer to the drums would be a bad idea.</p>
+  </article>
+
+  <article class="principle">
+    <div class="principle-num">04 · Aiming it</div>
+    <h2>125° is not something you can eyeball — use the landmark</h2>
+
+    <p>The bearing from the desk to MAIN&nbsp;L is <strong>124.2°</strong>, one degree off the specified
+    aim. So "point it at the left main" and the geometry is correct, including the wedge rejection.
+    No protractor needed.</p>
+
+    <p>Why that direction and not another: it's the bisector of the instrument spread, <em>and</em> it
+    turns the recorder's back on the two things you most want out of the room track — the wedge
+    80&nbsp;units north, and MIC&nbsp;1's singer, who ends up about 160° off-axis, nearly directly
+    behind the capsules.</p>
+  </article>
+
+  <article class="principle">
+    <div class="principle-num">05 · What the stereo image will sound like</div>
+    <h2>Wide and hollow-centred, and that's expected</h2>
+
+    <p>The H4essential's X/Y is <strong>fixed at 90°</strong> — there's no capsule-angle adjustment on
+    this model. But the instruments span roughly <strong>210°</strong> as seen from the desk, because
+    the desk sits <em>inside</em> the band rather than outside looking in. Most sources therefore fall
+    outside the imaging window:</p>
+
+    <table class="eq">
+      <thead>
+        <tr><th>Source</th><th>Off-axis</th><th>Where it lands</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="knob">B1 bass amp</td><td class="setting">23°</td><td>Inside the field, placed naturally</td></tr>
+        <tr><td class="knob">MIC 2 singer</td><td class="setting">24°</td><td>Inside the field</td></tr>
+        <tr><td class="knob">Drums</td><td class="setting">73°</td><td>Toward hard left</td></tr>
+        <tr><td class="knob">G2 amp</td><td class="setting">105°</td><td>Hard left</td></tr>
+        <tr><td class="knob">G1 amp</td><td class="setting">105°</td><td>Hard right</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Outside the window does not mean unrecorded.</strong> Both capsules are cardioid and hear
+    nearly everything around them. The 90° figure governs <em>where things sit in the stereo picture</em>,
+    not what gets captured. The drums will be plenty loud — just hard-panned rather than placed.</p>
+
+    <p>This isn't a fault to tune away: <strong>no aim fits 210° into 90°.</strong> Narrowing the spread
+    would mean favouring two sources and losing the others outright. For a bed track sitting under
+    isolated vocals it's fine, and the reverberant field fills the middle in a room this small.</p>
+
+    <p><strong>Channel sides:</strong> facing MAIN&nbsp;L, the recorder's left picks up the drums and G2,
+    its right picks up G1 and the bass. Stand behind it looking toward the left main and whatever is
+    on your left lands on the left channel. Swap in GarageBand, or rotate the unit, if you want it
+    the other way round.</p>
+  </article>
+
+  <article class="principle">
+    <div class="principle-num">06 · What bleeds where</div>
+    <h2>You have one strongly isolated vocal, not two</h2>
+
+    <p>This is the most important honest caveat on the page. Vocals reach the room track from four
+    places — the two singers acoustically, the wedge, and the mains, which carry vocals only. At the
+    specified aim, relative to the drums:</p>
+
+    <table class="eq">
+      <thead>
+        <tr><th>Vocal source in the room</th><th>Level vs. drums</th><th>Consequence</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="knob">MIC 2's singer</td><td class="setting">+2.8 dB</td><td>Loudest vocal contributor to the room track</td></tr>
+        <tr><td class="knob">MAIN L</td><td class="setting">−4.8 dB</td><td>On-axis; the aim points at it</td></tr>
+        <tr><td class="knob">MAIN R</td><td class="setting">−8.2 dB</td><td>Off to the side</td></tr>
+        <tr><td class="knob">Wedge</td><td class="setting">−8.6 dB</td><td>Close, but 145° off-axis</td></tr>
+        <tr><td class="knob">MIC 1's singer</td><td class="setting">−29.7 dB</td><td>Nearly behind the mic — well rejected</td></tr>
+      </tbody>
+    </table>
+
+    <p>So the aim does its job for <strong>MIC&nbsp;1</strong>: the lead vocal is genuinely independent,
+    and pulling its fader down actually pulls the lead down. That's the right thing to protect, since
+    the lead getting buried was the original problem.</p>
+
+    <p><strong>MIC&nbsp;2's isolation is substantially compromised.</strong> The bass player's voice is
+    the single loudest vocal source in the room track. Pull Tr2 down in GarageBand and their voice
+    stays present via TrMic. Treat Tr2 as "some extra control over the backup vocal", not as a clean
+    independent fader.</p>
+
+    <p>Note also that the aim points <em>at</em> MAIN&nbsp;L, which carries vocals. That's an accepted
+    consequence, not an oversight — every aim points at something, and the alternatives are worse.
+    In a small room where two singers, a wedge and two vocal-carrying mains all share the space,
+    keeping vocals out of a room mic entirely is not achievable. Reducing the worst contributor is.</p>
+  </article>
+
+  <article class="principle">
+    <div class="principle-num">07 · After practice</div>
+    <h2>Getting it into GarageBand</h2>
+
+    <ol style="margin-left: 22px; font-size: 14.5px; line-height: 1.75; color: var(--ink); margin-bottom: 12px;">
+      <li>Pull the microSD card, or connect USB-C. Files are named by timestamp —
+        <span style="font-family:'JetBrains Mono',monospace">MMDDYY_HHMMSS</span> — with the track
+        suffixes from §01.</li>
+      <li>Want a quick listen? Play <span style="font-family:'JetBrains Mono',monospace">TrLR</span> and
+        you're done. No DAW required.</li>
+      <li>Want to actually mix? Import <span style="font-family:'JetBrains Mono',monospace">TrMic</span>,
+        <span style="font-family:'JetBrains Mono',monospace">Tr1</span> and
+        <span style="font-family:'JetBrains Mono',monospace">Tr2</span> as three tracks. They are
+        sample-locked — same recorder, same clock — so they line up with no alignment work.</li>
+      <li>Start with the room track as the bed and bring the lead vocal up underneath it. That is the
+        whole point of the rig: <strong>set the vocal level after practice instead of fighting for it
+        during</strong>.</li>
+      <li>If a track sounds quiet, just raise it. 32-bit float has enormous headroom below and above
+        nominal; there's no noise penalty for pulling a quiet file up the way there would be at 24-bit.</li>
+    </ol>
+  </article>
+
+  <article class="principle">
+    <div class="principle-num">08 · Check these on the first session</div>
+    <h2>Four things the design assumes but hasn't proven</h2>
+
+    <p>These are honest open items, not hypotheticals. All four are cheap to test.</p>
+
+    <ul style="margin-left: 22px; font-size: 14.5px; line-height: 1.7; color: var(--ink); margin-bottom: 12px;">
+      <li><strong>Wedge bleed.</strong> Record a minute with the wedge muted, then a minute unmuted, and
+        compare the room track. If the lead vocal is still prominent in TrMic with Tr1 pulled down, the
+        isolation is compromised and the fix is the B-5 variant in §10.</li>
+      <li><strong>MIC 1's three-way split.</strong> It now feeds the wedge, the M200 <em>and</em> the
+        recorder — three preamps on one capsule. Listen for the lead vocal sounding thin or quiet
+        compared to before. Remedy is a single transformer splitter on that one channel. Don't buy one
+        pre-emptively; MIC 1 has run a two-way passive split successfully for a while.</li>
+      <li><strong>Room-track balance.</strong> If G1 is too buried or the drums dominate too much, the
+        alternative position is in §10.</li>
+      <li><strong>Hum.</strong> Passive splitting ties the M200 and the recorder together through cable
+        shields. If you get 60&nbsp;Hz hum, put both on the same power strip so they share a ground
+        reference — that costs nothing and fixes most ground loops. The recorder running on batteries
+        instead of USB power also breaks the loop entirely.</li>
+    </ul>
+  </article>
+
+  <article class="principle">
+    <div class="principle-num">09 · Troubleshooting</div>
+    <h2>Common symptoms</h2>
+
+    <table class="eq">
+      <thead>
+        <tr><th>Symptom</th><th>Likely cause</th><th>Fix</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="knob">Lead vocal still buried</td><td class="setting">Wedge bleed</td><td>Confirm the aim is at MAIN L, not north. Then run the mute test in §08</td></tr>
+        <tr><td class="knob">Hum between songs</td><td class="setting">Ground loop</td><td>Same power strip for M200 and recorder, or run the recorder on batteries</td></tr>
+        <tr><td class="knob">Lead vocal thin or quiet</td><td class="setting">Three-way split loading</td><td>Transformer splitter on MIC 1 only</td></tr>
+        <tr><td class="knob">Room track boomy/phasey</td><td class="setting">Desk surface reflection</td><td>Lift the recorder off the desk; move it off the back edge</td></tr>
+        <tr><td class="knob">Stereo feels backwards</td><td class="setting">Orientation</td><td>Swap L/R in GarageBand, or rotate the unit</td></tr>
+        <tr><td class="knob">Room level jumped between sessions</td><td class="setting">Gain moved</td><td>Re-set once; 32-bit float means old takes are still recoverable</td></tr>
+      </tbody>
+    </table>
+  </article>
+
+  <article class="principle">
+    <div class="principle-num">10 · If this isn't enough</div>
+    <h2>Two upgrades, neither of which wastes what you bought</h2>
+
+    <p><strong>Better room capture, zero cost — and the cost is lower than it looks.</strong> You already
+    own a Behringer B-5. Put its <em>omni</em> capsule on a boom at (500,&nbsp;350) into Input&nbsp;1, with
+    48&nbsp;V on that channel only, and move MIC&nbsp;1 to Input&nbsp;2 with phantom off. The recorder stays
+    on the desk where it's reachable, while an actual microphone occupies the position the acoustics
+    want.</p>
+
+    <p>This fixes both weaknesses of the desk position at once. At (500,&nbsp;350) the instrument spread
+    is <strong>127° rather than 210°</strong>, and an omni has <em>no</em> off-axis loss at all — so the
+    hollow-centre problem in §05 and G1's burial in §06 both go away. You end up with two room
+    perspectives to blend: close and drum-forward from the desk, balanced and even from the boom.</p>
+
+    <p><strong>The trade is MIC&nbsp;2's isolated track — which §06 already showed is leaky.</strong>
+    The bass player's voice is the loudest vocal source in the room track regardless, so Tr2 was never
+    a clean fader. Giving it up costs materially less than the track count suggests. If you own one
+    B-5 and want one upgrade, this is the one.</p>
+
+    <p>Two other targets are possible on that same input and worth knowing, though neither is as
+    strong: the <strong>cardioid capsule aimed at G1</strong>, a surgical fix for the one badly buried
+    source; or the B-5 as a <strong>drum overhead</strong> — the kit is the largest uncaptured element,
+    though it's also the closest loud source to the desk and is already well represented in the room
+    track, so this adds less than it first appears.</p>
+
+    <p>Electrically this is clean: phantom reaches only the B-5, which is directly connected and not
+    split, while the MIC&nbsp;1 split junction stays DC-free. That separation is exactly what per-input
+    phantom buys, and it is precisely what the L-8 — with its single global 48&nbsp;V switch — cannot do.</p>
+
+    <p><strong>All four vocals isolated.</strong> Bring the LiveTrak L-8 you already own: split MIC&nbsp;3
+    and MIC&nbsp;4 as well, feed all four into L-8 channels 1–4, and keep the H4essential's X/Y as the
+    room pair. <strong>Cost:</strong> a bigger kit that has to travel every session, two more splitters,
+    24-bit instead of 32-bit float, and the L-8's phantom is switched <em>globally</em> across all six
+    inputs — so adding any condenser there puts 48&nbsp;V on every split junction. That last point is
+    the reason the current design avoids the L-8 entirely.</p>
+  </article>
+
+  <div class="callout">
+    <div class="callout-label">Why this design and not something simpler</div>
+    <p>
+      The obvious approach — one room mic, or a line feed from the mixer — cannot work here.
+      Placement can't fix it because the mains and the drums are both at the south end, so every step
+      toward the vocals is a step toward the kit; the best mains-to-drums ratio available anywhere in
+      this room is <strong>−1.7&nbsp;dB</strong>. And the M200 can't help because it exposes only
+      STEREO&nbsp;OUT (everything summed) and MONITOR&nbsp;OUT (a mono mix of everything) — no direct
+      outs, no channel inserts. Nothing leaving that mixer contains an isolated vocal. Splitting at the
+      microphone is the only route to per-singer control. The full reasoning, with sources, is
+      <a href="references.html" style="color:var(--accent-red)">Principle 07 on the references page</a>.
+    </p>
+  </div>
+
+  <footer class="footer">
+    <span>Recording notes · sidecar rig</span>
+    <span>Layout · Proposed</span>
+  </footer>
+</div>
+
+</body>
+</html>
