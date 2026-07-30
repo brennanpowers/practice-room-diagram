@@ -1,7 +1,7 @@
 # Practice Recording Rig — Design
 
 **Date:** 2026-07-28
-**Status:** Implemented in `e30c1eb`. Hardware not yet purchased; four items remain to verify
+**Status:** Implemented in `ca2ae16`. Hardware not yet purchased; four items remain to verify
 in-room (see Open questions).
 **Scope:** Add a portable recording rig to the `proposed` layout in `index.html`, plus supporting documentation in `references.html`.
 
