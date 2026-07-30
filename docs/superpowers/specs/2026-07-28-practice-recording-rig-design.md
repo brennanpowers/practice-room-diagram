@@ -64,8 +64,11 @@ mixer changes.
   rather than a ruined take. No one has to act as engineer during practice.
 - **No phantom power anywhere in the design.** The vocal mics are dynamics and the X/Y pair
   is internal. This is what makes plain passive Y-cables acceptable — there is no DC near
-  any split junction. Every L-8-based alternative reintroduces phantom onto the split
-  junctions, because the L-8's 48 V is switched globally across all six mic inputs.
+  any split junction. The constraint to preserve is about **condensers, not about the L-8**:
+  its 48 V is switched globally across all six mic inputs, so any condenser on an L-8 mic
+  preamp puts DC on every split junction feeding it. Routing splits through the L-8 with
+  dynamics only, and taking a room mic in at line level on ch 7/8, keeps phantom off and the
+  junctions clean — see the H4e-into-L-8 variant below.
 - **Two split junctions instead of four**, halving impedance-loading exposure.
 - **Smallest possible kit**: one recorder and two Y-cables. No mic stand — it sits on the
   standing desk already at (600, 900).
@@ -318,12 +321,38 @@ instrument spread that defeats a directional pair — the exact weakness of the 
 
 ---
 
-## Upgrade path
+## Upgrade path — H4essential into the L-8 (six tracks)
 
-If per-singer control of all four vocals becomes desirable, add the **already-owned L-8**:
-split MIC 3 and MIC 4 as well, feed all four into L-8 ch 1–4, and keep the H4essential's X/Y
-as the room pair (line out → L-8 ch 7/8 for sample lock, or its own card aligned by clap).
-Nothing purchased for this design becomes redundant.
+If per-singer control of all four vocals becomes desirable, add the **already-owned L-8**. The
+H4essential's 3.5 mm line out feeds the L-8's ch 7/8, which accept TS phone jacks or a TRRS mini
+— so a 3.5 mm TRS → dual ¼" TS cable (~$10) is the unambiguous connection.
+
+```
+MIC 1-4 ──► splitters ──┬──► M200 ──► MAIN L/R
+                        └──► L-8 ch 1-4          4 isolated vocals
+H4essential X/Y ──line out──► L-8 ch 7/8         stereo room, sample-locked
+                  └──► its own microSD           32-bit float master
+L-8 ──► USB / SD
+```
+
+Six tracks. Everything through one clock, so no alignment work.
+
+**Phantom stays off.** All four vocal mics are dynamics, and the room mic arrives at *line*
+level on ch 7/8 rather than on a mic preamp — so nothing on the L-8 needs 48 V and no DC reaches
+a split junction. This is the case the corrected constraint above makes room for; an earlier
+draft wrongly ruled out all L-8 routes on phantom grounds.
+
+**Costs.** The L-8 travels every session, which is the constraint that pushed the design away
+from it in the first place. Two more splitters. The room track lands at **24-bit** in the L-8,
+because the handoff is analogue — the 32-bit float advantage does not survive it. Mitigated by
+letting the H4essential record its own card simultaneously: synced 24-bit for easy mixing, plus
+an unclippable 32-bit float master when a session is worth the alignment effort.
+
+**Gotcha.** The H4essential's line out *is* its headphone jack, so its level follows the volume
+control. Set it once, mark it with tape, and don't let anyone nudge it between sessions or the
+room-track level moves.
+
+Nothing purchased for the primary design becomes redundant.
 
 ---
 
