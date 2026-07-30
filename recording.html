@@ -848,6 +848,84 @@
     </div>
   </article>
 
+  <article class="principle">
+    <div class="principle-num">12 · The session plan</div>
+    <h2>Record continuously, break once at 90 minutes, split later</h2>
+
+    <p><strong>Yes — one continuous take, not song-by-song.</strong> Starting and stopping per song
+    means someone has to remember, every time, and the take you most want is always the unplanned one
+    that began before anybody pressed record. Continuous recording costs one button press for the whole
+    practice and never misses anything.</p>
+
+    <p><strong>With one exception, and it's a hard technical limit.</strong> GarageBand writes recordings
+    as fixed-point audio in a container capped at 2&nbsp;GB, which for the stereo X/Y track works out to
+    about <strong>1.9 hours</strong>:</p>
+
+    <table class="eq">
+      <thead>
+        <tr><th>Track</th><th>Ceiling at 24-bit</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="knob">Stereo (X/Y pair)</td><td class="setting">≈ 1.9 h</td><td>The binding constraint</td></tr>
+        <tr><td class="knob">Mono (Input 1 / 2)</td><td class="setting">≈ 3.9 h</td><td>Not the problem</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>So stop and restart GarageBand once at a natural break around 90 minutes</strong> — between
+    songs, while someone's retuning. That leaves 26 minutes of margin and costs you one interaction per
+    practice. <strong>The SD card keeps rolling straight through the gap</strong>, so even the moment
+    between stopping and restarting is captured. Nothing can actually be lost.</p>
+
+    <h2 style="font-size:18px;margin-top:26px">Once, before the first session</h2>
+    <ol style="margin-left:22px;font-size:14.5px;line-height:1.7;margin-bottom:12px">
+      <li>Format the card <em>in the recorder</em>. Set 48&nbsp;kHz.</li>
+      <li>Phantom <strong>ON</strong> for Input&nbsp;2 (B-5), <strong>OFF</strong> for Input&nbsp;1 (M200 line feed). Lo Cut on Input&nbsp;2.</li>
+      <li>Set gain roughly during a loud song, then <strong>tape the volume knob</strong> — it doubles as the line-out level.</li>
+      <li><strong>Confirm the USB channel mapping</strong> and write it down.</li>
+      <li>Build the GarageBand project: one stereo track for the X/Y, two mono for the inputs. Reveal
+        Record Enable (<em>Track → Configure Track Header</em>), arm all three, <strong>save as a template</strong>.</li>
+      <li><strong>Test whether GarageBand opens a 32-bit float file from the card.</strong> The answer decides your fallback (§07).</li>
+      <li>Leave the boom stand and both cables in the room permanently.</li>
+    </ol>
+
+    <h2 style="font-size:18px;margin-top:26px">Every session — about a minute</h2>
+    <ol style="margin-left:22px;font-size:14.5px;line-height:1.7;margin-bottom:12px">
+      <li>Recorder on the desk, <strong>aimed at MAIN&nbsp;L</strong>. Sitting on foam, not bare desk.</li>
+      <li>Clip the B-5 on the boom → Input&nbsp;2. M200 cable → Input&nbsp;1.</li>
+      <li>USB-C to the laptop. Run <span style="font-family:'JetBrains Mono',monospace">caffeinate</span> so it can't sleep.</li>
+      <li>Open the template, hit record. <strong>Start the card recording too.</strong></li>
+      <li>Play. Ignore the equipment.</li>
+      <li>Around 90 minutes, at a natural pause: stop and restart the GarageBand recording.</li>
+      <li>At the end, stop and save as a dated project.</li>
+    </ol>
+
+    <h2 style="font-size:18px;margin-top:26px">Two habits that make a 3-hour file navigable</h2>
+
+    <p><strong>Press the recorder's MARK button</strong> when something is worth finding again. It drops
+    a mark in the file mid-recording, and FF/REW jump between marks on playback. One button, no
+    interruption, no note-taking.</p>
+
+    <p><strong>Say the song name before you play it.</strong> "Okay — <em>Wagon Wheel</em>, take three."
+    It costs nothing, it's captured on the recording, and scrubbing a long file becomes navigable by ear.
+    This is what studios call slating, and it exists precisely because it solves this problem better than
+    any amount of software.</p>
+
+    <h2 style="font-size:18px;margin-top:26px">Afterwards</h2>
+
+    <p><strong>Just listening?</strong> Play <span style="font-family:'JetBrains Mono',monospace">TrLR</span>
+    from the card — QuickTime or Music, no DAW. AirDrop it to your phone and listen in the car. For "how
+    did we sound this week", this is the whole workflow.</p>
+
+    <p><strong>Working on something?</strong> Open the project. Song boundaries show up as visible gaps in
+    the waveform — put the playhead in the gap and press <strong>⌘T</strong> to split, then delete what you
+    don't want. Do this only for songs you actually care about; there is no reason to tidy the whole
+    session.</p>
+
+    <p><strong>Don't organise the recordings you'll never open.</strong> The point is to hear whether the
+    band is getting tighter. Most sessions get played once and that's the correct amount of effort to spend
+    on them.</p>
+  </article>
+
   <div class="callout">
     <div class="callout-label">Why this design and not something simpler</div>
     <p>
