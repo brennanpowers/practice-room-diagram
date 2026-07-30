@@ -259,7 +259,7 @@
   <p class="lede">
     The recording rig is a <strong>sidecar</strong>: it travels, and the practice room works
     exactly as documented without it. Nothing is left behind, nothing in the room chain depends
-    on it. Setup is one recorder, two splitter cables, and about five minutes. This page is the
+    on it. Setup is one recorder, two cables, and under a minute. This page is the
     operating manual — what to do, what to expect, and what is honestly compromised.
   </p>
 
@@ -287,21 +287,36 @@
         <tr><th>File</th><th>Source</th><th>What it carries</th></tr>
       </thead>
       <tbody>
-        <tr><td class="knob">TrMic</td><td class="setting">Built-in X/Y</td><td>The room — drums, amps, ambience, and a good deal of vocal bleed</td></tr>
-        <tr><td class="knob">Tr1</td><td class="setting">Input 1 ← MIC 1</td><td>Lead vocal, isolated</td></tr>
-        <tr><td class="knob">Tr2</td><td class="setting">Input 2 ← MIC 2</td><td>Backup vocal — isolated at the mic, but see §06</td></tr>
+        <tr><td class="knob">TrMic</td><td class="setting">Built-in X/Y</td><td>The room from the desk — drums forward, amps, ambience</td></tr>
+        <tr><td class="knob">Tr1</td><td class="setting">Input 1 ← M200 STEREO OUT</td><td>All four vocals, on their own fader</td></tr>
+        <tr><td class="knob">Tr2</td><td class="setting">Input 2 ← B-5 on a boom</td><td>The room from (500, 350) — even instrument balance</td></tr>
         <tr><td class="knob">TrLR</td><td class="setting">Auto</td><td>Stereo mix of all three. Listen back without opening a DAW</td></tr>
       </tbody>
     </table>
 
-    <p><strong>MIC 3 (G2) and MIC 4 (drums) are not isolated.</strong> They exist only inside the room
-    track. That's the accepted trade for a four-track recorder — isolating them means bringing the
-    L-8 and four splitters, which is a bigger kit than the sidecar constraint allows.</p>
+    <p>Four channels across four files — the stereo X/Y counts as two. In a DAW that's three regions
+    (one stereo, two mono) plus the optional mix.</p>
+
+    <p><strong>No per-singer control.</strong> All four vocals arrive pre-summed from the mixer, so you
+    can move the vocals as a group but not one singer against another. That's the deliberate trade for
+    a setup with <em>no splitters at all</em> — nothing at the microphones changes, and MIC&nbsp;1 keeps
+    the two-way split it already has. §11 covers what the splitter-based alternatives buy and why
+    they're probably not worth it here.</p>
   </article>
 
   <article class="principle">
     <div class="principle-num">02 · Setup, in order</div>
     <h2>Five minutes, and the room is untouched when you leave</h2>
+
+    <p><strong>Leave these in the room permanently</strong> — a mic stand is furniture, not recording
+    gear, and cables are cheaper than friction:</p>
+    <ul style="margin-left: 22px; font-size: 14.5px; line-height: 1.7; color: var(--ink); margin-bottom: 14px;">
+      <li>A boom stand at (500,&nbsp;350), set to about 6&nbsp;ft</li>
+      <li>An XLR run from that boom, coiled at the desk</li>
+      <li>A 3.5&nbsp;mm → ¼" TS cable from the M200's STEREO&nbsp;OUT, coiled at the desk</li>
+    </ul>
+
+    <p>You then carry only the recorder and the B-5. Each session:</p>
 
     <ol style="margin-left: 22px; font-size: 14.5px; line-height: 1.75; color: var(--ink); margin-bottom: 12px;">
       <li><strong>Recorder on the standing desk</strong> at roughly (600,&nbsp;900), about 4&nbsp;ft up.
@@ -311,18 +326,21 @@
         the same reason.</li>
       <li><strong>Aim the capsules at MAIN&nbsp;L.</strong> Screen faces back toward you, roughly
         northeast. Level, or tilted very slightly up.</li>
-      <li><strong>Insert the splitter on MIC&nbsp;1.</strong> One leg continues to the M200 exactly as
-        before, the other runs to Input&nbsp;1. MIC&nbsp;1 also still feeds the wedge — that's a
-        three-way split now, see §08.</li>
-      <li><strong>Insert the splitter on MIC&nbsp;2</strong>, second leg to Input&nbsp;2.</li>
+      <li><strong>Clip the B-5 on the boom</strong> (omni capsule) and plug it into Input&nbsp;2.</li>
+      <li><strong>Plug the M200 cable into Input&nbsp;1.</strong></li>
       <li><strong>Arm all three channels</strong> — the <span style="font-family:'JetBrains Mono',monospace">MIC</span>,
         <span style="font-family:'JetBrains Mono',monospace">1</span> and
         <span style="font-family:'JetBrains Mono',monospace">2</span> buttons. Red light on means armed.</li>
       <li><strong>Check the settings below</strong>, hit record, and forget about it.</li>
     </ol>
 
-    <p><strong>Teardown:</strong> pull the two splitters, plug the mics straight back into the M200.
-    The room is back to its documented state.</p>
+    <p><strong>Teardown:</strong> unplug two cables, pocket the recorder and the mic. Nothing at the
+    microphones was ever touched, so there is nothing to put back.</p>
+
+    <p style="font-size:13.5px;color:var(--ink-soft)"><em>Running a splitter-based configuration
+    instead? Steps 3–4 become: insert the splitter at MIC&nbsp;1 (one leg continues to the M200, the
+    other to an input) and the same at MIC&nbsp;2 if you're using both. Teardown then means pulling
+    the splitters and restoring the direct mic cables. See §11.</em></p>
   </article>
 
   <article class="principle">
@@ -334,9 +352,10 @@
         <tr><th>Setting</th><th>Value</th><th>Why</th></tr>
       </thead>
       <tbody>
-        <tr><td class="knob">Phantom (In 1)</td><td class="setting">OFF</td><td>MIC 1 is a dynamic. Phantom is per-input on this model, so no compromise is forced</td></tr>
-        <tr><td class="knob">Phantom (In 2)</td><td class="setting">OFF</td><td>Same. No DC anywhere near a split junction — this is what makes cheap passive splitters safe here</td></tr>
-        <tr><td class="knob">Lo Cut (In 1, In 2)</td><td class="setting">ON</td><td>Recording-side version of the M200's low-cut. Tames bass-amp bleed into the vocal mics</td></tr>
+        <tr><td class="knob">Phantom (In 1)</td><td class="setting">OFF</td><td>The M200 feed is line level. Never send phantom down it</td></tr>
+        <tr><td class="knob">Phantom (In 2)</td><td class="setting">ON</td><td>The B-5 is a condenser and needs 48 V. Phantom is per-input here, so In 1 stays clean</td></tr>
+        <tr><td class="knob">Lo Cut (In 2)</td><td class="setting">ON</td><td>Keeps bass-amp and floor rumble out of the room mic</td></tr>
+        <tr><td class="knob">Lo Cut (In 1)</td><td class="setting">optional</td><td>The M200's own channel low-cut has already shaped the vocals</td></tr>
         <tr><td class="knob">Sample rate</td><td class="setting">48 kHz</td><td>Plenty. 96 kHz disables EQ and overdub on this model for no benefit here</td></tr>
         <tr><td class="knob">Gain</td><td class="setting">roughly right</td><td>Set it once via the MIXER button and leave it</td></tr>
       </tbody>
@@ -425,14 +444,21 @@
       </tbody>
     </table>
 
-    <p>So the aim does its job for <strong>MIC&nbsp;1</strong>: the lead vocal is genuinely independent,
-    and pulling its fader down actually pulls the lead down. That's the right thing to protect, since
-    the lead getting buried was the original problem.</p>
+    <p><strong>Why this matters even with no splitters.</strong> Your vocal fader can only do as much
+    as the room track allows. Whatever vocal is already baked into the room capture stays there when
+    you pull the vocal track down — so the bleed figures above set the practical limit on vocal control,
+    in any configuration.</p>
 
-    <p><strong>MIC&nbsp;2's isolation is substantially compromised.</strong> The bass player's voice is
-    the single loudest vocal source in the room track. Pull Tr2 down in GarageBand and their voice
-    stays present via TrMic. Treat Tr2 as "some extra control over the backup vocal", not as a clean
-    independent fader.</p>
+    <p><strong>The aim does its job where it counts.</strong> MIC&nbsp;1's singer lands about 30&nbsp;dB
+    below the drums, so the lead vocal is barely in the room track at all and the fader has real
+    authority over it. That's the right thing to protect, since the lead getting buried was the original
+    problem.</p>
+
+    <p><strong>MIC&nbsp;2's singer is the leak.</strong> The bass player's voice is the loudest vocal
+    source in the room track — louder than the drums. Their backing vocal will sit at whatever level the
+    room gives it, largely regardless of the vocal fader. Nothing about the recording rig changes that;
+    it's a consequence of where they stand relative to the desk. If it ever becomes a problem the answer
+    is physical, not electrical: move the recorder, or move the mic.</p>
 
     <p>Note also that the aim points <em>at</em> MAIN&nbsp;L, which carries vocals. That's an accepted
     consequence, not an oversight — every aim points at something, and the alternatives are worse.
@@ -460,6 +486,37 @@
       <li>If a track sounds quiet, just raise it. 32-bit float has enormous headroom below and above
         nominal; there's no noise penalty for pulling a quiet file up the way there would be at 24-bit.</li>
     </ol>
+
+    <div style="background:rgba(255,250,235,0.55);border-left:3px solid var(--accent-red);padding:12px 16px;margin:16px 0">
+      <p style="font-size:14.5px;line-height:1.62;margin:0 0 10px"><strong>Test this before you rely
+      on it: GarageBand may refuse 32-bit float files.</strong> The H4essential records 32-bit float
+      <em>only</em> — there is no 24-bit option in its menu — and GarageBand has a documented history
+      of rejecting 32-bit WAVs with <em>"the file you are trying to import is 32 bit format and cannot
+      be used."</em> Reports conflict on whether current versions still do. Drag one file in and find
+      out; it takes a minute and decides your whole post-session routine.</p>
+
+      <p style="font-size:14.5px;line-height:1.62;margin:0 0 10px"><strong>If it refuses, you have
+      three ways out, in order of least effort:</strong></p>
+
+      <ul style="margin-left:20px;font-size:14.5px;line-height:1.65;margin-bottom:10px">
+        <li><strong>Don't use a DAW at all.</strong> Play
+          <span style="font-family:'JetBrains Mono',monospace">TrLR</span> in QuickTime or Music. The
+          32-bit float restriction is GarageBand's, not macOS's — Core Audio plays these fine. For
+          "how did we sound this week", this is the whole workflow.</li>
+        <li><strong>Convert with a one-liner.</strong> <span style="font-family:'JetBrains Mono',monospace">afconvert</span>
+          ships with macOS, nothing to install:<br>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;display:inline-block;margin-top:4px">afconvert -f WAVE -d LEI24@48000 in.wav out.wav</span><br>
+          Wrap it in a Finder Quick Action and it becomes right-click → convert.</li>
+        <li><strong>Record straight into GarageBand over USB.</strong> The H4essential is a 4-in/2-out
+          interface, so the Mac converts at the input and no files are imported at all. Costs bringing
+          the laptop to practice, which is more setup, not less.</li>
+      </ul>
+
+      <p style="font-size:14.5px;line-height:1.62;margin:0"><strong>One catch when converting.</strong>
+      32-bit float can hold values above 0&nbsp;dBFS; 24-bit integer cannot. If a take was recorded
+      hot, conversion will clip exactly what float was protecting. Set the gain roughly right per §03
+      and this never arises — which is the one reason not to be completely cavalier about levels.</p>
+    </div>
   </article>
 
   <article class="principle">
@@ -472,10 +529,17 @@
       <li><strong>Wedge bleed.</strong> Record a minute with the wedge muted, then a minute unmuted, and
         compare the room track. If the lead vocal is still prominent in TrMic with Tr1 pulled down, the
         isolation is compromised and the fix is the B-5 variant in §10.</li>
-      <li><strong>MIC 1's three-way split.</strong> It now feeds the wedge, the M200 <em>and</em> the
-        recorder — three preamps on one capsule. Listen for the lead vocal sounding thin or quiet
-        compared to before. Remedy is a single transformer splitter on that one channel. Don't buy one
-        pre-emptively; MIC 1 has run a two-way passive split successfully for a while.</li>
+      <li><strong>Does GarageBand open the files?</strong> The recorder writes 32-bit float only, and
+        GarageBand has historically refused that format. Drag one file in before you build a routine
+        around it — §07 has the fallbacks.</li>
+      <li><strong>Does STEREO OUT follow MASTER LEVEL?</strong> Record a few seconds, turn the PA up,
+        record a few more, and compare. If the recording level moved, you'll need to set PA volume
+        before you set record level and leave it alone (§11).</li>
+      <li><strong>MIC 1's three-way split</strong> — <em>only if you run a splitter configuration.</em>
+        MIC 1 would then feed the wedge, the M200 <em>and</em> the recorder: three preamps on one
+        capsule. Listen for the lead sounding thin or quiet compared to before. Remedy is a single
+        transformer splitter on that channel. Don't buy one pre-emptively. The recommended setup avoids
+        this entirely by not splitting anything.</li>
       <li><strong>Room-track balance.</strong> If G1 is too buried or the drums dominate too much, the
         alternative position is in §10.</li>
       <li><strong>Hum.</strong> Passive splitting ties the M200 and the recorder together through cable
@@ -606,10 +670,64 @@
 
   <article class="principle">
     <div class="principle-num">11 · The option space</div>
-    <h2>Four configurations, and what each actually buys</h2>
+    <h2>Ranked by effort, because that's what decides whether you use it</h2>
 
-    <p>All four use the H4essential. They differ in what feeds its two XLR inputs, which is the
-    only real decision.</p>
+    <p>The goal here is <strong>the best sound for the least effort</strong> — this is a tool for
+    hearing whether the band is getting tighter, not a studio session. Everything below is ranked by
+    effort, not by capability, because the highest-capability rig is the one you eventually stop
+    bothering to set up.</p>
+
+    <div style="background:rgba(255,250,235,0.55);border:2px solid var(--accent-amber);box-shadow:4px 4px 0 var(--accent-amber);padding:16px 20px;margin:18px 0">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent-amber);margin-bottom:8px">Recommended</div>
+      <p style="font-size:14.5px;line-height:1.62;margin:0 0 10px"><strong>Recorder on the desk. B-5 on a boom at (500,&nbsp;350) into Input&nbsp;2.
+      M200 STEREO&nbsp;OUT into Input&nbsp;1. Two cables, no splitters.</strong></p>
+      <p style="font-size:14.5px;line-height:1.62;margin:0 0 10px">Then remove the friction permanently:
+      <strong>leave the boom stand and both cables in the room.</strong> A mic stand is furniture, not
+      recording gear. Coil the two cables at the desk. You carry only the recorder and the mic.</p>
+      <p style="font-size:14.5px;line-height:1.62;margin:0">Session setup: clip the B-5 on, plug two
+      cables, phantom on Input&nbsp;1, press record. <strong>Under a minute.</strong> And set the
+      mixer blend once so every session writes a <span style="font-family:'JetBrains Mono',monospace">TrLR</span>
+      you can just play — most weeks you will never open GarageBand at all.</p>
+    </div>
+
+    <p>All the configurations use the H4essential and differ only in what feeds its two XLR inputs.
+    <strong>Input&nbsp;1 should always be the M200 feed</strong> — it's one cable and it's what solves
+    the original quiet-vocals problem. The only real decision is Input&nbsp;2.</p>
+
+    <table class="eq">
+      <thead>
+        <tr><th>Effort</th><th>Input 2</th><th>What you gain</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="knob">Minimum<br><span style="color:var(--ink-faint)">1 cable</span></td>
+          <td class="setting">nothing</td>
+          <td>Stereo room + all vocals on a fader. Already solves the original problem</td>
+        </tr>
+        <tr>
+          <td class="knob"><strong>Recommended</strong><br><span style="color:var(--ink-faint)">2 cables</span></td>
+          <td class="setting"><strong>B-5 on a boom</strong></td>
+          <td><strong>Much better room capture</strong> — fixes §05's hollow centre and §06's buried G1</td>
+        </tr>
+        <tr>
+          <td class="knob">Higher<br><span style="color:var(--ink-faint)">1 splitter</span></td>
+          <td class="setting">MIC 1 split</td>
+          <td>Lead vocal isolated, on top of the group fader. Costs cable surgery every session</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Input 2 is B-5 <em>or</em> MIC 1, not both.</strong> For this purpose the B-5 wins:
+    once the M200 feed has given you a vocal fader, isolating the lead on top of that is a refinement,
+    whereas room quality is what decides whether the recording is pleasant to listen back to at all.</p>
+
+    <p><strong>The splitter-based configurations are the ones to skip.</strong> Cable surgery on two to
+    four microphones, every session, is the highest-friction step in any of these and the one most
+    likely to make you stop bothering. What it buys — per-singer faders — is not what you need to hear
+    whether the band is getting tighter. The full four-splitter L-8 rig in §10 remains documented for
+    the day you want to actually mix something, not for weekly use.</p>
+
+    <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-faint);margin-top:22px">For reference — the full option space</p>
 
     <table class="eq">
       <thead>
@@ -649,18 +767,16 @@
     STEREO OUT, so <strong>the left channel alone carries the whole vocal mix</strong>. A 3.5&nbsp;mm
     → ¼" TS cable into one input is all it takes; no summing adapter.</p>
 
-    <p><strong>B is probably the best value in the table.</strong> It uses <em>one</em> splitter and
-    gets you more than A does with two: the lead isolated on its own fader <em>plus</em> every vocal
-    as a controllable group, including MIC&nbsp;3 and MIC&nbsp;4, which in configuration A exist only
-    as room bleed. Since §06 showed MIC&nbsp;2's isolated track is leaky anyway, A's second splitter
-    is buying very little. The lead appears on both tracks, which is harmless — the M200 is fully
-    analogue, so there's no delay between them to cause comb filtering.</p>
+    <p><strong>C is the recommended one above</strong> — zero splitters, nothing at the mics changes,
+    MIC&nbsp;1 stays a two-way split exactly as it is today, and the three-way loading question in §08
+    never arises.</p>
 
-    <p><strong>C is the one to pick if simplicity matters most.</strong> Zero splitters means nothing
-    at the mics changes at all — MIC&nbsp;1 stays a two-way split exactly as it is today, and the
-    three-way loading question in §08 never arises. Two cables into the recorder and you're running.
-    It also gets the B-5 to the acoustically good position, fixing both §05's hollow centre and
-    §06's buried G1. The price is losing per-singer control entirely.</p>
+    <p><strong>If you do want the lead isolated, B beats A.</strong> One splitter instead of two, and
+    it delivers more: the lead on its own fader <em>plus</em> every vocal as a controllable group,
+    including MIC&nbsp;3 and MIC&nbsp;4, which in A exist only as room bleed. Since §06 showed
+    MIC&nbsp;2's isolated track is leaky anyway, A's second splitter buys very little. The lead lands
+    on both tracks, which is harmless — the M200 is fully analogue, so there's no delay to cause comb
+    filtering.</p>
 
     <div style="background:rgba(255,250,235,0.55);border-left:3px solid var(--accent-red);padding:10px 14px;margin:14px 0">
       <p style="font-size:14px;line-height:1.6;margin:0"><strong>Watch out for two things on any
