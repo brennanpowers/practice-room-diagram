@@ -358,11 +358,17 @@ Nothing purchased for the primary design becomes redundant.
 
 ## Open questions
 
-1. **M200 MONITOR OUT availability.** A considered variant puts MONITOR OUT (mono mix of all
-   inputs) on Input 2 instead of MIC 2, trading discrete backup-vocal control for partial
-   coverage of all four vocals. The layout runs the M200 in Master+Monitor speaker mode, and
-   whether the line-level MONITOR OUT remains independently available in that mode is
-   unverified. Check the Harbinger manual before considering this variant.
+1. ~~**M200 MONITOR OUT availability.**~~ **RESOLVED — it does not exist.** The M200-BT panel
+   has exactly two outputs: **STEREO OUT** (3.5 mm, item 11, "the combined audio from all
+   channels") and **TO SPEAKERS** (items 17, amplified). MONITOR LEVEL (item 15) "operates only
+   when Speaker Mode is pushed in, setting the level of speaker 2" — so the *monitor* is
+   **Speaker 2, an amplified speaker output**, not a line jack. Any variant taking a mono
+   monitor feed is impossible; STEREO OUT is the only line-level output.
+
+   Consequence: a mixed-vocal feed must come from STEREO OUT. Because CH1–4 have no pan
+   controls (ECHO / HIGH / LOW / LEVEL only), mono channels appear equally in both halves, so
+   the **left channel alone carries the full vocal mix** — a 3.5 mm → ¼" TS cable into one
+   recorder input is sufficient, no summing adapter needed.
 2. ~~**H4essential X/Y capsule angle.**~~ **RESOLVED:** fixed at **90°**, not switchable (the
    H4n Pro's 90/120 adjustment does not exist on this model). Nothing to set up. It does not
    change the placement math — cardioid capsules capture well beyond the capsule angle — but

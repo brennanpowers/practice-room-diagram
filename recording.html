@@ -604,6 +604,74 @@
     argument for running both.</p>
   </article>
 
+  <article class="principle">
+    <div class="principle-num">11 · The option space</div>
+    <h2>Four configurations, and what each actually buys</h2>
+
+    <p>All four use the H4essential. They differ in what feeds its two XLR inputs, which is the
+    only real decision.</p>
+
+    <table class="eq">
+      <thead>
+        <tr><th>Configuration</th><th>Splitters</th><th>Vocal control</th><th>Room capture</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="knob">A · H4e alone<br>MIC 1 + MIC 2</td>
+          <td class="setting">2</td>
+          <td>Lead isolated; backup leaky (§06). MIC 3/4 room-only</td>
+          <td>X/Y at the desk only</td>
+        </tr>
+        <tr>
+          <td class="knob">B · H4e alone<br>MIC 1 + M200 out</td>
+          <td class="setting">1</td>
+          <td><strong>Lead isolated <em>and</em> all four as a group</strong></td>
+          <td>X/Y at the desk only</td>
+        </tr>
+        <tr>
+          <td class="knob">C · H4e + B-5<br>B-5 + M200 out</td>
+          <td class="setting"><strong>0</strong></td>
+          <td>All four summed, one fader</td>
+          <td><strong>X/Y desk + B-5 at the good position</strong></td>
+        </tr>
+        <tr>
+          <td class="knob">D · H4e + B-5 + L-8<br>(§10)</td>
+          <td class="setting">4</td>
+          <td>All four isolated</td>
+          <td>X/Y + B-5, blended into ch 7/8</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>The M200 feed is STEREO OUT, and only STEREO OUT.</strong> The mixer has no
+    line-level monitor jack — MONITOR LEVEL sets the volume of <em>Speaker&nbsp;2</em>, an amplified
+    output. Since channels 1–4 have no pan controls, mono sources appear equally in both halves of
+    STEREO OUT, so <strong>the left channel alone carries the whole vocal mix</strong>. A 3.5&nbsp;mm
+    → ¼" TS cable into one input is all it takes; no summing adapter.</p>
+
+    <p><strong>B is probably the best value in the table.</strong> It uses <em>one</em> splitter and
+    gets you more than A does with two: the lead isolated on its own fader <em>plus</em> every vocal
+    as a controllable group, including MIC&nbsp;3 and MIC&nbsp;4, which in configuration A exist only
+    as room bleed. Since §06 showed MIC&nbsp;2's isolated track is leaky anyway, A's second splitter
+    is buying very little. The lead appears on both tracks, which is harmless — the M200 is fully
+    analogue, so there's no delay between them to cause comb filtering.</p>
+
+    <p><strong>C is the one to pick if simplicity matters most.</strong> Zero splitters means nothing
+    at the mics changes at all — MIC&nbsp;1 stays a two-way split exactly as it is today, and the
+    three-way loading question in §08 never arises. Two cables into the recorder and you're running.
+    It also gets the B-5 to the acoustically good position, fixing both §05's hollow centre and
+    §06's buried G1. The price is losing per-singer control entirely.</p>
+
+    <div style="background:rgba(255,250,235,0.55);border-left:3px solid var(--accent-red);padding:10px 14px;margin:14px 0">
+      <p style="font-size:14px;line-height:1.6;margin:0"><strong>Watch out for two things on any
+      M200-fed configuration.</strong> The mixer's <strong>ECHO</strong> knobs are per-channel and
+      analogue — whatever echo is dialled in gets baked into your recording permanently. Check they're
+      down before you record anything you care about. And it is <em>unverified</em> whether STEREO
+      OUT's level follows the MASTER LEVEL knob; if it does, changing PA volume mid-session changes
+      your recording level. Test it once and note the answer.</p>
+    </div>
+  </article>
+
   <div class="callout">
     <div class="callout-label">Why this design and not something simpler</div>
     <p>
