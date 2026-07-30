@@ -417,7 +417,8 @@
           <span><strong style="color:var(--accent-amber)">Recording</strong> is a sidecar &mdash; it travels, and the room works without it.<br>
           MIC 1 + MIC 2 split at the mic: one leg to the M200, one to the H4e.<br>
           Built-in X/Y = stereo room track. 4 tracks, 32-bit float, SD + USB.<br>
-          Amber wedge = X/Y capture field. Aimed 125°, away from the WEDGE.</span>
+          Amber wedge = 90° X/Y stereo field (fixed). Aim it at MAIN&nbsp;L &mdash;<br>
+          that is 125°, which also puts the WEDGE 145° off-axis.</span>
         </div>
         <div class="legend-item" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--ink-faint);margin-top:6px">
           <span>Dashed arrow = singer's facing direction</span>
@@ -1312,9 +1313,11 @@ function drawMic(parent, m) {
       }, g);
     });
   } else if (m.stereo) {
-    // Stereo X/Y recorder — dashed amber wedge showing the capture field along `face`.
-    // Half-angle 60° (~120° total); dashed because the recorder is a travelling sidecar.
-    const HALF = 60, LEN = 165;
+    // Stereo X/Y recorder — dashed amber wedge along `face`. Half-angle 45°: the H4essential's
+    // X/Y is FIXED at 90° (unlike the H4n Pro's switchable 90/120). This is the stereo imaging
+    // window, not a coverage cutoff — both capsules are cardioid, so sources outside it are
+    // still captured, they just collapse toward hard L/R. Dashed = travelling sidecar.
+    const HALF = 45, LEN = 165;
     const rot = el('g', { transform: `rotate(${m.face || 0})` }, g);
     const rad = HALF * Math.PI / 180;
     const ex = Math.cos(rad) * LEN, ey = Math.sin(rad) * LEN;

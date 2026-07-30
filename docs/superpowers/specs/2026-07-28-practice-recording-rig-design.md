@@ -180,14 +180,42 @@ reflections and will not be as absent as −16 dB suggests. Treat the table as s
 *direction* of each trade, not its literal magnitude — and specifically as justification for
 the aim, which is the one decision it genuinely determines.
 
+### Aiming it in the real room
+
+125° is not a number you can eyeball. Use the landmark: **point the recorder at MAIN L.**
+The bearing from (600, 900) to MAIN L (280, 1370) is **124.2°** — one degree off the specified
+aim. Aim at the left main and the geometry is right, including the wedge rejection.
+
+### Stereo image — consequence of the fixed 90° X/Y
+
+The instruments span 210° from the desk, but the X/Y imaging window is only 90° (±45°). Most
+sources therefore fall **outside** it and collapse toward hard left or hard right:
+
+| | Off-axis @125° | Images |
+|---|---:|---|
+| B1 BASS | 23° | inside the field, placed naturally |
+| DRUMS | 73° | toward hard left |
+| G2 AMP | 105° | hard left |
+| G1 AMP | 105° | hard right |
+
+Expect a **wide, somewhat hollow-centred** stereo picture rather than a neat stage image. This
+is acceptable for a bed track sitting under isolated vocals, and the reverberant field fills the
+middle in a room this small. It is not a fault to correct — narrowing it would mean aiming to
+favour two sources and losing the others entirely (there is no aim that fits 210° into 90°).
+
+**Channel sides:** facing 125°, the recorder's left points at ~35° — the drums and G2 — and its
+right at ~215°, toward G1 and the bass. So **drums image left, G1 right.** Standing behind the
+recorder looking toward MAIN L, whatever is on your left lands on the left channel. Swap in
+GarageBand, or rotate the unit, if the opposite is wanted.
+
 ### Physical notes
 
 - **Lift the recorder off the desk surface** (small stand, foam pad, or place at the desk
   edge). A hard surface immediately under the capsules causes comb filtering from the
   reflection arriving a fraction of a millisecond after the direct sound.
-- 4 ft is below the amp cabinets and near desk level; acceptable, not ideal.
-- **Stereo orientation:** G1 and G2 sit on opposite sides of the field and will image hard
-  left/right. Which is which depends on physical orientation; swap in GarageBand if reversed.
+- Keep it off the desk's back edge and away from the wall for the same reason.
+- Level, or tilted very slightly up. 4 ft is below the amp cabinets and near desk level;
+  acceptable, not ideal.
 
 ### If the room track proves too drum-heavy or too thin on G1
 
@@ -306,9 +334,10 @@ Nothing purchased for this design becomes redundant.
    coverage of all four vocals. The layout runs the M200 in Master+Monitor speaker mode, and
    whether the line-level MONITOR OUT remains independently available in that mode is
    unverified. Check the Harbinger manual before considering this variant.
-2. **H4essential X/Y capsule angle.** Whether it is fixed or switchable (as the H4n Pro's
-   90°/120° is) was not confirmed. This affects stereo width, not coverage — cardioid
-   capsules pick up well beyond the capsule angle — so it does not change the placement math.
+2. ~~**H4essential X/Y capsule angle.**~~ **RESOLVED:** fixed at **90°**, not switchable (the
+   H4n Pro's 90/120 adjustment does not exist on this model). Nothing to set up. It does not
+   change the placement math — cardioid capsules capture well beyond the capsule angle — but
+   it does have an imaging consequence, recorded under Placement below.
 3. **Wedge bleed into the room track — measure on the first session.** The wedge sits 80 units
    from the recorder. The aim places it 144.8° off-axis, but that figure is theoretical. Test:
    record with the wedge muted, then unmuted, and compare the room track. If lead vocal is
